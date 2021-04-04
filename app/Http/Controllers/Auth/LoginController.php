@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     /*
@@ -36,5 +37,38 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $this->middleware('VerifyTemplate');
+    }
+
+     public function login(Request $request)
+    {
+        $this->validateLogin($request);
+
+        if (method_exists($this, 'hasTooManyLoginAttempts') &&
+            $this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+
+            return $this->sendLockoutResponse($request);
+        }
+        if($this->guard()->validate($this->credentials($request))){
+            $user = $this->guard()->getLastAttempted();
+
+            if($user->email_verified_at !=null && $this->attemptLogin($request)) {
+                return $this->sendLoginResponse($request);                
+            }else{
+
+              $this->incrementLoginAttempts($request);
+              //$user->code = SendCode::sendCode($user->phone);
+              if($user->save()){
+                 return redirect()->back()->with('warning','Your account is not active. We already sent activation link, Check your email and click on the link to verify your email');
+              }
+            }
+
+        }
+
+        
+        $this->incrementLoginAttempts($request);
+
+        return $this->sendFailedLoginResponse($request);
     }
 }

@@ -6,7 +6,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="robots" content="noindex">
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
 <link rel="stylesheet" href="{{asset('assets/css/minify/shop-homepage.css')}}">
@@ -20,11 +22,11 @@
 <link rel="stylesheet" href="{{asset('assets/new_css/css/minify/style1.css')}}" />
 <link rel="stylesheet" type="text/css" href="{{asset('assets/new_css/css/minify/style.css')}}" media="all" />
 <link rel="stylesheet" type="text/css" href="{{asset('assets/new_css/css/minify/tradestyle.css')}}" media="all" />
-<link rel="stylesheet" href="{{asset('assets/new_css/css/minify/bootstrap-tagsinput.css')}}" />
+{{-- <link rel="stylesheet" href="{{asset('assets/new_css/css/minify/bootstrap-tagsinput.css')}}" /> --}}
 <link rel="stylesheet" type="text/css" href="{{asset('assets/new_css/css/minify/style2.css')}}" media="all" />
-<link rel="stylesheet" type="text/css" href="{{asset('assets/new_css/css/minify/lumos.css')}}" media="all" />
+{{-- <link rel="stylesheet" type="text/css" href="{{asset('assets/new_css/css/minify/lumos.css')}}" media="all" />
 <link rel="stylesheet" type="text/css" href="{{asset('assets/themes/css/minify/mtree.css')}}" media="all" />
-
+ --}}
 <title>Manufacturerssss Suppliers Exporters Importers from the world s largest online B2B marketplace Demobaba com</title>
 
 <meta name="description" content="B2B Marketplace" />
@@ -34,9 +36,7 @@
 {{-- <script src="{{asset('assets/external/minify/minify.js')}}" ></script> --}}
 
 {{-- <script src="{{asset('assets/themes/js/minify/jquery.menu-aim.js')}}" type="71442c02aac08a99421fde33-text/javascript"></script> --}}
-<script src="{{asset('assets/themes/js/minify/main.js')}}" type="71442c02aac08a99421fde33-text/javascript"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" type="71442c02aac08a99421fde33-text/javascript"></script>
-<script src="{{asset('assets/js/developer.js')}}" type="71442c02aac08a99421fde33-text/javascript"></script>
+
 
 </head>
 <body ng-controller="ZipCodeCtrl">
@@ -136,7 +136,7 @@ Platinum suppliers</a>
 </ul>
 </li>
 <li><a href="registration-1.html" class="btn_xs_fix">Create a website</a> </li>
-<li><a href="login.html" class="btn_xs_fix">My Account</a> </li>
+<li><a href="{{route('login')}}" class="btn_xs_fix">My Account</a> </li>
 <li><a href="login.html" class="btn_xs_fix">Post A Classified</a> </li>
 <li><a href="buy_requirement.html" class="btn_xs_fix">Get Quote</a> </li>
 <li><a href="all_categories.html" class="btn_xs_fix">All Categories&ensp; <span class="sr-only">(current)</span></a> </li>
@@ -2852,7 +2852,7 @@ Classifieds </option>
 <div class="log-i">
 <i class="sc-hd-ms-icon sc-hd-i-unsignavatar"></i>
 </div>
-<span><a class="color-t" href="login.html">Sign In</a>&ensp;|&ensp;<a class="color-t" href="registration-1.html">Join Free</a></span>
+<span><a class="color-t" href="{{route('login')}}">Sign In</a>&ensp;|&ensp;<a class="color-t" href="{{route('register')}}">Join Free</a></span>
 <p> <span class="text"><a href="#/" class="color-b"> Eagle Techono</a></span></p>
 </div>
 </div>

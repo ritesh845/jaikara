@@ -8,7 +8,13 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\ServiceType;
+use Illuminate\Auth\Events\Registered;
+use Mail;
+use App\Mail\VerifyMail;
+use Illuminate\Support\Str;
 class RegisterController extends Controller
 {
     /*
@@ -39,6 +45,14 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->middleware('VerifyTemplate');
+
+    }
+
+    public function showRegistrationForm()
+    {
+        $services = ServiceType::orderBy('service_name','asc')->cursor();
+        return view('auth.register',compact('services'));
     }
 
     /**
@@ -52,7 +66,13 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'mobile' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'captcha'  => ['required','captcha']
+
+        ],
+        [
+            'captcha.captcha'=>'Invalid captcha code.'
         ]);
     }
 
@@ -64,10 +84,54 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        $role_id = $data['role_id'] == 'buyer' ? '3' : ($data['role_id'] == 'seller' ? '4' : '5');
+        $user  =  User::create([
+            'name'          => $data['name'],
+            'email'         => $data['email'],
+            'role_id'       => $role_id,
+            'comp_name'     => $data['comp_name'],
+            'mobile'        => $data['mobile'],
+            'country_code'  => $data['country_code'],
+            'state_code'    => $data['state_code'],
+            'city_code'     => $data['city_code'],
+            'is_terms'      => $data['is_terms'] == 'on' ? '1' : '0',
+            'service_id'    => $data['role_id'] == 'service' ? $data['service_type'] : null,
+            'password'      => Hash::make($data['password']),
+
+            'remember_token'=> Str::random(40),
         ]);
+
+
+        $user->attachRole($role_id);
+
+        Mail::to($user->email)->send(new VerifyMail($user));
+
+        return $user;
+
+    }
+
+    public function register(Request $request)
+    {
+     
+        $this->validator($request->all())->validate();
+        event(new Registered($user = $this->create($request->all())));
+
+
+        return $this->registered($request, $user)
+                        ?: redirect('/login')->with('success','We sent activation link, Check your email and click on the link to verify your email');
+
+
+        // $this->guard()->login($user);
+
+        // if ($response = $this->registered($request, $user)) {
+        //     return $response;
+        // }
+
+        // return $request->wantsJson()
+        //             ? new JsonResponse([], 201)
+        //             : redirect($this->redirectPath());
+
+        // return $this->registered($request, $user)
+        //                 ?: redirect('/verify?phone='.$request->mobile)->with('success','We sent activation code, Check your mobile and also check your email and click on the link to verify your email');
     }
 }

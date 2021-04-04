@@ -13,10 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.home');
-});
+Route::get('/', [App\Http\Controllers\FrontendController::class, 'index'])->middleware('VerifyTemplate');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+//Frontend
+
+Route::get('/get_states/{id}', [App\Http\Controllers\FrontendController::class, 'get_states']);
+Route::get('/get_cities/{id}', [App\Http\Controllers\FrontendController::class, 'get_cities']);
+
+Route::get('/refresh_captcha', [App\Http\Controllers\FrontendController::class, 'refreshCaptcha']);
+
+
+Route::get('/verify/{token}','App\Http\Controllers\VerifyController@verifyUser');
