@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\FrontendController::class, 'index'])->middleware('VerifyTemplate');
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 //Frontend
@@ -29,3 +29,10 @@ Route::get('/refresh_captcha', [App\Http\Controllers\FrontendController::class, 
 
 
 Route::get('/verify/{token}','App\Http\Controllers\VerifyController@verifyUser');
+
+
+
+//Backend......
+
+Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index']);
+
