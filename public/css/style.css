@@ -24,14 +24,14 @@
 
 }
 .register-body{
-	position: absolute;
+	/*position: absolute;*/
 	width: 100%;
-	left: 50px;
+	/*left: 50px;*/
 	top: -120px;
 	font-size: 15px;
 }
 .register-inner-body{
-	min-height: 950px;
+	min-height: 900px;
 	background-color: rgba(142,142,142,.17) !important;
 }
 .theme-color{
