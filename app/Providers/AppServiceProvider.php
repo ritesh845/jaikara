@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Country;
 use Illuminate\Support\Facades\View;
+use Auth;
+use App\Models\User;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -26,6 +28,9 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer(['auth.register'], function ($view) {
             $view->with('countries', Country::orderBy('country_name','asc')->cursor());
+        });
+        View::composer(['backend.seller.company.profile'],function($view){
+             $view->with('user', User::find(Auth::user()->id));
         });
     }
 }

@@ -42,4 +42,14 @@ class User extends Authenticatable
     public function role(){
         return $this->belongsTo('App\Models\Role','role_id');
     }
+    public function country(){
+        return $this->belongsTo('App\Models\Country','country_code');
+    }
+    public function state(){
+        return $this->belongsTo('App\Models\State','state_code');
+    }
+    public function city(){
+        return $this->belongsTo('App\Models\City','city_code');
+    }
 }
+
