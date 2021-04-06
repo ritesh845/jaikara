@@ -35,5 +35,5 @@ Route::get('/verify/{token}','App\Http\Controllers\VerifyController@verifyUser')
 
 //Backend User
 Route::group(['middleware' => 'auth'],function(){
-	Route::get('/userShow', [App\Http\Controllers\Backend\HomeController::class, 'userShow'])->name('userShow');
+	Route::get('/userShow', [App\Http\Controllers\Backend\UserController::class, 'userShow'])->name('userShow');
 });
