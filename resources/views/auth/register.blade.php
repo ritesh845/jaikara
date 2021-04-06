@@ -167,7 +167,7 @@
                                 </div>
                                 <div class="col-md-12 form-group error-div">
                                     
-                                    <span id="captcha">{!! captcha_img('flat') !!}</span>
+                                    <span id="captcha">{!! captcha_img('math') !!}</span>
 
                                     <a href="javascript:void(0)" class="btn btn-sm btn-theme ml-3" id="btn-refresh"><i class="fa fa-refresh"></i></a>
                                 </div>
