@@ -63,6 +63,7 @@
                         
                     </ul>
                 </li><!-- nav-item -->
+                
                  <li class="nav-item">
                     <a href="#" class="nav-link with-sub"><i class="fa fa-file-o fa f-14"></i>Users And Customers</a>
                     <ul class="nav-sub">
@@ -87,22 +88,75 @@
             @endrole
             @role('seller')
                  <li class="nav-item">
-                    <a href="#" class="nav-link with-sub"><i class="fa fa-file-o fa f-14"></i>Company Profile </a>
+                    <a href="#" class="nav-link with-sub"><i class="fa fa-building-o fa f-14"></i>Company Profile </a>
                     <ul class="nav-sub">
                         <li class="nav-sub-item">
-                            <a href="app-mail.html" class="nav-sub-link">General Setting</a>
+                            <a href="{{route('company_profile')}}" class="nav-sub-link"><i class="fa fa-building-o fa f-14"></i> Company Profile </a>
                         </li>
                         <li class="nav-sub-item">
-                            <a href="app-chat.html" class="nav-sub-link">Member Package</a>
+                            <a href="app-chat.html" class="nav-sub-link"><i class="fa fa-info-circle fa f-14"></i> Trade & Production </a>
                         </li>
                         <li class="nav-sub-item">
-                            <a href="app-calendar.html" class="nav-sub-link">Change Password</a>
+                            <a href="app-calendar.html" class="nav-sub-link"><i class="fa fa-info-circle fa f-14"></i> Information & Policies</a>
                         </li>
                         <li class="nav-sub-item">
-                            <a href="app-calendar.html" class="nav-sub-link">Permission Setting</a>
+                            <a href="app-calendar.html" class="nav-sub-link"><i class="fa fa-file-image-o" aria-hidden="true"></i> IMAGE GALLERY</a>
+                        </li>
+                        <li class="nav-sub-item">
+                            <a href="app-calendar.html" class="nav-sub-link"><i class="fa fa-file-image-o" aria-hidden="true"></i>  CERTIFICATION ACHIEVED</a>
                         </li>
                         
                     </ul>
+                </li><!-- nav-item -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link with-sub"><i class="fa fa-pie-chart  fa f-14"></i>Trade Leads</a>
+                    <ul class="nav-sub">
+                        <li class="nav-sub-item">
+                            <a href="app-mail.html" class="nav-sub-link"> <i class="fa fa-tasks" aria-hidden="true"></i> Sell trade leads</a>
+                        </li>
+                        <li class="nav-sub-item">
+                            <a href="app-chat.html" class="nav-sub-link"> <i class="fa fa-tasks" aria-hidden="true"></i>Buy trade leads</a>
+                        </li>
+                        <li class="nav-sub-item">
+                            <a href="app-calendar.html" class="nav-sub-link"> <i class="fa fa-plus"></i>Add Trade Lead</a>
+                        </li>
+                        
+                        
+                    </ul>
+                </li><!-- nav-item -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link with-sub"><i class="fa fa-quote-right  fa f-14"></i>Quotation</a>
+                    <ul class="nav-sub">
+                        <li class="nav-sub-item">
+                            <a href="app-mail.html" class="nav-sub-link"><i class="fa fa-file-text"></i>My Posted RFQ</a>
+                        </li>
+                        <li class="nav-sub-item">
+                            <a href="app-chat.html" class="nav-sub-link"><i class="fa fa-file-text">
+                            </i>My Submited Quotes</a>
+                        </li>
+                       
+                        
+                    </ul>
+                </li><!-- nav-item --> 
+                <li class="nav-item">
+                    <a href="#" class="nav-link with-sub"><i class="fa fa-tasks fa f-14"></i>Product Management</a>
+                    <ul class="nav-sub">
+                        <li class="nav-sub-item">
+                            <a href="app-mail.html" class="nav-sub-link"><i class="fa fa-gift"></i> Product List</a>
+                        </li>
+                        <li class="nav-sub-item">
+                            <a href="app-chat.html" class="nav-sub-link"> <i class="fa fa-gift"></i>Add Product</a>
+                        </li>
+                        <li class="nav-sub-item">
+                            <a href="app-calendar.html" class="nav-sub-link"><i class="fa fa-user"></i> Product Group Management</a>
+                        </li>
+                       
+                        
+                    </ul>
+                </li><!-- nav-item -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link with-sub"><i class="fa fa-bullhorn fa f-14"></i>My Classifieds</a>
+                   
                 </li><!-- nav-item -->
             @endrole
      
