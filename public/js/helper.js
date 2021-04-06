@@ -15,7 +15,6 @@ function fn_state(country_code,oldStateCode =''){
     }else{
         $('#state').empty();
     }
-   
 }
 
 function fn_city(state_code,oldCityCode =''){

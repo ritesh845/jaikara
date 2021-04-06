@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\FrontendController::class, 'index'])->middleware('VerifyTemplate');
+Route::get('/', [App\Http\Controllers\FrontendController::class, 'index']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
@@ -32,7 +32,8 @@ Route::get('/verify/{token}','App\Http\Controllers\VerifyController@verifyUser')
 
 
 
-//Backend......
 
-Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index']);
-
+//Backend User
+Route::group(['middleware' => 'auth'],function(){
+	Route::get('/userShow', [App\Http\Controllers\Backend\HomeController::class, 'userShow'])->name('userShow');
+});
