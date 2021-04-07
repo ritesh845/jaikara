@@ -11,5 +11,4 @@ class TradeAndProduction extends Model
     protected $table = 'trade_production';
     protected $primaryKey = 'trade_pro_id';
     protected $guarded = []; 
-    public $timestamps = false;
 }

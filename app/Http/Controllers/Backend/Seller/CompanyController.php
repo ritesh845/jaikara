@@ -31,7 +31,6 @@ class CompanyController extends Controller
     }
     public function tradeAndProductionUpdate(Request $request)
     {
-    	// dd($request);
     	$data = [
     		'prdt_capacity'=>$request->prdt_capacity,
     		'size_sqft'=>$request->size_sqft,
@@ -40,7 +39,7 @@ class CompanyController extends Controller
     		'factory_loc'=>$request->factory_loc,
     		'export_per'=>$request->export_per,
     		'sales_volume'=>$request->sales_volume,
-    		'packaging_details'=>$request->packaging_details,
+    		'packg_dtl'=>$request->packg_dtl,
     		'office_size'=>$request->office_size,
     		'export_market'=>$request->export_market,
     		'five_countries'=>$request->five_countries,
@@ -56,7 +55,6 @@ class CompanyController extends Controller
     		'product_you_sell'=>$request->product_you_sell
     	];
     	$data['user_id'] = Auth::user()->id;
-    	// dd($data);
     	if ($request->user_id ==Auth::user()->id) {
     		$tradeAndProduction = TradeAndProduction::where('user_id',$request->user_id)->update($data);
     	}else{
@@ -65,6 +63,17 @@ class CompanyController extends Controller
     	}
         return redirect()->back()->with('success','Trade & Production updated successfully');
 
+    }
+
+    public function infoPolicy(){
+
+    	$tradeAndProduction = TradeAndProduction::where('user_id',Auth::user()->id)->first();
+        return view('backend.seller.company.info-policies.index',compact('tradeAndProduction'));
+    }
+    public function infoPolicyEdit(){
+
+    	$tradeAndProduction = TradeAndProduction::where('user_id',Auth::user()->id)->first();
+        return view('backend.seller.company.info-policies.edit',compact('tradeAndProduction'));
     }
 
    
