@@ -68,7 +68,7 @@
                     <a href="#" class="nav-link with-sub"><i class="fa fa-file-o fa f-14"></i>Users And Customers</a>
                     <ul class="nav-sub">
                         <li class="nav-sub-item">
-                            <a href="{{route('userShow')}}" class="nav-sub-link">Show User</a>
+                            <a href="{{route('userIndex')}}" class="nav-sub-link">Show User</a>
                         </li>
                         <li class="nav-sub-item">
                             <a href="app-chat.html" class="nav-sub-link">Show Customer</a>

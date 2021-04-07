@@ -35,10 +35,17 @@ Route::get('/verify/{token}','App\Http\Controllers\VerifyController@verifyUser')
 
 //Backend User
 Route::group(['middleware' => 'auth'],function(){
-	//admin
-	Route::get('/userShow', [App\Http\Controllers\Backend\UserController::class, 'userShow'])->name('userShow');
+	
+	//admin user manage
+	Route::get('/userIndex', [App\Http\Controllers\Backend\UserController::class, 'userIndex'])->name('userIndex');
+	Route::get('/userShow/{id}', [App\Http\Controllers\Backend\UserController::class, 'userShow'])->name('userShow');
 	Route::get('/userEdit/{id}', [App\Http\Controllers\Backend\UserController::class, 'userEdit'])->name('userEdit');
+	Route::patch('/userUpdate/{id}', [App\Http\Controllers\Backend\UserController::class, 'userUpdate'])->name('userUpdate');
+	Route::get('/userDelete/{id}', [App\Http\Controllers\Backend\UserController::class, 'userDelete'])->name('userDelete');
+	
 	Route::get('/userApproval/{id}', [App\Http\Controllers\Backend\UserController::class, 'userApproval'])->name('userApproval');
+
+
 
 	//seller company profile
 	// Route::resource('company_profile', App\Http\Controllers\Backend\CompanyController::class);

@@ -9,8 +9,8 @@
 		<td>
             <a href="javascript:void(0)"  class="{{$user->status == 'P' ? 'bg-secondary' : 'bg-success'}} text-white p-2 ml-2 rounded-circle approval" data-id="{{$user->id}}"><i class="fa fa-key" title="{{$user->status == 'P' ? 'Unapprove' : 'Approve'}}" ></i></a>            
             <a href="{{route('userEdit',$user->id)}}" class="bg-info text-white p-2 ml-2 rounded-circle" title="Edit"><i class="fa fa-edit"></i></a>            
-            <a href="" class="bg-warning text-white p-2 ml-2 rounded-circle" title="View"><i class="fa fa-eye"></i></a>            
-            <a href="" class="bg-danger text-white p-2 ml-2 rounded-circle" title="Delete"><i class="fa fa-trash"></i></a>            
+            <a href="{{route('userShow',$user->id)}}" class="bg-warning text-white p-2 ml-2 rounded-circle" title="View"><i class="fa fa-eye"></i></a>            
+            <a href="{{route('userDelete',$user->id)}}" class="bg-danger text-white p-2 ml-2 rounded-circle" title="Delete" onclick="return confirm('Are you sure you want to delete user?');"><i class="fa fa-trash"></i></a>            
         </td>
 	</tr>
 @endforeach
