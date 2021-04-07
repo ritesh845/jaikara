@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TradeAndProduction extends Model
+class SellTrade extends Model
 {
     use HasFactory;
-    protected $table = 'trade_production';
-    protected $primaryKey = 'trade_pro_id';
+    protected $table = 'sell_trade_lead';
+    protected $primaryKey = 'sell_trd_id';
     protected $guarded = []; 
 }
