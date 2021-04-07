@@ -94,7 +94,7 @@
                             <a href="{{route('company_profile')}}" class="nav-sub-link"><i class="fa fa-building-o fa f-14"></i> Company Profile </a>
                         </li>
                         <li class="nav-sub-item">
-                            <a href="app-chat.html" class="nav-sub-link"><i class="fa fa-info-circle fa f-14"></i> Trade & Production </a>
+                            <a href="{{route('trade_production_view')}}" class="nav-sub-link"><i class="fa fa-info-circle fa f-14"></i> Trade & Production </a>
                         </li>
                         <li class="nav-sub-item">
                             <a href="app-calendar.html" class="nav-sub-link"><i class="fa fa-info-circle fa f-14"></i> Information & Policies</a>
