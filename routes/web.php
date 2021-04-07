@@ -35,10 +35,19 @@ Route::get('/verify/{token}','App\Http\Controllers\VerifyController@verifyUser')
 
 //Backend User
 Route::group(['middleware' => 'auth'],function(){
+	//admin
 	Route::get('/userShow', [App\Http\Controllers\Backend\UserController::class, 'userShow'])->name('userShow');
+	Route::get('/userEdit/{id}', [App\Http\Controllers\Backend\UserController::class, 'userEdit'])->name('userEdit');
+	Route::get('/userApproval/{id}', [App\Http\Controllers\Backend\UserController::class, 'userApproval'])->name('userApproval');
 
 	//seller company profile
+<<<<<<< HEAD
 	
+=======
+	// Route::resource('company_profile', App\Http\Controllers\Backend\CompanyController::class);
+
+	//Seller
+>>>>>>> c1ba79531925d49c6d9c43e469b97f7e938a324c
 	Route::get('/company-profile',[App\Http\Controllers\Backend\Seller\CompanyController::class,'profile'])->name('company_profile');
 	Route::get('/company-profile-edit',[App\Http\Controllers\Backend\Seller\CompanyController::class,'companyProfileEdit'])->name('company_profile_edit');
 

@@ -23,6 +23,7 @@
                                     <div class="alert alert-warning">
                                         {{$message}}
                                     </div>
+
                                 @endif 
                             </div>                    
                             <div class="col-md-12 form-group">
@@ -41,6 +42,9 @@
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-sm btn-theme">Sign In</button>
                                 <button class="btn btn-sm btn-primary ml-2">Forgot Password</button>
+                                {{-- @if($message = Session::get('warning'))
+                                    <a href="" class="btn btn-sm btn-success ml-2">Resend Verify Mail</a>
+                                @endif --}}
                                 <br>
                                 <br>
                                 <a href="{{route('register')}}">Not Registered?</a>
