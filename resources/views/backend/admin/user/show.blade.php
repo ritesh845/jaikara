@@ -17,20 +17,30 @@
     				<th>Action</th>
     			</tr>
     		</thead>
-    		<tbody>
-    			@foreach($users as $user)
-    			<tr>
-    				<td></td>
-    				<td>{{$user->name}}</td>
-    				<td>{{$user->email}}</td>
-    				<td>{{$user->role !=null ? $user->role->name : ''}}</td>
-    				<td>{{$user->mobile}}</td>
-    				<td>{{date('d-m-Y',strtotime($user->created_at))}}</td>
-    				<td></td>
-    			</tr>
-    			@endforeach
+    		<tbody id="tbody">
+    			@include('backend.admin.user.table')
     		</tbody>
     	</table>
     </div>
 </div><!-- card -->
+<script>
+    $(document).ready(function(){
+        $(document).on('click','.approval',function(e){
+            e.preventDefault();
+            var user_id = $(this).data('id');
+            $.ajax({
+                type:'GET',
+                url:"{{url('userApproval')}}/"+user_id,
+                success:function(res){
+                    if(res.status == 'success'){
+                        alert(res.message)
+                        window.location.reload();
+                    }
+                }
+            })
+
+
+        });
+    });
+</script>
 @endsection

@@ -42,4 +42,13 @@ class VerifyController extends Controller
     		return "warning";
     	}
     }
+    public function resendVerifyMail(){     
+        if($user = User::where('mobile',request()->get('phone'))->first()){
+            $user->otp = SendCode::sendCode($user->mobile); 
+            $user->save();
+            return "success";
+        }else{
+            return "warning";
+        }
+    }
 }
