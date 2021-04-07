@@ -20,27 +20,27 @@
 						</tr>
 						<tr>
 							<th>Factory Size</th>
-							<td>{{$tradeAndProduction ? $tradeAndProduction->prdt_capacity : ''}}</td>
+							<td>{{$tradeAndProduction ? $tradeAndProduction->size_sqft : ''}}</td>
 						</tr>
 						<tr>
 							<th>Average Lead Time / Day(s)</th>
-							<td>{{$tradeAndProduction ? $tradeAndProduction->prdt_capacity : ''}}</td>
+							<td>{{$tradeAndProduction ? $tradeAndProduction->lead_time_days : ''}}</td>
 						</tr>
 						<tr>
 							<th>Compliance Maintaining </th>
-							<td>{{$tradeAndProduction ? $tradeAndProduction->prdt_capacity : ''}}</td>
+							<td>{{$tradeAndProduction ? $tradeAndProduction->maintaining : ''}}</td>
 						</tr>
 						<tr>
 							<th>Export Percentage </th>
-							<td>{{$tradeAndProduction ? $tradeAndProduction->prdt_capacity : ''}}</td>
+							<td>{{Arr::get(ExportPer,$tradeAndProduction->export_per)}}</td>
 						</tr>
 						<tr>
 							<th>Annual Sales Volume </th>
-							<td> {{$tradeAndProduction ? $tradeAndProduction->prdt_capacity : ''}}</td>
+							<td>{{Arr::get(AnnualSales,$tradeAndProduction->sales_volume)}} </td>
 						</tr>
 						<tr>
 							<th>Packaging Details</th>
-							<td>{{$tradeAndProduction ? $tradeAndProduction->prdt_capacity : ''}}</td>
+							<td>{{$tradeAndProduction ? $tradeAndProduction->packg_dtl : ''}}</td>
 						</tr>
 						
 					</tbody>
@@ -53,43 +53,39 @@
 					<tbody>
 						<tr>
 							<th>Office Size</th>
-							<td>{{$tradeAndProduction ? $tradeAndProduction->prdt_capacity : ''}}</td>
+							<td>{{Arr::get(OfficeSize,$tradeAndProduction->office_size)}}</td>
 						</tr>
 						<tr>
 							<th>Main Export Markets (Country)</th>
-							<td>{{$tradeAndProduction ? $tradeAndProduction->prdt_capacity : ''}}</td>
+							<td>{{Arr::get(MainExportMarkets,$tradeAndProduction->export_market)}}</td>
 						</tr>
 						<tr>
 							<th>Nearest Port</th>
-							<td>{{$tradeAndProduction ? $tradeAndProduction->prdt_capacity : ''}}</td>
+							<td>{{$tradeAndProduction ? $tradeAndProduction->five_countries : ''}}</td>
 						</tr>
 						<tr>
 							<th>Factory Location </th>
-							<td>{{$tradeAndProduction ? $tradeAndProduction->prdt_capacity : ''}}</td>
+							<td>{{$tradeAndProduction ? $tradeAndProduction->factory_loc : ''}}</td>
 						</tr>
 						<tr>
 							<th>Major Product(s) you sell (For Sellers) </th>
-							<td>{{$tradeAndProduction ? $tradeAndProduction->prdt_capacity : ''}}</td>
-						</tr>
-						<tr>
-							<th>Major Product(s) you sell (For Sellers) </th>
-							<td>{{$tradeAndProduction ? $tradeAndProduction->prdt_capacity : ''}} </td>
+							<td>{{$tradeAndProduction ? $tradeAndProduction->major_prdt_sell : ''}}</td>
 						</tr>
 						<tr>
 							<th>Main Products 1</th>
-							<td>{{$tradeAndProduction ? $tradeAndProduction->prdt_capacity : ''}}</td>
+							<td>{{$tradeAndProduction ? $tradeAndProduction->main_prdt1 : ''}}</td>
 						</tr>
 						<tr>
 							<th>Main Products 2</th>
-							<td>{{$tradeAndProduction ? $tradeAndProduction->prdt_capacity : ''}}</td>
+							<td>{{$tradeAndProduction ? $tradeAndProduction->main_prdt2 : ''}}</td>
 						</tr>
 						<tr>
 							<th>Main Products 3</th>
-							<td>{{$tradeAndProduction ? $tradeAndProduction->prdt_capacity : ''}}</td>
+							<td>{{$tradeAndProduction ? $tradeAndProduction->main_prdt3 : ''}}</td>
 						</tr>
 						<tr>
 							<th>Other Products You Sell</th>
-							<td>{{$tradeAndProduction ? $tradeAndProduction->prdt_capacity : ''}}</td>
+							<td>{{$tradeAndProduction ? $tradeAndProduction->product_you_sell : ''}}</td>
 						</tr>
 					</tbody>
 				</table>

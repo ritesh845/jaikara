@@ -6,10 +6,8 @@
 			<div class="col-md-12">
 				<ul class="nav nav-bar">
 					<li class="ml-1"><a href="" class="btn btn-sm btn-success">Company Profile</a></li>
-					<li class="ml-1"><a href="" class="btn btn-sm btn-secondary">View Trade Productions</a></li>
+					<li class="ml-1"><a href="{{route('trade_production_view')}}" class="btn btn-sm btn-secondary">View Trade Productions</a></li>
 					<li class="ml-1"><a href="" class="btn btn-sm btn-secondary">View Information Policies</a></li>
-			
-					
 				</ul>
 			</div>
 		</div>

@@ -97,7 +97,7 @@
                             <a href="{{route('trade_production_view')}}" class="nav-sub-link"><i class="fa fa-info-circle fa f-14"></i> Trade & Production </a>
                         </li>
                         <li class="nav-sub-item">
-                            <a href="app-calendar.html" class="nav-sub-link"><i class="fa fa-info-circle fa f-14"></i> Information & Policies</a>
+                            <a href="{{route('information_policies')}}" class="nav-sub-link"><i class="fa fa-info-circle fa f-14"></i> Information & Policies</a>
                         </li>
                         <li class="nav-sub-item">
                             <a href="app-calendar.html" class="nav-sub-link"><i class="fa fa-file-image-o" aria-hidden="true"></i> IMAGE GALLERY</a>
