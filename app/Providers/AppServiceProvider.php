@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer(['auth.register'], function ($view) {
             $view->with('countries', Country::orderBy('country_name','asc')->cursor());
         });
-        View::composer(['backend.seller.company.profile'],function($view){
+        View::composer(['backend.seller.company.profile','backend.seller.company.profile-edit'],function($view){
              $view->with('user', User::find(Auth::user()->id));
         });
     }
