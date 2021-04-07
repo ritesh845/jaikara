@@ -42,8 +42,7 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::get('/company-profile',[App\Http\Controllers\Backend\Seller\CompanyController::class,'profile'])->name('company_profile');
 	Route::get('/company-profile-edit',[App\Http\Controllers\Backend\Seller\CompanyController::class,'companyProfileEdit'])->name('company_profile_edit');
 
-
-
-
-
 });
+
+// Route::get('/{domain}',[App\Http\Controllers\FrontendController::class, 'domain_redirect']);
+

@@ -18,6 +18,7 @@ class VerifyTemplate
     public function handle(Request $request, Closure $next)
     {
         $this->url = request()->getHttpHost();
+       
         $user = User::select('domain_url','status','template_id','template_name','site_name','site_logo')->firstWhere(['domain_url' => $this->url,'status' => 'A']);
         if(!empty($user)){
             if($this->url === '127.0.0.1:8000'){

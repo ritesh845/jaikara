@@ -10,7 +10,6 @@ class CompanyController extends Controller
    
     public function profile()
     {
-    	
         return view('backend.seller.company.profile');
     } 
     public function companyProfileEdit()

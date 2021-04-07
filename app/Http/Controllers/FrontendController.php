@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\State;
 use App\Models\City;
+use App\Models\User;
+use App\Models\Page;
 class FrontendController extends Controller
 {
 	public function __construct()
@@ -28,4 +30,17 @@ class FrontendController extends Controller
       
         return captcha_img('math');
     }
+
+    // public function domain_redirect() {
+      
+    //     if(count(explode('/', request()->getRequestUri())) > 1){
+    //         $domain_name =  explode('/', request()->getRequestUri())[1];
+    //     }else{
+    //         $domain_name = '';
+    //     }
+    //     $user =  User::firstWhere('domain_url',$domain_name);
+    //     if(!empty($user)){
+
+    //     }else{}
+    // }
 }
