@@ -11,4 +11,12 @@ class TradeAndProduction extends Model
     protected $table = 'trade_production';
     protected $primaryKey = 'trade_pro_id';
     protected $guarded = []; 
+
+    protected $cast = [
+    	'payment_curre' 	=> 'array',
+    	'delivery_terms' 	=> 'array',
+    	'payment_method' 	=> 'array',
+    	'spoken_lang' 		=> 'array',
+    	'certification' 	=> 'array',
+    ];
 }

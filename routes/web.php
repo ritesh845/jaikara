@@ -61,6 +61,9 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::get('/information-policies/edit',[App\Http\Controllers\Backend\Seller\CompanyController::class,'infoPolicyEdit'])->name('info_policy_edit');
 	Route::post('/information-policies/update',[App\Http\Controllers\Backend\Seller\CompanyController::class,'infoPolicyUpdate'])->name('info_policy_update');
 
+	//gallery.............
+	Route::get('/image/gallery',[App\Http\Controllers\Backend\Seller\CompanyController::class,'imageGallery'])->name('image_gallery');
+
 });
 
 

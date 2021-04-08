@@ -6,6 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\TradeAndProduction;
+use App\Models\Currency;
+use App\Models\DeliveryTerms;
+use App\Models\Languages;
+use App\Models\PaymentMethod;
+use App\Models\Certification;
+use App\Models\InforPolicy;
 use Auth;
 class CompanyController extends Controller
 {
@@ -64,17 +70,58 @@ class CompanyController extends Controller
         return redirect()->back()->with('success','Trade & Production updated successfully');
 
     }
-
+//For information pplicy...................................
     public function infoPolicy(){
-
-    	$tradeAndProduction = TradeAndProduction::where('user_id',Auth::user()->id)->first();
-        return view('backend.seller.company.info-policies.index',compact('tradeAndProduction'));
+        
+        $currencies = Currency::get();
+        $deliveryTerms = DeliveryTerms::get();
+        $languages = Languages::get();
+        $paymentMethods = PaymentMethod::get();
+        // dd($paymentMethods);
+        $certifications = Certification::get();
+    	$inforPolicies = InforPolicy::where('user_id',Auth::user()->id)->first();
+        return view('backend.seller.company.info-policies.index',compact('inforPolicies','currencies','deliveryTerms','languages','paymentMethods','certifications'));
     }
     public function infoPolicyEdit(){
 
-    	$tradeAndProduction = TradeAndProduction::where('user_id',Auth::user()->id)->first();
-        return view('backend.seller.company.info-policies.edit',compact('tradeAndProduction'));
+    	$currencies = Currency::get();
+        $deliveryTerms = DeliveryTerms::get();
+        $languages = Languages::get();
+        $paymentMethods = PaymentMethod::get();
+        $certifications = Certification::get();
+        $inforPolicies = InforPolicy::where('user_id',Auth::user()->id)->first();
+        // dd($inforPolicies);
+        return view('backend.seller.company.info-policies.edit',compact('inforPolicies','currencies','deliveryTerms','languages','paymentMethods','certifications'));
+    } 
+    public function infoPolicyUpdate(Request $request){
+
+        $data = [
+                'escrow_service' =>$request->escrow_service,
+                'company_policy' =>$request->company_policy,
+                'pay_terms_method' =>$request->pay_terms_method,
+                'terms_condition' =>$request->terms_condition,
+                'payment_curre' =>json_encode($request->payment_curre),
+                'delivery_terms' =>json_encode($request->delivery_terms),
+                'payment_method' =>json_encode($request->payment_method),
+                'spoken_lang' =>json_encode($request->spoken_lang),
+                'certification' =>json_encode($request->certification),
+        ];              
+        $data['user_id'] = Auth::user()->id;
+        
+        if ($request->user_id ==Auth::user()->id) {
+            $tradeAndProduction = InforPolicy::where('user_id',$request->user_id)->update($data);
+        }else{
+            $tradeAndProduction = InforPolicy::create($data);
+
+        }
+        return redirect()->back()->with('success','Information and Policy updated successfully');
+
     }
 
+    public function imageGallery(){
+
+        return view('backend.seller.company.gallery.index');
+
+    }
    
 }

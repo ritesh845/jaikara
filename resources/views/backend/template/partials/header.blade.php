@@ -100,7 +100,7 @@
                             <a href="{{route('information_policies')}}" class="nav-sub-link"><i class="fa fa-info-circle fa f-14"></i> Information & Policies</a>
                         </li>
                         <li class="nav-sub-item">
-                            <a href="app-calendar.html" class="nav-sub-link"><i class="fa fa-file-image-o" aria-hidden="true"></i> IMAGE GALLERY</a>
+                            <a href="{{route('image_gallery')}}" class="nav-sub-link"><i class="fa fa-file-image-o" aria-hidden="true"></i> IMAGE GALLERY</a>
                         </li>
                         <li class="nav-sub-item">
                             <a href="app-calendar.html" class="nav-sub-link"><i class="fa fa-file-image-o" aria-hidden="true"></i>  CERTIFICATION ACHIEVED</a>
@@ -157,6 +157,12 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link with-sub"><i class="fa fa-bullhorn fa f-14"></i>My Classifieds</a>
                    
+                </li><!-- nav-item --> 
+                <li class="nav-item">
+                    <a href="#" class="nav-link with-sub"><i class="fa fa-bullhorn fa f-14"></i>Selected Ref</a>
+                </li><!-- nav-item -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link with-sub"><i class="fa fa-wallet fa f-14"></i>My Wallet</a>
                 </li><!-- nav-item -->
             @endrole
      
