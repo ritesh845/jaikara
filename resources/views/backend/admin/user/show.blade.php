@@ -2,45 +2,47 @@
 @section('content')
 <div class="card card-dashboard-seven">
     <div class="card-header p-2">
-        <h5 class="card-title">Show User</h5>
+        <h5 class="card-title">Details of {{$user->name}}
+        	<a href="{{route('userIndex')}}" class="btn btn-sm btn-primary pull-right">Back</a>
+        </h5>
     </div><!-- card-header -->
-    <div class="card-body">
+    <div class="card-body table-responsive">
     	<table class="table table-bordered table-striped">
-    		<thead>
-    			<tr>
-    				<th>#</th>
-    				<th>Name</th>
-    				<th>Email</th>
-    				<th>Type</th>
-    				<th>Mobile No.</th>
-    				<th>Join Date</th>
-    				<th>Action</th>
-    			</tr>
-    		</thead>
-    		<tbody id="tbody">
-    			@include('backend.admin.user.table')
-    		</tbody>
+    		<tbody>
+			<tr>
+				<td width="30%">Name</td>
+				<td>{{$user->name}}</td>
+			</tr>
+			<tr>
+				<td width="30%">Email</td>
+				<td>{{$user->email}}</td>
+			</tr>
+			<tr>
+				<td>Mobile Number</td>
+				<td>{{$user->mobile}}</td>
+			</tr>
+			<tr>
+				<td>City</td>
+				<td>{{$user->city->city_name}}</td>
+			</tr>
+			<tr>
+				<td>State</td>
+				<td>{{$user->state->state_name}}</td>
+			</tr>
+			<tr>
+				<td>Country</td>
+				<td>{{$user->country->country_name}}</td>
+			</tr>
+			<tr>
+				<td>Address</td>
+				<td>{{$user->address}}</td>
+			</tr>
+			<tr>
+				<td>User Image</td>
+				<td>N/A</td>
+			</tr>
+			</tbody>
     	</table>
     </div>
-</div><!-- card -->
-<script>
-    $(document).ready(function(){
-        $(document).on('click','.approval',function(e){
-            e.preventDefault();
-            var user_id = $(this).data('id');
-            $.ajax({
-                type:'GET',
-                url:"{{url('userApproval')}}/"+user_id,
-                success:function(res){
-                    if(res.status == 'success'){
-                        alert(res.message)
-                        window.location.reload();
-                    }
-                }
-            })
-
-
-        });
-    });
-</script>
+</div>
 @endsection

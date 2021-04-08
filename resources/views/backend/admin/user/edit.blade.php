@@ -5,7 +5,9 @@
         <h5 class="card-title">Edit User</h5>
     </div><!-- card-header -->
     <div class="card-body">
-    	<form name="add_user" action="" method="post" enctype="multipart/form-data" class="search_form general_form">
+    	<form action="{{route('userUpdate',$user->id)}}" method="post" autocomplete="off">
+    		@method('patch')
+    		@csrf
 			<div class="row">
 				<div class="col-md-6 form-group">
 					<label><strong>Email Address:</strong></label>
@@ -76,7 +78,7 @@
 
 				<div class="col-md-12 form-group">
 					<label><strong>Address: <span class="star">*</span></strong></label>
-					<textarea class="form-control" rows="5" cols="54" name="address">{{old('address') ?? $user->addr1}}</textarea>
+					<textarea class="form-control" rows="5" cols="54" name="address">{{old('address') ?? $user->address}}</textarea>
 					@error('address')
 				        <span class="help-block text-danger font-size-12">
 				            <strong>{{ $message }}</strong>

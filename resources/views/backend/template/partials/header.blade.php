@@ -68,13 +68,13 @@
                     <a href="#" class="nav-link with-sub"><i class="fa fa-file-o fa f-14"></i>Users And Customers</a>
                     <ul class="nav-sub">
                         <li class="nav-sub-item">
-                            <a href="{{route('userShow')}}" class="nav-sub-link">Show User</a>
+                            <a href="{{route('userIndex')}}" class="nav-sub-link">Show User</a>
                         </li>
                         <li class="nav-sub-item">
                             <a href="app-chat.html" class="nav-sub-link">Show Customer</a>
                         </li>
                         <li class="nav-sub-item">
-                            <a href="app-calendar.html" class="nav-sub-link">Per Day User</a>
+                            <a href="{{route('userPerDay')}}" class="nav-sub-link">Per Day User</a>
                         </li> 
                         <li class="nav-sub-item">
                             <a href="app-calendar.html" class="nav-sub-link">Add Staff User</a>
@@ -97,7 +97,7 @@
                             <a href="{{route('trade_production_view')}}" class="nav-sub-link"><i class="fa fa-info-circle fa f-14"></i> Trade & Production </a>
                         </li>
                         <li class="nav-sub-item">
-                            <a href="app-calendar.html" class="nav-sub-link"><i class="fa fa-info-circle fa f-14"></i> Information & Policies</a>
+                            <a href="{{route('information_policies')}}" class="nav-sub-link"><i class="fa fa-info-circle fa f-14"></i> Information & Policies</a>
                         </li>
                         <li class="nav-sub-item">
                             <a href="app-calendar.html" class="nav-sub-link"><i class="fa fa-file-image-o" aria-hidden="true"></i> IMAGE GALLERY</a>
