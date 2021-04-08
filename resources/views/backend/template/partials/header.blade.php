@@ -74,7 +74,7 @@
                             <a href="app-chat.html" class="nav-sub-link">Show Customer</a>
                         </li>
                         <li class="nav-sub-item">
-                            <a href="app-calendar.html" class="nav-sub-link">Per Day User</a>
+                            <a href="{{route('userPerDay')}}" class="nav-sub-link">Per Day User</a>
                         </li> 
                         <li class="nav-sub-item">
                             <a href="app-calendar.html" class="nav-sub-link">Add Staff User</a>

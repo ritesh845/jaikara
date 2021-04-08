@@ -60,4 +60,9 @@ class UserController extends Controller
        $user->delete();
         return redirect()->route('userIndex')->with('success',"User Deleted Successfully.");
     }
+
+    public function userPerDay(){
+        $users = User::selectRaw('count(users.id) as user_count , joining_date')->whereIn('role_id',['3','4','5'])->groupBy('joining_date')->orderBy('joining_date','desc')->get();
+        return view('backend.admin.user.per_day',compact('users'));
+    }
 }

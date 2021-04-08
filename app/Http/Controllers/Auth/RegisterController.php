@@ -97,6 +97,7 @@ class RegisterController extends Controller
             'is_terms'      => $data['is_terms'] == 'on' ? '1' : '0',
             'service_id'    => $data['role_id'] == 'service' ? $data['service_type'] : null,
             'password'      => Hash::make($data['password']),
+            'joining_date'  => date('Y-m-d'),
 
             'remember_token'=> Str::random(40),
         ]);
