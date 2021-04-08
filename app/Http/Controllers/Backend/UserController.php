@@ -8,7 +8,12 @@ use App\Models\User;
 class UserController extends Controller
 {
     public function userIndex(){
-    	$users = User::select('id','role_id','name','email','mobile','created_at','status','email_verified_at')->whereIn('role_id',['3','4','5'])->orderBy('created_at','desc')->cursor();
+    	$users = User::select('id','role_id','name','email','mobile','created_at','status','email_verified_at')->whereIn('role_id',['3','4','5']);
+        if(request('joining_date') !=''){
+            $joining_date = request('joining_date');
+            $users = $users->where('joining_date',$joining_date);
+        }
+        $users = $users->orderBy('created_at','desc')->cursor();
     	return view('backend.admin.user.index',compact('users'));
     }
     public function userApproval($id){
