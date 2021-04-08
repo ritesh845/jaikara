@@ -8,7 +8,12 @@ use App\Models\User;
 class UserController extends Controller
 {
     public function userIndex(){
-    	$users = User::select('id','role_id','name','email','mobile','created_at','status','email_verified_at')->whereIn('role_id',['3','4','5'])->orderBy('created_at','desc')->cursor();
+    	$users = User::select('id','role_id','name','email','mobile','created_at','status','email_verified_at')->whereIn('role_id',['3','4','5']);
+        if(request('joining_date') !=''){
+            $joining_date = request('joining_date');
+            $users = $users->where('joining_date',$joining_date);
+        }
+        $users = $users->orderBy('created_at','desc')->cursor();
     	return view('backend.admin.user.index',compact('users'));
     }
     public function userApproval($id){
@@ -59,5 +64,10 @@ class UserController extends Controller
        $user = User::find($id);
        $user->delete();
         return redirect()->route('userIndex')->with('success',"User Deleted Successfully.");
+    }
+
+    public function userPerDay(){
+        $users = User::selectRaw('count(users.id) as user_count , joining_date')->whereIn('role_id',['3','4','5'])->groupBy('joining_date')->orderBy('joining_date','desc')->get();
+        return view('backend.admin.user.per_day',compact('users'));
     }
 }

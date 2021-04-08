@@ -25,12 +25,12 @@ class HomeController extends Controller
     public function index()
     {
         $user = User::find(Auth::user()->id);
-        // $user->attachRole('1');
+        // $user->attachRole('4');
         return view('backend.home');
     }
     // public function index1()
     // {
     //     return view('backend.layouts.main');
-       
+    
     // }
 }
