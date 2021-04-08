@@ -52,6 +52,15 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::get('/trade-production-edit',[App\Http\Controllers\Backend\Seller\CompanyController::class,'tradeAndProductionEdit'])->name('trade_production_edit');
 	Route::post('/trade-production-update',[App\Http\Controllers\Backend\Seller\CompanyController::class,'tradeAndProductionUpdate'])->name('trade_production_update');
 
+	//sell trade lead
+	Route::get('/sell_trade',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTrade'])->name('sell_trade');
+	Route::get('/sell_trade/create',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTradeCreate'])->name('sell_trade.create');
+	Route::post('/sell_trade',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTradeStore'])->name('sell_trade.store');
+	Route::get('/sell_trade/{id}/edit',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTradeEdit'])->name('sell_trade.edit');
+	Route::patch('/sell_trade/update',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTradeUpdate'])->name('sell_trade.update');
+
+	Route::get('/sell_trade/delete/{id}',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTradeDelete'])->name('sell_trade.delete');
+
 });
 
 

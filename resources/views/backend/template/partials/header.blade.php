@@ -112,7 +112,7 @@
                     <a href="#" class="nav-link with-sub"><i class="fa fa-pie-chart  fa f-14"></i>Trade Leads</a>
                     <ul class="nav-sub">
                         <li class="nav-sub-item">
-                            <a href="app-mail.html" class="nav-sub-link"> <i class="fa fa-tasks" aria-hidden="true"></i> Sell trade leads</a>
+                            <a href="{{ route('sell_trade') }}" class="nav-sub-link"> <i class="fa fa-tasks" aria-hidden="true"></i>Sell trade leads</a>
                         </li>
                         <li class="nav-sub-item">
                             <a href="app-chat.html" class="nav-sub-link"> <i class="fa fa-tasks" aria-hidden="true"></i>Buy trade leads</a>
