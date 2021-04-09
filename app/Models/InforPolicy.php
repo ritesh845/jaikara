@@ -12,4 +12,12 @@ class InforPolicy extends Model
     protected $primaryKey = 'infr_id';
     protected $guarded = []; 
     public $timestamps = false; 
+
+    protected $cast = [
+    	'payment_curre' 	=> 'array',
+    	'delivery_terms' 	=> 'array',
+    	'payment_method' 	=> 'array',
+    	'spoken_lang' 		=> 'array',
+    	'certification' 	=> 'array',
+    ];
 }

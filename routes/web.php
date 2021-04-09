@@ -63,6 +63,9 @@ Route::group(['middleware' => 'auth'],function(){
 
 	Route::get('/company-profile',[App\Http\Controllers\Backend\Seller\CompanyController::class,'profile'])->name('company_profile');
 	Route::get('/company-profile-edit',[App\Http\Controllers\Backend\Seller\CompanyController::class,'companyProfileEdit'])->name('company_profile_edit');
+	Route::patch('/company-profile/update/{id}',[App\Http\Controllers\Backend\Seller\CompanyController::class,'companyProfileUpdate'])->name('company_profile_update');
+
+	Route::get('/domain-check/{name}',[App\Http\Controllers\Backend\Seller\CompanyController::class,'domainCheck'])->name('domainCheck');
 
 //Trades and production.............
 	Route::get('/trade-production-view',[App\Http\Controllers\Backend\Seller\CompanyController::class,'tradeAndProductionView'])->name('trade_production_view');
