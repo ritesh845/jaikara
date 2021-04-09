@@ -103,7 +103,7 @@
                             <a href="{{route('image_gallery')}}" class="nav-sub-link"> IMAGE GALLERY</a>
                         </li>
                         <li class="nav-sub-item">
-                            <a href="app-calendar.html" class="nav-sub-link">  CERTIFICATION ACHIEVED</a>
+                            <a href="{{route('certification')}}" class="nav-sub-link">  CERTIFICATION ACHIEVED</a>
                         </li>
                         
                     </ul>
@@ -142,7 +142,7 @@
                     <a href="#" class="nav-link with-sub"><i class="fa fa-tasks fa f-14"></i>Product Management</a>
                     <ul class="nav-sub">
                         <li class="nav-sub-item">
-                            <a href="app-mail.html" class="nav-sub-link"> Product List</a>
+                            <a href="{{route('product.index')}}" class="nav-sub-link"> Product List</a>
                         </li>
                         <li class="nav-sub-item">
                             <a href="app-chat.html" class="nav-sub-link">Add Product</a>
