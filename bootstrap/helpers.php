@@ -46,6 +46,14 @@ const MainExportMarkets =[
    5=> 'Asia',
    6=> 'Africa'
 ];
+const OwnershipType =[
+    1 => 'Corporation/Limited Liability Company',
+    2 => 'Partnership',
+    3 => 'LLC (Ltd Liability Corp)',
+    4 => 'Individual (Sole proprietorship)',
+    5 => 'Professional Association',
+    6 => 'Others'
+];
 
 if (!function_exists('file_upload')) {
     function file_upload($file,$folder,$data = [],$fieldName=null){      
@@ -63,9 +71,26 @@ if (!function_exists('file_upload')) {
 
 if (!function_exists('getFullAddress')) {
     function getFullAddress($data){      
-        return $data->addr1 .', '. ($data->addr2 !=null ? ($data->addr2 .', ') : '') . $data->city->city_name.', '.$data->state->state_name.', '.'India'.', '.$data->pin_code;
+        return $data->address .', '. $data->city->city_name.', '.$data->state->state_name.', '.$data->country->country_name;
         // return $path;
     }
 }
+
+
+if (!function_exists('getArrayValueString')) {
+    function getArrayValueString($datas,$fieldName){      
+      $spec_string = '' ; 
+      foreach($datas as $data) {
+        if($data->$fieldName !=null){
+          $spec_string .= $data->$fieldName.', ' ;
+        }
+      }
+      return substr($spec_string,0,strlen($spec_string)-2);
+    }
+}
+
+
+
+
 
 ?>

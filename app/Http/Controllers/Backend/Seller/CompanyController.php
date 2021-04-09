@@ -10,19 +10,69 @@ use App\Models\Currency;
 use App\Models\DeliveryTerms;
 use App\Models\Languages;
 use App\Models\PaymentMethod;
-use App\Models\Certification;
+
 use App\Models\InforPolicy;
+use App\Models\CatgMast;
+use App\Models\UserCatg;
+use App\Models\UserCertification;
 use Auth;
 class CompanyController extends Controller
 {
    
     public function profile()
     {
+       $user =  User::find(Auth::user()->id);
+       // return $user->certifications;
         return view('backend.seller.company.profile');
     } 
     public function companyProfileEdit()
+    {   
+        
+        $catgs =CatgMast::orderBy('catg_name')->cursor();
+        return view('backend.seller.company.profile-edit',compact('catgs'));
+    }
+    public function companyProfileUpdate(Request $request,$id)
     {
-        return view('backend.seller.company.profile-edit');
+        $user = User::find($id);
+
+        $request->validate([
+            'comp_sub_domain' => 'nullable|unique:users,comp_sub_domain,'.$request->id,          
+        ]);
+        $data = [
+            'comp_sub_domain' => $request->comp_sub_domain,
+            'domain_url'      => $request->comp_sub_domain,
+            'website_url'     => $request->website_url,
+            'description'     => $request->description,
+            'address'         => $request->address,
+            'meta_title'      => $request->meta_title,
+            'meta_desc'       => $request->meta_desc,
+            'meta_keywords'   => $request->meta_keywords,
+            'reg_year'        => $request->reg_year,
+            'personnel'       => $request->personnel,
+            'own_type'        => $request->own_type
+        ];
+
+        if($request->hasFile('file')){
+           $data['site_logo']  = file_upload($request->file,$id.'/images',$user,'site_logo');
+        }
+
+
+        if($request->cert_id !=null){
+            $user->certifications()->sync($request->cert_id);
+        }else{
+            $user->certifications()->sync(array());
+        }
+        if($request->catg_id !=null){
+            $user->categories()->sync($request->catg_id);
+        }else{
+            $user->categories()->sync(array());
+        }
+       
+        $user->update($data);
+        return redirect()->back()->with('success','Profile Updated Successfully');
+
+
+
     }
 	public function tradeAndProductionView()
     {
@@ -78,10 +128,9 @@ class CompanyController extends Controller
         $languages = Languages::get();
         $paymentMethods = PaymentMethod::get();
         // dd($paymentMethods);
-        $certifications = Certification::get();
     	$inforPolicies = InforPolicy::where('user_id',Auth::user()->id)->first();
 
-        return view('backend.seller.company.info-policies.index',compact('inforPolicies','currencies','deliveryTerms','languages','paymentMethods','certifications'));
+        return view('backend.seller.company.info-policies.index',compact('inforPolicies','currencies','deliveryTerms','languages','paymentMethods'));
     }
     public function infoPolicyEdit(){
 
@@ -89,10 +138,10 @@ class CompanyController extends Controller
         $deliveryTerms = DeliveryTerms::get();
         $languages = Languages::get();
         $paymentMethods = PaymentMethod::get();
-        $certifications = Certification::get();
         $inforPolicies = InforPolicy::where('user_id',Auth::user()->id)->first();
+        
         // dd($inforPolicies);
-        return view('backend.seller.company.info-policies.edit',compact('inforPolicies','currencies','deliveryTerms','languages','paymentMethods','certifications'));
+        return view('backend.seller.company.info-policies.edit',compact('inforPolicies','currencies','deliveryTerms','languages','paymentMethods'));
     } 
     public function infoPolicyUpdate(Request $request){
 
@@ -123,6 +172,15 @@ class CompanyController extends Controller
 
         return view('backend.seller.company.gallery.index');
 
+    }
+
+    public function domainCheck($name){
+        $user = User::where('comp_sub_domain',$name)->where('id','!=',Auth::user()->id)->first();
+        if(!empty($user)){
+            return 'false';
+        }else{
+            return 'true';
+        }
     }
    
 }

@@ -52,5 +52,11 @@ class User extends Authenticatable
     public function city(){
         return $this->belongsTo('App\Models\City','city_code');
     }
+    public function categories(){
+        return $this->belongsToMany('App\Models\CatgMast','user_catg','user_id','catg_id');
+    } 
+    public function certifications(){
+        return $this->belongsToMany('App\Models\Certification','user_certfications','user_id','cert_id');
+    }
 }
 
