@@ -80,6 +80,7 @@ class CompanyController extends Controller
         // dd($paymentMethods);
         $certifications = Certification::get();
     	$inforPolicies = InforPolicy::where('user_id',Auth::user()->id)->first();
+
         return view('backend.seller.company.info-policies.index',compact('inforPolicies','currencies','deliveryTerms','languages','paymentMethods','certifications'));
     }
     public function infoPolicyEdit(){

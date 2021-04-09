@@ -2,39 +2,53 @@
 @section('content')
 <div class="card card-dashboard-seven">
     <div class="card-header p-2">
-        <h5 class="card-title">Edit User
-        	<a href="{{route('userIndex')}}" class="btn btn-sm btn-primary pull-right">Back</a>
+        <h5 class="card-title">Edit Staff User
+        	<a href="{{route('staff.index')}}" class="btn btn-sm btn-primary pull-right">Back</a>
         </h5>
     </div><!-- card-header -->
     <div class="card-body">
-    	<form action="{{route('userUpdate',$user->id)}}" method="post" autocomplete="off">
+    	@if($message = Session::get('success'))
+            <div class="alert alert-success">
+                {{$message}}
+            </div>
+        @endif
+ 		<form action="{{route('staff.update',$user->id)}}" method="post" autocomplete="off">
     		@method('patch')
     		@csrf
 			<div class="row">
 				<div class="col-md-6 form-group">
-					<label><strong>Email Address:</strong></label>
-					<input type="email" class="form-control" name="email" value="{{$user->email ?? old('email')}}">
+					<label class="required"><strong>Email Address:</strong></label>
+					<input type="email" class="form-control" name="email" value="{{old('email') ?? $user->email}}">
 					@error('email')
-				        <span class="help-block text-danger font-size-12">
+				        <span class="help-block mt-2 text-danger font-size-12">
 				            <strong>{{ $message }}</strong>
 				        </span>
 				    @enderror
 				</div>
 				<div class="col-md-6 form-group">
-					<label><strong>Name: </strong></label>
-					<input type="text" class="form-control" name="name" value="{{$user->name ?? old('name')}}">
+					<label class="required"><strong>Password:</strong></label>
+					<input type="password" class="form-control" name="password" value="{{old('password')}}">
+					@error('password')
+				        <span class="help-block mt-2 text-danger font-size-12">
+				            <strong>{{ $message }}</strong>
+				        </span>
+				    @enderror
+				</div>
+				<div class="col-md-6 form-group">
+					<label class="required"><strong>Name: </strong></label>
+					<input type="text" class="form-control" name="name" value="{{old('name') ?? $user->name}}">
 					@error('name')
-				        <span class="help-block text-danger font-size-12">
+				        <span class="help-block mt-2 text-danger font-size-12">
 				            <strong>{{ $message }}</strong>
 				        </span>
 				    @enderror
 				</div>
 				
 				<div class="col-md-6 form-group">
-					<label><strong>Mobile No: </strong></label>
-					<input type="text" class="form-control" name="mobile" value="{{old('mobile') ?? $user->mobile}}">
+					<label class="required"><strong>Mobile No: </strong></label>
+					<input type="text" class="form-control" name="mobile" value="{{old('mobile') ?? $user->mobile}}" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
 					@error('mobile')
-				        <span class="help-block text-danger font-size-12">
+				        <span class="help-block mt-2 text-danger font-size-12">
 				            <strong>{{ $message }}</strong>
 				        </span>
 				    @enderror
@@ -42,7 +56,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-4 form-group">
-					<label><strong>Country: </strong></label>
+					<label class="required"><strong>Country: </strong></label>
 					<select name="country_code" id="country" class="form-control">
 						<option value="">Select Country</option>
 						@foreach($countries as $country)
@@ -50,46 +64,45 @@
 						@endforeach
 					</select>
 					@error('country_code')
-				        <span class="help-block text-danger font-size-12">
+				        <span class="help-block mt-2 text-danger font-size-12">
 				            <strong>{{ $message }}</strong>
 				        </span>
 				    @enderror
 				</div>
 				<div class="col-md-4 form-group error-div">
-				    <label>State:</label>
+				    <label class="required">State:</label>
 				    <select class="form-control required" name="state_code" id="state">
 				        <option value="">Please Select State</option>
 				    </select>
 				    @error('state_code')
-				        <span class="help-block text-danger font-size-12">
+				        <span class="help-block mt-2 text-danger font-size-12">
 				            <strong>{{ $message }}</strong>
 				        </span>
 				    @enderror
 				</div>
 				<div class="col-md-4 form-group error-div">
-				    <label>City:</label>
+				    <label class="required">City:</label>
 				    <select class="form-control required" name="city_code"  id="city">
 				        <option value="">Please Select City</option>
 				    </select>
 				    @error('city_code')
-				        <span class="help-block text-danger font-size-12">
+				        <span class="help-block mt-2 text-danger font-size-12">
 				            <strong>{{ $message }}</strong>
 				        </span>
 				    @enderror
 				</div>
 
 				<div class="col-md-12 form-group">
-					<label><strong>Address: <span class="star">*</span></strong></label>
+					<label class="required"><strong>Address: </strong></label>
 					<textarea class="form-control" rows="5" cols="54" name="address">{{old('address') ?? $user->address}}</textarea>
 					@error('address')
-				        <span class="help-block text-danger font-size-12">
+				        <span class="help-block mt-2 text-danger font-size-12">
 				            <strong>{{ $message }}</strong>
 				        </span>
 				    @enderror
 				</div>
 				<div class="col-md-12 form-group">
-					<input name="id" type="hidden" value="{{$user->id}}">
-					<input name="submit" class="btn btn-primary" type="submit" value="Update" />
+					<input name="submit" class="btn btn-primary" type="submit" value="Submit" />
 				</div>
 			</div>
 				
@@ -98,12 +111,7 @@
 </div>
 <script >
     $(document).ready(function(){
-        $('input[name="role_id"]').on('change',function(e){
-            e.preventDefault();
-            var role_id =$(this).val();
-            roleChange(role_id);
-        });
-
+   		$('label.required').append('<span class="text-danger"> *</span>');
         $('#country').on('change',function(e){
             e.preventDefault();
             var countryCode = $(this).val();

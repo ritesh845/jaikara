@@ -42,10 +42,20 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::get('/userEdit/{id}', [App\Http\Controllers\Backend\UserController::class, 'userEdit'])->name('userEdit');
 	Route::patch('/userUpdate/{id}', [App\Http\Controllers\Backend\UserController::class, 'userUpdate'])->name('userUpdate');
 	Route::get('/userDelete/{id}', [App\Http\Controllers\Backend\UserController::class, 'userDelete'])->name('userDelete');
-
 	Route::get('/userPerDay', [App\Http\Controllers\Backend\UserController::class, 'userPerDay'])->name('userPerDay');
-	
 	Route::get('/userApproval/{id}', [App\Http\Controllers\Backend\UserController::class, 'userApproval'])->name('userApproval');
+	
+	//Staff create
+	
+	Route::get('/staff', [App\Http\Controllers\Backend\UserController::class, 'staffIndex'])->name('staff.index');
+	Route::get('/staff/create', [App\Http\Controllers\Backend\UserController::class, 'staffCreate'])->name('staff.create');
+	Route::post('/staff/store', [App\Http\Controllers\Backend\UserController::class, 'staffStore'])->name('staff.store');
+	Route::get('/staff/{id}/edit', [App\Http\Controllers\Backend\UserController::class, 'staffEdit'])->name('staff.edit');
+	Route::get('/staff/{id}', [App\Http\Controllers\Backend\UserController::class, 'staffShow'])->name('staff.show');
+	Route::patch('/staff/update/{id}', [App\Http\Controllers\Backend\UserController::class, 'staffUpdate'])->name('staff.update');
+
+
+	
 
 
 

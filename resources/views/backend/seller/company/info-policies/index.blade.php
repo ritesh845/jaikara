@@ -16,41 +16,56 @@
 					<tbody>
 						<tr>
 							<th>Accepted Payment Currency by you</th>
-							<td>@foreach($currencies as $currency)
-								{{in_array($currency->curr_id,json_decode($inforPolicies->payment_curre) ) ? $currency->curr_name .',': ''}}
-								@endforeach
+							<td>
+								@if(!empty($inforPolicies))
+									@foreach($currencies as $currency)
+									{{in_array($currency->curr_id,json_decode($inforPolicies->payment_curre) ) ? $currency->curr_name .',': ''}}
+									@endforeach
+								@endif
 							</td>
 						</tr>
 						<tr>
 							<th>Accepted Delivery Terms by you</th>
-							<td>@foreach($deliveryTerms as $deliveryTerm)
-								{{in_array($deliveryTerm->dlvry_trms_id,json_decode($inforPolicies->delivery_terms) ) ? $deliveryTerm->shrt_name .',': ''}}
-								@endforeach
+							<td>
+								@if(!empty($inforPolicies))
+									@foreach($deliveryTerms as $deliveryTerm)
+									{{in_array($deliveryTerm->dlvry_trms_id,json_decode($inforPolicies->delivery_terms) ) ? $deliveryTerm->shrt_name .',': ''}}
+									@endforeach
+								@endif
 							</td>
 						</tr>
 						<tr>
 							<th>Payment Method</th>
-							<td>@foreach($paymentMethods as $paymentMethod)
-								{{in_array($paymentMethod->pay_md_id,json_decode($inforPolicies->payment_method) ) ? $paymentMethod->shrt_name .',': ''}}
-								@endforeach
+							<td>
+								@if(!empty($inforPolicies))
+									@foreach($paymentMethods as $paymentMethod)
+									{{in_array($paymentMethod->pay_md_id,json_decode($inforPolicies->payment_method) ) ? $paymentMethod->shrt_name .',': ''}}
+									@endforeach
+								@endif
 							</td>
 						</tr>
 						<tr>
 							<th>Spoken Language</th>
-							<td>@foreach($languages as $language)
-								{{in_array($language->lang_id,json_decode($inforPolicies->spoken_lang) ) ? $language->lang_name .',': ''}}
-								@endforeach
+							<td>
+								@if(!empty($inforPolicies))
+									@foreach($languages as $language)
+									{{in_array($language->lang_id,json_decode($inforPolicies->spoken_lang) ) ? $language->lang_name .',': ''}}
+									@endforeach
+								@endif
 							</td>
 						</tr>
 						<tr>
 							<th>Your Company Certification </th>
-							<td>@foreach($certifications as $certification)
-								{{in_array($certification->cert_id,json_decode($inforPolicies->certification) ) ? $certification->code .',': ''}}
-								@endforeach</td>
+							<td>
+								@if(!empty($inforPolicies))
+									@foreach($certifications as $certification)
+									{{in_array($certification->cert_id,json_decode($inforPolicies->certification) ) ? $certification->code .',': ''}}
+									@endforeach
+							@endif</td>
 						</tr>
 						<tr>
 							<th>Accept Escrow Services  </th>
-							<td> {{$inforPolicies->escrow_service == 1 ? 'Yes' :'No' }} </td>
+							<td> {{ $inforPolicies ? ($inforPolicies->escrow_service == 1 ? 'Yes' :'No' )  : ''}} </td>
 						</tr>
 						<tr>
 							<th>Company Policy</th>

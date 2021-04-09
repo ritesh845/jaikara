@@ -39,9 +39,9 @@
 					<label>Export Percentage
 					<a class="fa fa-question-circle"></a></label>
 					<select name="export_per" class="form-control">
-					<option value="{{$tradeAndProduction->export_per}}" >Export Percentage</option>
+					<option value="" >Select Export Percentage</option>
 					@foreach(ExportPer as $keyp => $value)
-						<option value="{{$keyp}}" {{$tradeAndProduction->export_per ==  $keyp ? 'selected=selected': ''}}>{{$value}}</option>
+						<option value="{{$keyp}}" {{$tradeAndProduction ? ($tradeAndProduction->export_per ==  $keyp ? 'selected=selected': '') : ''}}>{{$value}}</option>
 					@endforeach
 					</select>
 				</div>
@@ -49,9 +49,9 @@
 					<label>Annual Sales Volume
 					<a class="fa fa-question-circle"></a></label>
 					<select name="sales_volume" class="form-control">
-					<option value="{{$tradeAndProduction->sales_volume}}">Annual Sales Volume</option>
+					<option value="">Annual Sales Volume</option>
 					@foreach(AnnualSales as $keyp => $value)
-						<option value="{{$keyp}}" {{$tradeAndProduction->sales_volume ==  $keyp ? 'selected=selected': ''}}>{{$value}}</option>
+						<option value="{{$keyp}}" {{$tradeAndProduction ? ($tradeAndProduction->sales_volume ==  $keyp ? 'selected=selected': '') :''}}>{{$value}}</option>
 					@endforeach
 					</select>
 				</div>
@@ -72,9 +72,9 @@
 				<a class="fa fa-question-circle"></a>
 				</label>
 				<select name="office_size" class="form-control">
-					<option value="{{$tradeAndProduction->office_size}}"> Office Size</option>
+					<option value=""> Office Size</option>
 					@foreach(OfficeSize as $keyp => $value)
-						<option value="{{$keyp}}" {{$tradeAndProduction->office_size ==  $keyp ? 'selected=selected': ''}}>{{$value}}</option>
+						<option value="{{$keyp}}" {{ $tradeAndProduction ?  ($tradeAndProduction->office_size ==  $keyp ? 'selected=selected': '') : ''}}>{{$value}}</option>
 					@endforeach
 				</select>
 				</div>	
@@ -83,9 +83,9 @@
 					<a class="fa fa-question-circle"></a>
 					</label>
 					<select name="export_market" class="form-control">
-					<option value="{{$tradeAndProduction->export_market}}">Main Export Markets</option>
+					<option value="">Main Export Markets</option>
 					@foreach(MainExportMarkets as $keyp => $value)
-						<option value="{{$keyp}}" {{$tradeAndProduction->office_size ==  $keyp ? 'selected=selected': ''}}>{{$value}}</option>
+						<option value="{{$keyp}}" {{$tradeAndProduction ? ($tradeAndProduction->office_size ==  $keyp ? 'selected=selected': '') :''}}>{{$value}}</option>
 					@endforeach
 					</select>
 				</div>	
@@ -111,10 +111,10 @@
 				<div class="col-md-4 form-group">
 					<p>Have you attended or planned to attend any trade shows?</p>
 					<div class="radio radio-primary">
-					<input type="radio" name="is_trade" value="1" {{$tradeAndProduction->is_trade == 1 ? 'selcted' : ''}}>
+					<input type="radio" name="is_trade" value="1" {{$tradeAndProduction ? ($tradeAndProduction->is_trade == 1 ? 'selcted' : '') : ''}}>
 					<label for="radio6">Yes </label>
 					  /    
-					<input type="radio" name="is_trade" value="0" {{$tradeAndProduction->is_trade == 0 ? 'selcted' : ''}}>
+					<input type="radio" name="is_trade" value="0" {{$tradeAndProduction ? ($tradeAndProduction->is_trade == 0 ? 'selcted' : '') : ''}}>
 					<label for="radio7">No </label>
 					</div>
 				</div>

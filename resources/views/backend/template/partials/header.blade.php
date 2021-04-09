@@ -70,17 +70,17 @@
                         <li class="nav-sub-item">
                             <a href="{{route('userIndex')}}" class="nav-sub-link">Show User</a>
                         </li>
-                        <li class="nav-sub-item">
+                        {{-- <li class="nav-sub-item">
                             <a href="app-chat.html" class="nav-sub-link">Show Customer</a>
-                        </li>
+                        </li> --}}
                         <li class="nav-sub-item">
                             <a href="{{route('userPerDay')}}" class="nav-sub-link">Per Day User</a>
                         </li> 
                         <li class="nav-sub-item">
-                            <a href="app-calendar.html" class="nav-sub-link">Add Staff User</a>
+                            <a href="{{route('staff.create')}}" class="nav-sub-link">Add Staff User</a>
                         </li>
                         <li class="nav-sub-item">
-                            <a href="app-calendar.html" class="nav-sub-link">Show Staff User</a>
+                            <a href="{{route('staff.index')}}" class="nav-sub-link">Show Staff User</a>
                         </li>
                         
                     </ul>
@@ -91,19 +91,19 @@
                     <a href="#" class="nav-link with-sub"><i class="fa fa-building-o fa f-14"></i>Company Profile </a>
                     <ul class="nav-sub">
                         <li class="nav-sub-item">
-                            <a href="{{route('company_profile')}}" class="nav-sub-link"><i class="fa fa-building-o fa f-14"></i> Company Profile </a>
+                            <a href="{{route('company_profile')}}" class="nav-sub-link"> Company Profile </a>
                         </li>
                         <li class="nav-sub-item">
-                            <a href="{{route('trade_production_view')}}" class="nav-sub-link"><i class="fa fa-info-circle fa f-14"></i> Trade & Production </a>
+                            <a href="{{route('trade_production_view')}}" class="nav-sub-link">Trade & Production </a>
                         </li>
                         <li class="nav-sub-item">
-                            <a href="{{route('information_policies')}}" class="nav-sub-link"><i class="fa fa-info-circle fa f-14"></i> Information & Policies</a>
+                            <a href="{{route('information_policies')}}" class="nav-sub-link">Information & Policies</a>
                         </li>
                         <li class="nav-sub-item">
-                            <a href="{{route('image_gallery')}}" class="nav-sub-link"><i class="fa fa-file-image-o" aria-hidden="true"></i> IMAGE GALLERY</a>
+                            <a href="{{route('image_gallery')}}" class="nav-sub-link"> IMAGE GALLERY</a>
                         </li>
                         <li class="nav-sub-item">
-                            <a href="app-calendar.html" class="nav-sub-link"><i class="fa fa-file-image-o" aria-hidden="true"></i>  CERTIFICATION ACHIEVED</a>
+                            <a href="app-calendar.html" class="nav-sub-link">  CERTIFICATION ACHIEVED</a>
                         </li>
                         
                     </ul>
@@ -112,13 +112,13 @@
                     <a href="#" class="nav-link with-sub"><i class="fa fa-pie-chart  fa f-14"></i>Trade Leads</a>
                     <ul class="nav-sub">
                         <li class="nav-sub-item">
-                            <a href="{{ route('sell_trade') }}" class="nav-sub-link"> <i class="fa fa-tasks" aria-hidden="true"></i>Sell trade leads</a>
+                            <a href="{{ route('sell_trade') }}" class="nav-sub-link"> Sell trade leads</a>
                         </li>
                         <li class="nav-sub-item">
-                            <a href="app-chat.html" class="nav-sub-link"> <i class="fa fa-tasks" aria-hidden="true"></i>Buy trade leads</a>
+                            <a href="app-chat.html" class="nav-sub-link"> Buy trade leads</a>
                         </li>
                         <li class="nav-sub-item">
-                            <a href="app-calendar.html" class="nav-sub-link"> <i class="fa fa-plus"></i>Add Trade Lead</a>
+                            <a href="app-calendar.html" class="nav-sub-link"> Add Trade Lead</a>
                         </li>
                         
                         
@@ -142,13 +142,13 @@
                     <a href="#" class="nav-link with-sub"><i class="fa fa-tasks fa f-14"></i>Product Management</a>
                     <ul class="nav-sub">
                         <li class="nav-sub-item">
-                            <a href="app-mail.html" class="nav-sub-link"><i class="fa fa-gift"></i> Product List</a>
+                            <a href="app-mail.html" class="nav-sub-link"> Product List</a>
                         </li>
                         <li class="nav-sub-item">
-                            <a href="app-chat.html" class="nav-sub-link"> <i class="fa fa-gift"></i>Add Product</a>
+                            <a href="app-chat.html" class="nav-sub-link">Add Product</a>
                         </li>
                         <li class="nav-sub-item">
-                            <a href="app-calendar.html" class="nav-sub-link"><i class="fa fa-user"></i> Product Group Management</a>
+                            <a href="app-calendar.html" class="nav-sub-link"> Product Group Management</a>
                         </li>
                        
                         

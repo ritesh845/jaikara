@@ -3,7 +3,7 @@
 		<td>{{$key + 1}}</td>
 		<td>{{$user->name}}</td>
 		<td>{{$user->email}} <span class="{{$user->email_verified_at !=null ? 'bg-success' : 'bg-warning'}} text-white p-1 rounded f-11 pull-right">{{$user->email_verified_at !=null ? 'Verified' : 'Not Verify'}}</span></td>
-		<td>{{$user->role !=null ? $user->role->name : ''}}</td>
+		<td>{{$user->role !=null ? $user->role->display_name : ''}}</td>
 		<td>{{$user->mobile}}</td>
 		<td>{{date('d/m/Y',strtotime($user->created_at))}}</td>
 		<td>
