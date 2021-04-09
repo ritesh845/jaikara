@@ -85,6 +85,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $role_id = $data['role_id'] == 'buyer' ? '3' : ($data['role_id'] == 'seller' ? '4' : '5');
+
         $user  =  User::create([
             'name'          => $data['name'],
             'email'         => $data['email'],
@@ -101,8 +102,15 @@ class RegisterController extends Controller
 
             'remember_token'=> Str::random(40),
         ]);
+        $meta = $user->name.' -'.$user->city->city_name.'-'.$user->state->state_name;
 
+        $metaData = [
+            'meta_title'    => $meta, 
+            'meta_desc'     => $meta,
+            'meta_keywords' => $meta,
+        ];
 
+        $user->update($metaData); 
         $user->attachRole($role_id);
 
         Mail::to($user->email)->send(new VerifyMail($user));
