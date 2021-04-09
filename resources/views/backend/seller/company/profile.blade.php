@@ -51,19 +51,19 @@
 						</tr>
 						<tr>
 							<th>Year Company Registered </th>
-							<td>{{$user->reg_year}}</td>
+							<td></td>
 						</tr>
 						<tr>
 							<th>Key Personnel</th>
-							<td>{{Arr::get(KeyPersonnel,$user->personnel)}}</td>
+							<td></td>
 						</tr>
 						<tr>
 							<th>Ownership Type </th>
-							<td> {{Arr::get(OwnershipType,$user->own_type)}}</td>
+							<td> </td>
 						</tr>
 						<tr>
 							<th>Certification</th>
-							<td>{{$user->certification}}</td>
+							<td></td>
 						</tr>
 					</tbody>
 				</table>
