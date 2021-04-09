@@ -21,8 +21,7 @@ class CompanyController extends Controller
    
     public function profile()
     {
-       $user =  User::find(Auth::user()->id);
-       // return $user->certifications;
+      
         return view('backend.seller.company.profile');
     } 
     public function companyProfileEdit()
