@@ -7,7 +7,7 @@
 				<ul class="nav nav-bar">
 					<li class="ml-1"><a href="" class="btn btn-sm btn-success">Company Profile</a></li>
 					<li class="ml-1"><a href="{{route('trade_production_view')}}" class="btn btn-sm btn-secondary">View Trade Productions</a></li>
-					<li class="ml-1"><a href="{{route('information_policies')}}" class="btn btn-sm btn-secondary">View Information Policies</a></li>
+					<li class="ml-1"><a href="" class="btn btn-sm btn-secondary">View Information Policies</a></li>
 				</ul>
 			</div>
 		</div>
@@ -27,7 +27,7 @@
 						</tr>
 						<tr>
 							<th>Company Address</th>
-							<td>{{getFullAddress($user)}}</td>
+							<td></td>
 						</tr>
 						<tr>
 							<th>Meta Title</th>
@@ -63,10 +63,7 @@
 						</tr>
 						<tr>
 							<th>Certification</th>
-							<td>
-							    {{getArrayValueString($user->certifications,'code')}}
-							</td>
-
+							<td>{{$user->certification}}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -79,7 +76,7 @@
 				<hr>
 				<div class="card">
 					<div class="card-body text-center">
-						<img src="{{asset($user->site_logo !='' ? 'storage/'.$user->site_logo : 'no-image.jpg')}}" width="200" height="150" class="mb-4" >
+						<img src="{{asset('no-image.jpg')}}" width="200" height="200" >
 						<table class="table table-bordered table-striped">
 							<tbody>
 								<tr>
@@ -113,18 +110,8 @@
 	<div class="col-md-8">
 		<div class="card mb-2">
 			<div class="card-body " style="min-height: 300px;">
-				<div class="row">
-					<div class="col-md-12">
-						<h5>Description</h5>
-						<hr>
-						{!! $user->description !!}
-					</div>
-					<div class="col-md-12 mt-5">
-						<h5>Seller Category</h5>
-						<hr>
-						{{getArrayValueString($user->categories,'catg_name')}}
-					</div>
-				</div>
+				<h5>Description</h5>
+				<hr>
 			</div>
 		</div>
 	</div>
