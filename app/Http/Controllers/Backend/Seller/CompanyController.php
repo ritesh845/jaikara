@@ -6,17 +6,73 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\TradeAndProduction;
+use App\Models\Currency;
+use App\Models\DeliveryTerms;
+use App\Models\Languages;
+use App\Models\PaymentMethod;
+
+use App\Models\InforPolicy;
+use App\Models\Documents;
+use App\Models\CatgMast;
+use App\Models\UserCatg;
+use App\Models\UserCertification;
 use Auth;
 class CompanyController extends Controller
 {
    
     public function profile()
     {
+      
         return view('backend.seller.company.profile');
     } 
     public function companyProfileEdit()
+    {   
+        
+        $catgs =CatgMast::orderBy('catg_name')->cursor();
+        return view('backend.seller.company.profile-edit',compact('catgs'));
+    }
+    public function companyProfileUpdate(Request $request,$id)
     {
-        return view('backend.seller.company.profile-edit');
+        $user = User::find($id);
+
+        $request->validate([
+            'comp_sub_domain' => 'nullable|unique:users,comp_sub_domain,'.$request->id,          
+        ]);
+        $data = [
+            'comp_sub_domain' => $request->comp_sub_domain,
+            'domain_url'      => $request->comp_sub_domain,
+            'website_url'     => $request->website_url,
+            'description'     => $request->description,
+            'address'         => $request->address,
+            'meta_title'      => $request->meta_title,
+            'meta_desc'       => $request->meta_desc,
+            'meta_keywords'   => $request->meta_keywords,
+            'reg_year'        => $request->reg_year,
+            'personnel'       => $request->personnel,
+            'own_type'        => $request->own_type
+        ];
+
+        if($request->hasFile('file')){
+           $data['site_logo']  = file_upload($request->file,$id.'/images',$user,'site_logo');
+        }
+
+
+        if($request->cert_id !=null){
+            $user->certifications()->sync($request->cert_id);
+        }else{
+            $user->certifications()->sync(array());
+        }
+        if($request->catg_id !=null){
+            $user->categories()->sync($request->catg_id);
+        }else{
+            $user->categories()->sync(array());
+        }
+       
+        $user->update($data);
+        return redirect()->back()->with('success','Profile Updated Successfully');
+
+
+
     }
 	public function tradeAndProductionView()
     {
@@ -64,17 +120,114 @@ class CompanyController extends Controller
         return redirect()->back()->with('success','Trade & Production updated successfully');
 
     }
-
+//For information pplicy...................................
     public function infoPolicy(){
+        
+        $currencies = Currency::get();
+        $deliveryTerms = DeliveryTerms::get();
+        $languages = Languages::get();
+        $paymentMethods = PaymentMethod::get();
+        // dd($paymentMethods);
+    	$inforPolicies = InforPolicy::where('user_id',Auth::user()->id)->first();
 
-    	$tradeAndProduction = TradeAndProduction::where('user_id',Auth::user()->id)->first();
-        return view('backend.seller.company.info-policies.index',compact('tradeAndProduction'));
+        return view('backend.seller.company.info-policies.index',compact('inforPolicies','currencies','deliveryTerms','languages','paymentMethods'));
     }
     public function infoPolicyEdit(){
 
-    	$tradeAndProduction = TradeAndProduction::where('user_id',Auth::user()->id)->first();
-        return view('backend.seller.company.info-policies.edit',compact('tradeAndProduction'));
+    	$currencies = Currency::get();
+        $deliveryTerms = DeliveryTerms::get();
+        $languages = Languages::get();
+        $paymentMethods = PaymentMethod::get();
+        $inforPolicies = InforPolicy::where('user_id',Auth::user()->id)->first();
+        
+        // dd($inforPolicies);
+        return view('backend.seller.company.info-policies.edit',compact('inforPolicies','currencies','deliveryTerms','languages','paymentMethods'));
+    } 
+    public function infoPolicyUpdate(Request $request){
+
+        $data = [
+                'escrow_service' =>$request->escrow_service,
+                'company_policy' =>$request->company_policy,
+                'pay_terms_method' =>$request->pay_terms_method,
+                'terms_condition' =>$request->terms_condition,
+                'payment_curre' =>json_encode($request->payment_curre),
+                'delivery_terms' =>json_encode($request->delivery_terms),
+                'payment_method' =>json_encode($request->payment_method),
+                'spoken_lang' =>json_encode($request->spoken_lang),
+                'certification' =>json_encode($request->certification),
+        ];              
+        $data['user_id'] = Auth::user()->id;
+        
+        if ($request->user_id ==Auth::user()->id) {
+            $tradeAndProduction = InforPolicy::where('user_id',$request->user_id)->update($data);
+        }else{
+            $tradeAndProduction = InforPolicy::create($data);
+
+        }
+        return redirect()->back()->with('success','Information and Policy updated successfully');
+
     }
 
+    public function imageGallery(){
+       $documents = Documents::where(['user_id'=>Auth::user()->id,'doc_type'=>'image_gallery'])->get();
+        return view('backend.seller.company.gallery.index',compact('documents'));
+
+    }
+    public function imageGalleryAdd(Request $request){
+        $request->validate([
+            'image' => 'required'
+        ]);
+        $data = document_upload($request->image,Auth::user()->id.'/images');
+        $data['doc_type'] = $request->doc_type; 
+        $data['user_id'] = Auth::user()->id; 
+        Documents::create($data);
+        return redirect()->back()->with('success','Image gallery added successfully');
+       
+    }
+    public function imageGalleryDelete($id){
+       
+        $image = Documents::where(['user_id'=>Auth::user()->id,'doc_type'=>'image_gallery'])->first();
+        $file= $image->doc_path;
+        $filename = public_path().'/storage/'.$file;
+        \File::delete($filename);
+        Documents::where(['user_id'=>Auth::user()->id,'doc_type'=>'image_gallery'])->delete();
+        return redirect()->back()->with('success','Image gallery deleted successfully');
+
+    } 
+    public function certification(){
+       $documents = Documents::where(['user_id'=>Auth::user()->id,'doc_type'=>'certification'])->get();
+        return view('backend.seller.company.certi-achieved.index',compact('documents'));
+
+    }
+    public function certificationAdd(Request $request){
+       $request->validate([
+            'image' => 'required'
+        ]);
+        $data = document_upload($request->image,Auth::user()->id.'/images');
+        $data['doc_type'] = $request->doc_type; 
+        $data['user_id'] = Auth::user()->id; 
+        Documents::create($data);
+        return redirect()->back()->with('success','certification added successfully');
+       
+    }
+    public function certificationDelete($id){
+        
+        $image = Documents::where(['user_id'=>Auth::user()->id,'doc_type'=>'certification'])->first();
+        $file= $image->doc_path;
+        $filename = public_path().'/storage/'.$file;
+        \File::delete($filename);
+        Documents::where(['user_id'=>Auth::user()->id,'doc_type'=>'certification'])->delete();
+        return redirect()->back()->with('success','certification deleted successfully');
+
+    }
+
+    public function domainCheck($name){
+        $user = User::where('comp_sub_domain',$name)->where('id','!=',Auth::user()->id)->first();
+        if(!empty($user)){
+            return 'false';
+        }else{
+            return 'true';
+        }
+    }
    
 }

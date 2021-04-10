@@ -32,11 +32,11 @@
 						</tr>
 						<tr>
 							<th>Export Percentage </th>
-							<td>{{Arr::get(ExportPer,$tradeAndProduction->export_per)}}</td>
+							<td>{{$tradeAndProduction ? Arr::get(ExportPer,$tradeAndProduction->export_per ) : ''}}</td>
 						</tr>
 						<tr>
 							<th>Annual Sales Volume </th>
-							<td>{{Arr::get(AnnualSales,$tradeAndProduction->sales_volume)}} </td>
+							<td>{{$tradeAndProduction ? Arr::get(AnnualSales,$tradeAndProduction->sales_volume ) : ''}} </td>
 						</tr>
 						<tr>
 							<th>Packaging Details</th>
@@ -53,11 +53,11 @@
 					<tbody>
 						<tr>
 							<th>Office Size</th>
-							<td>{{Arr::get(OfficeSize,$tradeAndProduction->office_size)}}</td>
+							<td>{{$tradeAndProduction ? Arr::get(OfficeSize,$tradeAndProduction->office_size) : ''}}</td>
 						</tr>
 						<tr>
 							<th>Main Export Markets (Country)</th>
-							<td>{{Arr::get(MainExportMarkets,$tradeAndProduction->export_market)}}</td>
+							<td>{{$tradeAndProduction ? Arr::get(MainExportMarkets,$tradeAndProduction->export_market) : ''}}</td>
 						</tr>
 						<tr>
 							<th>Nearest Port</th>

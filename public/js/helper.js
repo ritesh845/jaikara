@@ -35,3 +35,28 @@ function fn_city(state_code,oldCityCode =''){
     }
    
 }
+
+function fn_user_approval(user_id){
+    $.ajax({
+        type:'GET',
+        url:"/userApproval/"+user_id,
+        success:function(res){
+            if(res.status == 'success'){
+                alert(res.message)
+                window.location.reload();
+            }
+        }
+    });
+}
+function fn_catg_approval(catg_id){
+    $.ajax({
+        type:'GET',
+        url:"/catgApproval/"+catg_id,
+        success:function(res){
+            if(res.status == 'success'){
+                alert(res.message)
+                window.location.reload();
+            }
+        }
+    });
+}

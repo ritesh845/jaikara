@@ -46,6 +46,24 @@ const MainExportMarkets =[
    5=> 'Asia',
    6=> 'Africa'
 ];
+const OwnershipType =[
+    1 => 'Corporation/Limited Liability Company',
+    2 => 'Partnership',
+    3 => 'LLC (Ltd Liability Corp)',
+    4 => 'Individual (Sole proprietorship)',
+    5 => 'Professional Association',
+    6 => 'Others'
+];
+
+const CatgType =[
+    'SP'  => 'Suppliers & Products Categories',
+    'CC'  => 'Classified Categories',
+    'ST'  => 'Sell Trade Categories',
+    'BT'  => 'Buy Trade Categories',
+];
+
+
+
 
 if (!function_exists('file_upload')) {
     function file_upload($file,$folder,$data = [],$fieldName=null){      
@@ -63,9 +81,44 @@ if (!function_exists('file_upload')) {
 
 if (!function_exists('getFullAddress')) {
     function getFullAddress($data){      
-        return $data->addr1 .', '. ($data->addr2 !=null ? ($data->addr2 .', ') : '') . $data->city->city_name.', '.$data->state->state_name.', '.'India'.', '.$data->pin_code;
+        return $data->address .', '. $data->city->city_name.', '.$data->state->state_name.', '.$data->country->country_name;
         // return $path;
     }
 }
+
+if (!function_exists('document_upload')) {
+    function document_upload($file,$folder,$data = [],$fieldName=null){      
+        if(!empty($data) !=0){
+            if($data->$fieldName != null){
+               Storage::delete('public/'.$data->$fieldName);
+            }
+        }
+        $name =  time().'_'.$file->getClientOriginalName();
+        $mime =  $file->getClientMimeType();
+        $size =  $file->getSize();
+        $file->storeAs('public/'.$folder, $name);
+        $path = $folder.'/'.$name;
+
+        return [
+          'doc_name' => $name,
+          'doc_mime' => $mime,
+          'doc_size' => $size,
+          'doc_path' => $path,
+        ];
+}
+}
+if (!function_exists('getArrayValueString')) {
+    function getArrayValueString($datas,$fieldName){      
+      $spec_string = '' ; 
+      foreach($datas as $data) {
+        if($data->$fieldName !=null){
+          $spec_string .= $data->$fieldName.', ' ;
+        }
+      }
+      return substr($spec_string,0,strlen($spec_string)-2);
+
+    }
+}
+
 
 ?>

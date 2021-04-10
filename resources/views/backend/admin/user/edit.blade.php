@@ -1,8 +1,10 @@
 @extends('backend.layouts.main')
 @section('content')
-<div class="card card-dashboard-seven">
+<div class="card ">
     <div class="card-header p-2">
-        <h5 class="card-title">Edit User</h5>
+        <h5 class="card-title">Edit User
+        	<a href="{{route('userIndex')}}" class="btn btn-sm btn-primary pull-right">Back</a>
+        </h5>
     </div><!-- card-header -->
     <div class="card-body">
     	<form action="{{route('userUpdate',$user->id)}}" method="post" autocomplete="off">

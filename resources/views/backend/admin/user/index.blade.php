@@ -1,6 +1,6 @@
 @extends('backend.layouts.main')
 @section('content')
-<div class="card card-dashboard-seven">
+<div class="card ">
     <div class="card-header p-2">
         <h5 class="card-title">Users List</h5>
     </div><!-- card-header -->
@@ -33,16 +33,7 @@
         $(document).on('click','.approval',function(e){
             e.preventDefault();
             var user_id = $(this).data('id');
-            $.ajax({
-                type:'GET',
-                url:"{{url('userApproval')}}/"+user_id,
-                success:function(res){
-                    if(res.status == 'success'){
-                        alert(res.message)
-                        window.location.reload();
-                    }
-                }
-            })
+            fn_user_approval(user_id);
 
 
         });

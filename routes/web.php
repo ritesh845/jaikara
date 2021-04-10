@@ -35,17 +35,37 @@ Route::get('/verify/{token}','App\Http\Controllers\VerifyController@verifyUser')
 
 //Backend User
 Route::group(['middleware' => 'auth'],function(){
-	
+		
+	//Member Package Controller
+
+	Route::resource('package',App\Http\Controllers\Backend\PackageController::class);
+	Route::get('service_approve/{id}',[App\Http\Controllers\Backend\PackageController::class,'service_approve']);
+	Route::get('service_package/{id}/edit',[App\Http\Controllers\Backend\PackageController::class,'service_edit'])->name('service_edit');
+	Route::patch('service_package/update/{id}',[App\Http\Controllers\Backend\PackageController::class,'service_update'])->name('service_update');
+	Route::get('service_package/{id}',[App\Http\Controllers\Backend\PackageController::class,'service_delete'])->name('service_delete');
+
 	//admin user manage
 	Route::get('/userIndex', [App\Http\Controllers\Backend\UserController::class, 'userIndex'])->name('userIndex');
 	Route::get('/userShow/{id}', [App\Http\Controllers\Backend\UserController::class, 'userShow'])->name('userShow');
 	Route::get('/userEdit/{id}', [App\Http\Controllers\Backend\UserController::class, 'userEdit'])->name('userEdit');
 	Route::patch('/userUpdate/{id}', [App\Http\Controllers\Backend\UserController::class, 'userUpdate'])->name('userUpdate');
 	Route::get('/userDelete/{id}', [App\Http\Controllers\Backend\UserController::class, 'userDelete'])->name('userDelete');
-
 	Route::get('/userPerDay', [App\Http\Controllers\Backend\UserController::class, 'userPerDay'])->name('userPerDay');
-	
 	Route::get('/userApproval/{id}', [App\Http\Controllers\Backend\UserController::class, 'userApproval'])->name('userApproval');
+	
+	//Staff create
+	
+	Route::get('/staff', [App\Http\Controllers\Backend\UserController::class, 'staffIndex'])->name('staff.index');
+	Route::get('/staff/create', [App\Http\Controllers\Backend\UserController::class, 'staffCreate'])->name('staff.create');
+	Route::post('/staff/store', [App\Http\Controllers\Backend\UserController::class, 'staffStore'])->name('staff.store');
+	Route::get('/staff/{id}/edit', [App\Http\Controllers\Backend\UserController::class, 'staffEdit'])->name('staff.edit');
+	Route::get('/staff/{id}', [App\Http\Controllers\Backend\UserController::class, 'staffShow'])->name('staff.show');
+	Route::patch('/staff/update/{id}', [App\Http\Controllers\Backend\UserController::class, 'staffUpdate'])->name('staff.update');
+
+
+	Route::resource('supplier_product',App\Http\Controllers\Backend\Category\SupplierProductController::class);
+	Route::get('supplier_product/delete/{id}',[App\Http\Controllers\Backend\Category\SupplierProductController::class,'delete'])->name('supplier_product.delete');
+	Route::get('catgApproval/{id}',[App\Http\Controllers\Backend\Category\SupplierProductController::class,'approval']);
 
 
 
@@ -53,6 +73,9 @@ Route::group(['middleware' => 'auth'],function(){
 
 	Route::get('/company-profile',[App\Http\Controllers\Backend\Seller\CompanyController::class,'profile'])->name('company_profile');
 	Route::get('/company-profile-edit',[App\Http\Controllers\Backend\Seller\CompanyController::class,'companyProfileEdit'])->name('company_profile_edit');
+	Route::patch('/company-profile/update/{id}',[App\Http\Controllers\Backend\Seller\CompanyController::class,'companyProfileUpdate'])->name('company_profile_update');
+
+	Route::get('/domain-check/{name}',[App\Http\Controllers\Backend\Seller\CompanyController::class,'domainCheck'])->name('domainCheck');
 
 //Trades and production.............
 	Route::get('/trade-production-view',[App\Http\Controllers\Backend\Seller\CompanyController::class,'tradeAndProductionView'])->name('trade_production_view');
@@ -63,6 +86,18 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::get('/information-policies/edit',[App\Http\Controllers\Backend\Seller\CompanyController::class,'infoPolicyEdit'])->name('info_policy_edit');
 	Route::post('/information-policies/update',[App\Http\Controllers\Backend\Seller\CompanyController::class,'infoPolicyUpdate'])->name('info_policy_update');
 
+	//gallery.............
+	Route::get('/image/gallery',[App\Http\Controllers\Backend\Seller\CompanyController::class,'imageGallery'])->name('image_gallery');
+	Route::post('/image/gallery/add',[App\Http\Controllers\Backend\Seller\CompanyController::class,'imageGalleryAdd'])->name('image_gallery_add');
+	Route::get('/image/gallery/delete/{id}',[App\Http\Controllers\Backend\Seller\CompanyController::class,'imageGalleryDelete'])->name('image_gallery_delt');
+
+//certification achived.............
+	Route::get('/certification',[App\Http\Controllers\Backend\Seller\CompanyController::class,'certification'])->name('certification');
+	Route::post('/certification/add',[App\Http\Controllers\Backend\Seller\CompanyController::class,'certificationAdd'])->name('certification_add');
+	Route::get('/certification/delete/{id}',[App\Http\Controllers\Backend\Seller\CompanyController::class,'certificationDelete'])->name('certification_delt');
+
+
+	
 	//sell trade lead
 	Route::get('/sell_trade',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTrade'])->name('sell_trade');
 	Route::get('/sell_trade/create',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTradeCreate'])->name('sell_trade.create');
@@ -79,6 +114,11 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::patch('/buy_trade/update/{id}',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'buyTradeUpdate'])->name('buy_trade.update');
 
 	Route::get('/buy_trade/delete/{id}',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'buyTradeDelete'])->name('buy_trade.delete');
+
+
+	//Route for product.....................
+	Route::resource('/product',App\Http\Controllers\Backend\Seller\ProductsController::class);
+
 
 });
 
