@@ -65,7 +65,7 @@
                     </ul>
                 </li><!-- nav-item -->
                 
-                 <li class="nav-item">
+                <li class="nav-item">
                     <a href="#" class="nav-link with-sub"><i class="fa fa-file-o fa f-14"></i>Users And Customers</a>
                     <ul class="nav-sub">
                         <li class="nav-sub-item">
@@ -83,6 +83,45 @@
                         <li class="nav-sub-item">
                             <a href="{{route('staff.index')}}" class="nav-sub-link">Show Staff User</a>
                         </li>
+                        
+                    </ul>
+                </li><!-- nav-item -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link with-sub"><i class="fa fa-file-o fa f-14"></i>Approval Centter</a>
+                    <ul class="nav-sub">
+                        <li class="nav-sub-item">
+                            <a href="{{route('userIndex')}}" class="nav-sub-link">Product Approval</a>
+                        </li>
+                        {{-- <li class="nav-sub-item">
+                            <a href="app-chat.html" class="nav-sub-link">Show Customer</a>
+                        </li> --}}
+                        <li class="nav-sub-item">
+                            <a href="{{route('userPerDay')}}" class="nav-sub-link">Trade Buy</a>
+                        </li> 
+                        <li class="nav-sub-item">
+                            <a href="{{route('staff.create')}}" class="nav-sub-link">Trade Sell</a>
+                        </li>
+                        {{-- <li class="nav-sub-item">
+                            <a href="{{route('staff.index')}}" class="nav-sub-link">Customer</a>
+                        </li> --}}
+                        
+                    </ul>
+                </li><!-- nav-item -->
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link with-sub"><i class="fa fa-file-o fa f-14"></i>Categories</a>
+                    <ul class="nav-sub">
+
+                        <li class="nav-sub-item">
+                            <a href="{{route('supplier_product.index')}}" class="nav-sub-link">Suppliers & Products Categories</a>
+                        </li>
+                        <li class="nav-sub-item">
+                            <a href="" class="nav-sub-link">Classified Categories</a>
+                        </li>
+                        <li class="nav-sub-item">
+                            <a href="" class="nav-sub-link">Trade Lead Categories</a>
+                        </li>
+                        
                         
                     </ul>
                 </li><!-- nav-item -->

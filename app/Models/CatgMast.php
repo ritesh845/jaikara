@@ -12,4 +12,8 @@ class CatgMast extends Model
     protected $primaryKey = 'catg_id';
     protected $guarded = []; 
     public $timestamps = false;
+    public function subcategories(){
+    	return $this->hasMany('App\Models\CatgMast','parent_id','catg_id');
+    }
+    
 }

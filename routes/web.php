@@ -63,7 +63,9 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::patch('/staff/update/{id}', [App\Http\Controllers\Backend\UserController::class, 'staffUpdate'])->name('staff.update');
 
 
-	
+	Route::resource('supplier_product',App\Http\Controllers\Backend\Category\SupplierProductController::class);
+	Route::get('supplier_product/delete/{id}',[App\Http\Controllers\Backend\Category\SupplierProductController::class,'delete'])->name('supplier_product.delete');
+	Route::get('catgApproval/{id}',[App\Http\Controllers\Backend\Category\SupplierProductController::class,'approval']);
 
 
 
