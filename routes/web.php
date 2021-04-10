@@ -67,10 +67,18 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::get('/sell_trade',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTrade'])->name('sell_trade');
 	Route::get('/sell_trade/create',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTradeCreate'])->name('sell_trade.create');
 	Route::post('/sell_trade',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTradeStore'])->name('sell_trade.store');
-	Route::get('/sell_trade/{id}/edit',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTradeEdit'])->name('sell_trade.edit');
-	Route::patch('/sell_trade/update',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTradeUpdate'])->name('sell_trade.update');
+	Route::get('/sell_trade/edit/{id}',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTradeEdit'])->name('sell_trade.edit');
+	Route::patch('/sell_trade/update/{id}',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTradeUpdate'])->name('sell_trade.update');
 
 	Route::get('/sell_trade/delete/{id}',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTradeDelete'])->name('sell_trade.delete');
+	//buy trade Lead
+	Route::get('/buy_trade',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'buyTrade'])->name('buy_trade');
+	Route::get('/buy_trade/create',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'buyTradeCreate'])->name('buy_trade.create');
+	Route::post('/buy_trade',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'buyTradeStore'])->name('buy_trade.store');
+	Route::get('/buy_trade/edit/{id}',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'buyTradeEdit'])->name('buy_trade.edit');
+	Route::patch('/buy_trade/update/{id}',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'buyTradeUpdate'])->name('buy_trade.update');
+
+	Route::get('/buy_trade/delete/{id}',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'buyTradeDelete'])->name('buy_trade.delete');
 
 });
 

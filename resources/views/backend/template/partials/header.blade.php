@@ -115,7 +115,7 @@
                             <a href="{{ route('sell_trade') }}" class="nav-sub-link"> <i class="fa fa-tasks" aria-hidden="true"></i>Sell trade leads</a>
                         </li>
                         <li class="nav-sub-item">
-                            <a href="app-chat.html" class="nav-sub-link"> <i class="fa fa-tasks" aria-hidden="true"></i>Buy trade leads</a>
+                            <a href="{{ route('buy_trade') }}" class="nav-sub-link"> <i class="fa fa-tasks" aria-hidden="true"></i>Buy trade leads</a>
                         </li>
                         <li class="nav-sub-item">
                             <a href="app-calendar.html" class="nav-sub-link"> <i class="fa fa-plus"></i>Add Trade Lead</a>

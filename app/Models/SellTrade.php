@@ -11,4 +11,10 @@ class SellTrade extends Model
     protected $table = 'sell_trade_lead';
     protected $primaryKey = 'sell_trd_id';
     protected $guarded = []; 
+
+
+    public function gettracat(){
+
+    	return $this->belongsTo('App\Models\SellTrade_cat','trade_lead_catg');
+    }
 }
