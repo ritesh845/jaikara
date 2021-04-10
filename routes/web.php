@@ -35,7 +35,15 @@ Route::get('/verify/{token}','App\Http\Controllers\VerifyController@verifyUser')
 
 //Backend User
 Route::group(['middleware' => 'auth'],function(){
-	
+		
+	//Member Package Controller
+
+	Route::resource('package',App\Http\Controllers\Backend\PackageController::class);
+	Route::get('service_approve/{id}',[App\Http\Controllers\Backend\PackageController::class,'service_approve']);
+	Route::get('service_package/{id}/edit',[App\Http\Controllers\Backend\PackageController::class,'service_edit'])->name('service_edit');
+	Route::patch('service_package/update/{id}',[App\Http\Controllers\Backend\PackageController::class,'service_update'])->name('service_update');
+	Route::get('service_package/{id}',[App\Http\Controllers\Backend\PackageController::class,'service_delete'])->name('service_delete');
+
 	//admin user manage
 	Route::get('/userIndex', [App\Http\Controllers\Backend\UserController::class, 'userIndex'])->name('userIndex');
 	Route::get('/userShow/{id}', [App\Http\Controllers\Backend\UserController::class, 'userShow'])->name('userShow');

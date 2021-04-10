@@ -49,19 +49,19 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link with-sub"><i class="fa fa-file-o fa f-14"></i>General Setting</a>
                     <ul class="nav-sub">
-                        <li class="nav-sub-item">
+                        {{-- <li class="nav-sub-item">
                             <a href="app-mail.html" class="nav-sub-link">General Setting</a>
-                        </li>
+                        </li> --}}
                         <li class="nav-sub-item">
-                            <a href="app-chat.html" class="nav-sub-link">Member Package</a>
+                            <a href="{{route('package.index')}}" class="nav-sub-link">Member Package</a>
                         </li>
-                        <li class="nav-sub-item">
+                        {{-- <li class="nav-sub-item">
                             <a href="app-calendar.html" class="nav-sub-link">Change Password</a>
-                        </li>
-                        <li class="nav-sub-item">
+                        </li> --}}
+                        {{-- <li class="nav-sub-item">
                             <a href="app-calendar.html" class="nav-sub-link">Permission Setting</a>
                         </li>
-                        
+                         --}}
                     </ul>
                 </li><!-- nav-item -->
                 
