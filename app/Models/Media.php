@@ -10,4 +10,5 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Media extends Model implements HasMedia
 {
     use HasFactory,InteractsWithMedia;
+    
 }

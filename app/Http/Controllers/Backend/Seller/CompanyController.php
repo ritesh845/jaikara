@@ -12,6 +12,7 @@ use App\Models\Languages;
 use App\Models\PaymentMethod;
 
 use App\Models\InforPolicy;
+use App\Models\Documents;
 use App\Models\CatgMast;
 use App\Models\UserCatg;
 use App\Models\UserCertification;
@@ -168,8 +169,55 @@ class CompanyController extends Controller
     }
 
     public function imageGallery(){
+       $documents = Documents::where(['user_id'=>Auth::user()->id,'doc_type'=>'image_gallery'])->get();
+        return view('backend.seller.company.gallery.index',compact('documents'));
 
-        return view('backend.seller.company.gallery.index');
+    }
+    public function imageGalleryAdd(Request $request){
+        $request->validate([
+            'image' => 'required'
+        ]);
+        $data = document_upload($request->image,Auth::user()->id.'/images');
+        $data['doc_type'] = $request->doc_type; 
+        $data['user_id'] = Auth::user()->id; 
+        Documents::create($data);
+        return redirect()->back()->with('success','Image gallery added successfully');
+       
+    }
+    public function imageGalleryDelete($id){
+       
+        $image = Documents::where(['user_id'=>Auth::user()->id,'doc_type'=>'image_gallery'])->first();
+        $file= $image->doc_path;
+        $filename = public_path().'/storage/'.$file;
+        \File::delete($filename);
+        Documents::where(['user_id'=>Auth::user()->id,'doc_type'=>'image_gallery'])->delete();
+        return redirect()->back()->with('success','Image gallery deleted successfully');
+
+    } 
+    public function certification(){
+       $documents = Documents::where(['user_id'=>Auth::user()->id,'doc_type'=>'certification'])->get();
+        return view('backend.seller.company.certi-achieved.index',compact('documents'));
+
+    }
+    public function certificationAdd(Request $request){
+       $request->validate([
+            'image' => 'required'
+        ]);
+        $data = document_upload($request->image,Auth::user()->id.'/images');
+        $data['doc_type'] = $request->doc_type; 
+        $data['user_id'] = Auth::user()->id; 
+        Documents::create($data);
+        return redirect()->back()->with('success','certification added successfully');
+       
+    }
+    public function certificationDelete($id){
+        
+        $image = Documents::where(['user_id'=>Auth::user()->id,'doc_type'=>'certification'])->first();
+        $file= $image->doc_path;
+        $filename = public_path().'/storage/'.$file;
+        \File::delete($filename);
+        Documents::where(['user_id'=>Auth::user()->id,'doc_type'=>'certification'])->delete();
+        return redirect()->back()->with('success','certification deleted successfully');
 
     }
 

@@ -86,6 +86,15 @@ Route::group(['middleware' => 'auth'],function(){
 
 	//gallery.............
 	Route::get('/image/gallery',[App\Http\Controllers\Backend\Seller\CompanyController::class,'imageGallery'])->name('image_gallery');
+	Route::post('/image/gallery/add',[App\Http\Controllers\Backend\Seller\CompanyController::class,'imageGalleryAdd'])->name('image_gallery_add');
+	Route::get('/image/gallery/delete/{id}',[App\Http\Controllers\Backend\Seller\CompanyController::class,'imageGalleryDelete'])->name('image_gallery_delt');
+
+//certification achived.............
+	Route::get('/certification',[App\Http\Controllers\Backend\Seller\CompanyController::class,'certification'])->name('certification');
+	Route::post('/certification/add',[App\Http\Controllers\Backend\Seller\CompanyController::class,'certificationAdd'])->name('certification_add');
+	Route::get('/certification/delete/{id}',[App\Http\Controllers\Backend\Seller\CompanyController::class,'certificationDelete'])->name('certification_delt');
+
+
 	
 	//sell trade lead
 	Route::get('/sell_trade',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTrade'])->name('sell_trade');
@@ -95,6 +104,11 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::patch('/sell_trade/update',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTradeUpdate'])->name('sell_trade.update');
 
 	Route::get('/sell_trade/delete/{id}',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTradeDelete'])->name('sell_trade.delete');
+
+
+	//Route for product.....................
+	Route::resource('/product',App\Http\Controllers\Backend\Seller\ProductsController::class);
+
 
 });
 
