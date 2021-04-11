@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\FrontendController::class, 'index']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
 Auth::routes();
 
 
@@ -123,5 +125,6 @@ Route::group(['middleware' => 'auth'],function(){
 });
 
 
-// Route::get('/{domain}',[App\Http\Controllers\FrontendController::class, 'domain_redirect']);
+Route::get('/{domain}/{page?}',[App\Http\Controllers\FrontendController::class, 'domain_redirect']);
+// Route::get('/{domain}/{page}',[App\Http\Controllers\FrontendController::class, 'page_redirect']);
 
