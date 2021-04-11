@@ -5,7 +5,7 @@
 	<div class="card-header">
 		<div class="col-md-12 ">
 			<h5 class="font-weight-bold"> My Products  </h5>
-			<a href="{{route('product.create')}}" ><i class="fa fa-plus btn btn-success pull-right btn-sm">Add Product</i></a>
+			<a href="{{route('products.create')}}" ><i class="fa fa-plus btn btn-success pull-right btn-sm">Add Product</i></a>
 		</div>
 		@if($message = Session::get('success'))   
           <div class="alert alert-success">{{ $message }}</div>

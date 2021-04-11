@@ -99,7 +99,9 @@ Route::group(['middleware' => 'auth'],function(){
 
 
 	//Route for product.....................
-	Route::resource('/product',App\Http\Controllers\Backend\Seller\ProductsController::class);
+	Route::resource('/products',App\Http\Controllers\Backend\Seller\ProductsController::class);
+	//Route for product group.....................
+	Route::resource('/product-group',App\Http\Controllers\Backend\Seller\ProductGroupController::class);
 
 
 });
