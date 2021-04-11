@@ -169,7 +169,7 @@
                     <a href="#" class="nav-link with-sub"><i class="fa fa-quote-right  fa f-14"></i>Quotation</a>
                     <ul class="nav-sub">
                         <li class="nav-sub-item">
-                            <a href="app-mail.html" class="nav-sub-link"><i class="fa fa-file-text"></i>My Posted RFQ</a>
+                            <a href="{{ route('my_posted_rfq') }}" class="nav-sub-link"><i class="fa fa-file-text"></i>My Posted RFQ</a>
                         </li>
                         <li class="nav-sub-item">
                             <a href="app-chat.html" class="nav-sub-link"><i class="fa fa-file-text">
