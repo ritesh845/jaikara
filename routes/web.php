@@ -35,7 +35,15 @@ Route::get('/verify/{token}','App\Http\Controllers\VerifyController@verifyUser')
 
 //Backend User
 Route::group(['middleware' => 'auth'],function(){
-	
+		
+	//Member Package Controller
+
+	Route::resource('package',App\Http\Controllers\Backend\PackageController::class);
+	Route::get('service_approve/{id}',[App\Http\Controllers\Backend\PackageController::class,'service_approve']);
+	Route::get('service_package/{id}/edit',[App\Http\Controllers\Backend\PackageController::class,'service_edit'])->name('service_edit');
+	Route::patch('service_package/update/{id}',[App\Http\Controllers\Backend\PackageController::class,'service_update'])->name('service_update');
+	Route::get('service_package/{id}',[App\Http\Controllers\Backend\PackageController::class,'service_delete'])->name('service_delete');
+
 	//admin user manage
 	Route::get('/userIndex', [App\Http\Controllers\Backend\UserController::class, 'userIndex'])->name('userIndex');
 	Route::get('/userShow/{id}', [App\Http\Controllers\Backend\UserController::class, 'userShow'])->name('userShow');
@@ -55,7 +63,9 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::patch('/staff/update/{id}', [App\Http\Controllers\Backend\UserController::class, 'staffUpdate'])->name('staff.update');
 
 
-	
+	Route::resource('supplier_product',App\Http\Controllers\Backend\Category\SupplierProductController::class);
+	Route::get('supplier_product/delete/{id}',[App\Http\Controllers\Backend\Category\SupplierProductController::class,'delete'])->name('supplier_product.delete');
+	Route::get('catgApproval/{id}',[App\Http\Controllers\Backend\Category\SupplierProductController::class,'approval']);
 
 
 
@@ -92,10 +102,18 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::get('/sell_trade',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTrade'])->name('sell_trade');
 	Route::get('/sell_trade/create',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTradeCreate'])->name('sell_trade.create');
 	Route::post('/sell_trade',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTradeStore'])->name('sell_trade.store');
-	Route::get('/sell_trade/{id}/edit',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTradeEdit'])->name('sell_trade.edit');
-	Route::patch('/sell_trade/update',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTradeUpdate'])->name('sell_trade.update');
+	Route::get('/sell_trade/edit/{id}',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTradeEdit'])->name('sell_trade.edit');
+	Route::patch('/sell_trade/update/{id}',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTradeUpdate'])->name('sell_trade.update');
 
 	Route::get('/sell_trade/delete/{id}',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'sellTradeDelete'])->name('sell_trade.delete');
+	//buy trade Lead
+	Route::get('/buy_trade',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'buyTrade'])->name('buy_trade');
+	Route::get('/buy_trade/create',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'buyTradeCreate'])->name('buy_trade.create');
+	Route::post('/buy_trade',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'buyTradeStore'])->name('buy_trade.store');
+	Route::get('/buy_trade/edit/{id}',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'buyTradeEdit'])->name('buy_trade.edit');
+	Route::patch('/buy_trade/update/{id}',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'buyTradeUpdate'])->name('buy_trade.update');
+
+	Route::get('/buy_trade/delete/{id}',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'buyTradeDelete'])->name('buy_trade.delete');
 
 
 	//Route for product.....................

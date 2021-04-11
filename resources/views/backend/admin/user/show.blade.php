@@ -1,6 +1,6 @@
 @extends('backend.layouts.main')
 @section('content')
-<div class="card card-dashboard-seven">
+<div class="card ">
     <div class="card-header p-2">
         <h5 class="card-title">Details of {{$user->name}}
         	<a href="{{route('userIndex')}}" class="btn btn-sm btn-primary pull-right">Back</a>

@@ -49,23 +49,23 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link with-sub"><i class="fa fa-file-o fa f-14"></i>General Setting</a>
                     <ul class="nav-sub">
-                        <li class="nav-sub-item">
+                        {{-- <li class="nav-sub-item">
                             <a href="app-mail.html" class="nav-sub-link">General Setting</a>
-                        </li>
+                        </li> --}}
                         <li class="nav-sub-item">
-                            <a href="app-chat.html" class="nav-sub-link">Member Package</a>
+                            <a href="{{route('package.index')}}" class="nav-sub-link">Member Package</a>
                         </li>
-                        <li class="nav-sub-item">
+                        {{-- <li class="nav-sub-item">
                             <a href="app-calendar.html" class="nav-sub-link">Change Password</a>
-                        </li>
-                        <li class="nav-sub-item">
+                        </li> --}}
+                        {{-- <li class="nav-sub-item">
                             <a href="app-calendar.html" class="nav-sub-link">Permission Setting</a>
                         </li>
-                        
+                         --}}
                     </ul>
                 </li><!-- nav-item -->
                 
-                 <li class="nav-item">
+                <li class="nav-item">
                     <a href="#" class="nav-link with-sub"><i class="fa fa-file-o fa f-14"></i>Users And Customers</a>
                     <ul class="nav-sub">
                         <li class="nav-sub-item">
@@ -83,6 +83,45 @@
                         <li class="nav-sub-item">
                             <a href="{{route('staff.index')}}" class="nav-sub-link">Show Staff User</a>
                         </li>
+                        
+                    </ul>
+                </li><!-- nav-item -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link with-sub"><i class="fa fa-file-o fa f-14"></i>Approval Centter</a>
+                    <ul class="nav-sub">
+                        <li class="nav-sub-item">
+                            <a href="{{route('userIndex')}}" class="nav-sub-link">Product Approval</a>
+                        </li>
+                        {{-- <li class="nav-sub-item">
+                            <a href="app-chat.html" class="nav-sub-link">Show Customer</a>
+                        </li> --}}
+                        <li class="nav-sub-item">
+                            <a href="{{route('userPerDay')}}" class="nav-sub-link">Trade Buy</a>
+                        </li> 
+                        <li class="nav-sub-item">
+                            <a href="{{route('staff.create')}}" class="nav-sub-link">Trade Sell</a>
+                        </li>
+                        {{-- <li class="nav-sub-item">
+                            <a href="{{route('staff.index')}}" class="nav-sub-link">Customer</a>
+                        </li> --}}
+                        
+                    </ul>
+                </li><!-- nav-item -->
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link with-sub"><i class="fa fa-file-o fa f-14"></i>Categories</a>
+                    <ul class="nav-sub">
+
+                        <li class="nav-sub-item">
+                            <a href="{{route('supplier_product.index')}}" class="nav-sub-link">Suppliers & Products Categories</a>
+                        </li>
+                        <li class="nav-sub-item">
+                            <a href="" class="nav-sub-link">Classified Categories</a>
+                        </li>
+                        <li class="nav-sub-item">
+                            <a href="" class="nav-sub-link">Trade Lead Categories</a>
+                        </li>
+                        
                         
                     </ul>
                 </li><!-- nav-item -->
@@ -116,7 +155,8 @@
                             <a href="{{ route('sell_trade') }}" class="nav-sub-link"> Sell trade leads</a>
                         </li>
                         <li class="nav-sub-item">
-                            <a href="app-chat.html" class="nav-sub-link"> Buy trade leads</a>
+
+                            <a href="{{ route('buy_trade') }}" class="nav-sub-link"> <i class="fa fa-tasks" aria-hidden="true"></i>Buy trade leads</a>
                         </li>
                         <li class="nav-sub-item">
                             <a href="app-calendar.html" class="nav-sub-link"> Add Trade Lead</a>

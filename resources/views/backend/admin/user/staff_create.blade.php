@@ -1,6 +1,6 @@
 @extends('backend.layouts.main')
 @section('content')
-<div class="card card-dashboard-seven">
+<div class="card ">
     <div class="card-header p-2">
         <h5 class="card-title">Add Staff User</h5>
     </div><!-- card-header -->

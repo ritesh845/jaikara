@@ -48,3 +48,15 @@ function fn_user_approval(user_id){
         }
     });
 }
+function fn_catg_approval(catg_id){
+    $.ajax({
+        type:'GET',
+        url:"/catgApproval/"+catg_id,
+        success:function(res){
+            if(res.status == 'success'){
+                alert(res.message)
+                window.location.reload();
+            }
+        }
+    });
+}

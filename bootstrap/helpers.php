@@ -55,6 +55,16 @@ const OwnershipType =[
     6 => 'Others'
 ];
 
+const CatgType =[
+    'SP'  => 'Suppliers & Products Categories',
+    'CC'  => 'Classified Categories',
+    'ST'  => 'Sell Trade Categories',
+    'BT'  => 'Buy Trade Categories',
+];
+
+
+
+
 if (!function_exists('file_upload')) {
     function file_upload($file,$folder,$data = [],$fieldName=null){      
         if(!empty($data) !=0){
