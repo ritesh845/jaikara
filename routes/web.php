@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\FrontendController::class, 'index']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
 Auth::routes();
 
 
@@ -114,7 +116,14 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::patch('/buy_trade/update/{id}',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'buyTradeUpdate'])->name('buy_trade.update');
 
 	Route::get('/buy_trade/delete/{id}',[App\Http\Controllers\Backend\Seller\TradeLeadController::class,'buyTradeDelete'])->name('buy_trade.delete');
+      // my posted RFQ
+	Route::get('/my_posted_rfq',[App\Http\Controllers\Backend\Seller\QuatationController::class,'index'])->name('my_posted_rfq');
+	Route::get('/my_posted_rfq/create',[App\Http\Controllers\Backend\Seller\QuatationController::class,'create'])->name('my_posted_rfq.create');
+	Route::post('/my_posted_rfq',[App\Http\Controllers\Backend\Seller\QuatationController::class,'store'])->name('my_posted_rfq.store');
+	Route::get('/my_posted_rfq/edit/{id}',[App\Http\Controllers\Backend\Seller\QuatationController::class,'edit'])->name('my_posted_rfq.edit');
+	Route::patch('/my_posted_rfq/update/{id}',[App\Http\Controllers\Backend\Seller\QuatationController::class,'update'])->name('my_posted_rfq.update');
 
+	Route::get('/my_posted_rfq/delete/{id}',[App\Http\Controllers\Backend\Seller\QuatationController::class,'delete'])->name('my_posted_rfq.delete');
 
 	//Route for product.....................
 	Route::resource('/products',App\Http\Controllers\Backend\Seller\ProductsController::class);
@@ -125,5 +134,6 @@ Route::group(['middleware' => 'auth'],function(){
 });
 
 
-// Route::get('/{domain}',[App\Http\Controllers\FrontendController::class, 'domain_redirect']);
+Route::get('/{domain}/{page?}',[App\Http\Controllers\FrontendController::class, 'domain_redirect']);
+// Route::get('/{domain}/{page}',[App\Http\Controllers\FrontendController::class, 'page_redirect']);
 

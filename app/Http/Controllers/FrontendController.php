@@ -7,6 +7,8 @@ use App\Models\State;
 use App\Models\City;
 use App\Models\User;
 use App\Models\Page;
+use Session;
+
 class FrontendController extends Controller
 {
 	public function __construct()
@@ -31,16 +33,11 @@ class FrontendController extends Controller
         return captcha_img('math');
     }
 
-    // public function domain_redirect() {
-      
-    //     if(count(explode('/', request()->getRequestUri())) > 1){
-    //         $domain_name =  explode('/', request()->getRequestUri())[1];
-    //     }else{
-    //         $domain_name = '';
-    //     }
-    //     $user =  User::firstWhere('domain_url',$domain_name);
-    //     if(!empty($user)){
-
-    //     }else{}
-    // }
+    public function domain_redirect($domain,$page_name =null) {
+       if($page_name == null) {
+            $page_name = 'home';
+       }    
+       return view('frontend.pages.index',compact('page_name'));
+        
+    }
 }

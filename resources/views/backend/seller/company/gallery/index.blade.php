@@ -42,9 +42,9 @@
 	<div class="card-body">
 		<div class="row">
 			@foreach($documents as $document)
-				<div class="col-sm-4 form-group">
+				<div class="col-sm-3 form-group">
 					<a class="pull-right" href="{{ route('image_gallery_delt', ['id' => $document->doc_id]) }}"> <i class="fa fa-trash"></i></a> 
-					<img src="{{asset($document->doc_path !=null ? 'storage/'.$document->doc_path : 'img/student_demo.png')}}" >
+					<img src="{{asset($document->doc_path !=null ? 'storage/'.$document->doc_path : 'img/student_demo.png')}}" width="200" height="200" >
 				</div>
 			@endforeach
 		</div>
