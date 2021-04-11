@@ -1,0 +1,223 @@
+@extends('backend.layouts.main')
+@section('content')
+<div class="card card-dashboard-seven">
+    <div class="card-header p-2">
+        <h5 class="card-title">Edit Request for Quotation</h5>
+        <p>One Request, Multiple Quotes</p>
+    </div><!-- card-header -->
+    	<h1 class="mt-2">Tell us your Buy Requirement</h1>
+    	<p>Complete Your RFQ</p>
+    	<p>The more specific your information, the more accurately we can match your request to the right suppliers</p>
+    <div class="card-body">
+    	<form name="add_user" action="{{ route('my_posted_rfq.update',$edit->qua_id) }}" method="post" enctype="multipart/form-data" class="search_form general_form">
+    		@csrf
+    		@method('patch')
+			<div class="row">
+			 <div class="col-md-9 form-group">
+                <div class="row">
+				<div class="col-md-12 form-group">
+					<label><strong>Product/Services :</strong></label>
+					<input type="text" class="form-control" name="prod_sevice" value="{{ $edit->prod_sevice }}">
+					@error('prod_sevice')
+				        <span class="help-block text-danger font-size-12">
+				            <strong>{{ $message }}</strong>
+				        </span>
+				    @enderror
+				</div>
+				</div>
+				<div class="row">
+				<div class="col-md-12 form-group">
+					<label><strong>Requirement in detail :</strong></label>
+					<textarea class="form-control" rows="5" cols="54" name="req_delt">{{ $edit->req_delt }}</textarea>
+					@error('req_delt')
+				        <span class="help-block text-danger font-size-12">
+				            <strong>{{ $message }}</strong>
+				        </span>
+				    @enderror
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 form-group">
+					<label><strong>Estimated Quantity :</strong></label>
+					<input type="number" class="form-control" name="estim_qty" value="{{ $edit->estim_qty }}">
+					@error('estim_qty')
+				        <span class="help-block text-danger font-size-12">
+				            <strong>{{ $message }}</strong>
+				        </span>
+				    @enderror
+				</div>
+				<div class="col-md-6 form-group">
+					<label><strong>Type :</strong></label>
+					<select name="qty_type" class="form-control">
+						<option value="">select</option>
+						<option value="units" {{ ($edit->qty_type == 'units') ? 'selected' : '' }}>Units</option>
+						<option value="tones" {{ ($edit->qty_type == 'tones') ? 'selected' : '' }}>Tones</option>
+						<option value="pices" {{ ($edit->qty_type == 'pices') ? 'selected' : '' }}>Pices</option>
+					</select>	
+					@error('qty_type')
+				        <span class="help-block text-danger font-size-12">
+				            <strong>{{ $message }}</strong>
+				        </span>
+				    @enderror
+				</div>
+				</div>
+				<div class="row">
+				<div class="col-md-6 form-group">
+					<label><strong>Expire Time in Days :</strong></label>
+					<select name="expiry_time_in_day" class="form-control">
+						<option value="">select</option>
+					    <option value="7" {{ ($edit->expiry_time_in_day == '7') ? 'selected' : '' }}>30 Days</option>
+						<option value="14" {{ ($edit->expiry_time_in_day == '14') ? 'selected' : '' }}>60 Days</option>
+						<option value="30" {{ ($edit->expiry_time_in_day == '30') ? 'selected' : '' }}>90 Days</option>
+						<option value="60" {{ ($edit->expiry_time_in_day == '60') ? 'selected' : '' }}>120 Days</option>
+						<option value="90" {{ ($edit->expiry_time_in_day == '90') ? 'selected' : '' }}>180 Days</option>
+					</select>
+					@error('expiry_time_in_day')
+				        <span class="help-block text-danger font-size-12">
+				            <strong>{{ $message }}</strong>
+				        </span>
+				    @enderror
+				</div>
+				<div class="col-md-6 form-group">
+					@php
+					 $t_cat = App\Models\SellTrade_cat::all();
+					 @endphp
+					<label><strong>Categories :</strong></label>
+					<select name="trade_lead_catg" class="form-control">
+						<option value="">select</option>
+						@foreach($t_cat as $cat)
+						<option @if($cat->trd_catg_id == $edit->trade_lead_catg) selected  @endif value="{{ $cat->trd_catg_id }}">{{ $cat->trd_catg_name }}</option>
+						@endforeach
+					</select>
+					@error('trade_lead_catg')
+				        <span class="help-block text-danger font-size-12">
+				            <strong>{{ $message }}</strong>
+				        </span>
+				    @enderror
+				</div>
+				</div>
+				<h4 class=""><small>Your Contact Details</small></h4>
+				<div class="row">
+				<div class="col-md-6 form-group">
+					<label><strong>Email :</strong></label>
+					<input type="text" class="form-control" name="keywords" value="{{ $atz->email }}" readonly="">
+					@error('keywords')
+				        <span class="help-block text-danger font-size-12">
+				            <strong>{{ $message }}</strong>
+				        </span>
+				    @enderror
+				</div>
+				<div class="col-md-6 form-group">
+					<label><strong>Contact Person :</strong></label>
+					<input type="text" class="form-control" name="keywords" value="{{ $atz->name }}" readonly="">
+					@error('valid_for')
+				        <span class="help-block text-danger font-size-12">
+				            <strong>{{ $message }}</strong>
+				        </span>
+				    @enderror
+				</div>
+				</div>
+				<div class="row">
+				<div class="col-md-6 form-group">
+					<label><strong>Company :</strong></label>
+					<input type="text" class="form-control" name="keywords" value="{{ $atz->comp_name }}" readonly="">
+					@error('keywords')
+				        <span class="help-block text-danger font-size-12">
+				            <strong>{{ $message }}</strong>
+				        </span>
+				    @enderror
+				</div>
+				<div class="col-md-6 form-group">
+					<label><strong>Country :</strong></label>
+					<input type="text" class="form-control" name="keywords" value="{{ $atz->country->country_name }}" readonly="">
+					@error('valid_for')
+				        <span class="help-block text-danger font-size-12">
+				            <strong>{{ $message }}</strong>
+				        </span>
+				    @enderror
+				</div>
+				</div>
+				<div class="row">
+				<div class="col-md-6 form-group">
+					<label><strong>state :</strong></label>
+					<input type="text" class="form-control" name="keywords" value="{{ $atz->state->state_name }}" readonly="">
+					@error('keywords')
+				        <span class="help-block text-danger font-size-12">
+				            <strong>{{ $message }}</strong>
+				        </span>
+				    @enderror
+				</div>
+				<div class="col-md-6 form-group">
+					<label><strong>City :</strong></label>
+					<input type="text" class="form-control" name="keywords" value="{{ $atz->city->city_name }}" readonly="">
+					@error('valid_for')
+				        <span class="help-block text-danger font-size-12">
+				            <strong>{{ $message }}</strong>
+				        </span>
+				    @enderror
+				</div>
+				</div>
+				<div class="row">
+				<div class="col-md-6 form-group">
+					<label><strong>Mobile No. :</strong></label>
+					<input type="text" class="form-control" name="keywords" value="{{ $atz->mobile }}" readonly="">
+					@error('keywords')
+				        <span class="help-block text-danger font-size-12">
+				            <strong>{{ $message }}</strong>
+				        </span>
+				    @enderror
+				</div>
+				<div class="col-md-6 form-group">
+					<label><strong>Image :</strong></label>
+					<input type="file" class="form-control" name="image" value="{{ old('image') }}">
+					@error('image')
+				        <span class="help-block text-danger font-size-12">
+				            <strong>{{ $message }}</strong>
+				        </span>
+				    @enderror
+				</div>
+				</div>
+				<div class="row">
+				<div class="col-md-6 form-group">
+					<label><strong>Upload File. :<span class="text-warning">(Upload only PDF File)</span></strong></label>
+					<input type="file" class="form-control" name="docu_upload" value="{{ old('docu_upload') }}">
+					@error('docu_upload')
+				        <span class="help-block text-danger font-size-12">
+				            <strong>{{ $message }}</strong>
+				        </span>
+				    @enderror
+				</div>
+				<div class="col-md-6 form-group">
+					
+				</div>
+				</div>
+				<div class="row">
+				<div class="col-md-6 form-group">
+					<label><strong>Image :</strong></label>
+					@if($edit->image != '')
+                  			<img src="{{asset('storage/'.$edit->image) }}" style="height:100px;width:100px;">
+          			
+                  	@endif
+				</div>
+				<div class="col-md-6 form-group">
+					<label><strong>Upload File. :</strong></label>
+					@if($edit->docu_upload != '')
+                  			<img src="{{asset('storage/'.$edit->docu_upload) }}" style="height:100px;width:100px;">
+          			
+                  	@endif
+				</div>
+				</div>
+				<div class="col-md-12 form-group">
+					<input name="submit" class="btn btn-warning" type="submit" value="Update Quatation" />
+				</div>
+		</div>
+			<div class="col-md-3 form-group">
+				card space
+			</div>
+		</div>
+		</div>
+				
+		</form>
+	</div>
+</div>
+@endsection

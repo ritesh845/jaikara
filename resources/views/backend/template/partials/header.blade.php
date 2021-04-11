@@ -169,7 +169,7 @@
                     <a href="#" class="nav-link with-sub"><i class="fa fa-quote-right  fa f-14"></i>Quotation</a>
                     <ul class="nav-sub">
                         <li class="nav-sub-item">
-                            <a href="app-mail.html" class="nav-sub-link"><i class="fa fa-file-text"></i>My Posted RFQ</a>
+                            <a href="{{ route('my_posted_rfq') }}" class="nav-sub-link"><i class="fa fa-file-text"></i>My Posted RFQ</a>
                         </li>
                         <li class="nav-sub-item">
                             <a href="app-chat.html" class="nav-sub-link"><i class="fa fa-file-text">
@@ -183,13 +183,13 @@
                     <a href="#" class="nav-link with-sub"><i class="fa fa-tasks fa f-14"></i>Product Management</a>
                     <ul class="nav-sub">
                         <li class="nav-sub-item">
-                            <a href="{{route('product.index')}}" class="nav-sub-link"> Product List</a>
+                            <a href="{{route('products.index')}}" class="nav-sub-link"> Product List</a>
                         </li>
                         <li class="nav-sub-item">
-                            <a href="app-chat.html" class="nav-sub-link">Add Product</a>
+                            <a href="{{route('products.create')}}" class="nav-sub-link">Add Product</a>
                         </li>
                         <li class="nav-sub-item">
-                            <a href="app-calendar.html" class="nav-sub-link"> Product Group Management</a>
+                            <a href="{{route('product-group.create')}}" class="nav-sub-link"> Product Group Management</a>
                         </li>
                        
                         
