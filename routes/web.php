@@ -124,7 +124,9 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::get('/my_posted_rfq/delete/{id}',[App\Http\Controllers\Backend\Seller\QuatationController::class,'delete'])->name('my_posted_rfq.delete');
 
 	//Route for product.....................
-	Route::resource('/product',App\Http\Controllers\Backend\Seller\ProductsController::class);
+	Route::resource('/products',App\Http\Controllers\Backend\Seller\ProductsController::class);
+	//Route for product group.....................
+	Route::resource('/product-group',App\Http\Controllers\Backend\Seller\ProductGroupController::class);
 
 
 });

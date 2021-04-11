@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(['auth.register','backend.admin.user.edit','backend.admin.user.staff_create','backend.admin.user.staff_edit'], function ($view) {
+        View::composer(['auth.register','backend.admin.user.edit','backend.admin.user.staff_create','backend.admin.user.staff_edit','backend.seller.products.create'], function ($view) {
             $view->with('countries', Country::orderBy('country_name','asc')->cursor());
         });
         View::composer(['backend.seller.company.profile','backend.seller.company.profile-edit'],function($view){
