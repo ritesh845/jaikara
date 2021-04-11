@@ -102,7 +102,7 @@ class RegisterController extends Controller
 
             'remember_token'=> Str::random(40),
             'template_id'=> $role_id == '4' ? '1' : null,
-            'template_name'=> $role_id == '4' ? 'template' : null
+            'template_name'=> $role_id == '4' ? 'template' : null,
             'site_name'=> $role_id == '4' ? $data['comp_name'] : null
         ]);
         $meta = $user->name.' -'.$user->city->city_name.'-'.$user->state->state_name;
