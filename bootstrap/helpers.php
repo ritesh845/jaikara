@@ -94,6 +94,7 @@ if (!function_exists('document_upload')) {
             }
         }
         $name =  time().'_'.$file->getClientOriginalName();
+        // dd($name);
         $mime =  $file->getClientMimeType();
         $size =  $file->getSize();
         $file->storeAs('public/'.$folder, $name);
