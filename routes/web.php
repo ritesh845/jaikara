@@ -24,10 +24,10 @@ Auth::routes();
 
 //Frontend
 
-Route::get('/get_states/{id}', [App\Http\Controllers\FrontendController::class, 'get_states']);
-Route::get('/get_cities/{id}', [App\Http\Controllers\FrontendController::class, 'get_cities']);
+Route::get('/get_states/{id}', [App\Http\Controllers\VerifyController::class, 'get_states']);
+Route::get('/get_cities/{id}', [App\Http\Controllers\VerifyController::class, 'get_cities']);
 
-Route::get('/refresh_captcha', [App\Http\Controllers\FrontendController::class, 'refreshCaptcha']);
+Route::get('/refresh_captcha', [App\Http\Controllers\VerifyController::class, 'refreshCaptcha']);
 
 
 Route::get('/verify/{token}','App\Http\Controllers\VerifyController@verifyUser');
