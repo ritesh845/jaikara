@@ -79,17 +79,14 @@
 				    @enderror
 				</div>
 				<div class="col-md-6 form-group">
-					@php
-					 $t_cat = App\Models\SellTrade_cat::all();
-					 @endphp
 					<label><strong>Categories :</strong></label>
-					<select name="trade_lead_catg" class="form-control">
+					<select name="catg_id" class="form-control">
 						<option value="">select</option>
-						@foreach($t_cat as $cat)
-						<option @if($cat->trd_catg_id == $edit->trade_lead_catg) selected  @endif value="{{ $cat->trd_catg_id }}">{{ $cat->trd_catg_name }}</option>
+						@foreach($catgs as $cat)
+						<option @if($cat->catg_id == $edit->catg_id) selected  @endif value="{{ $cat->catg_id }}">{{ $cat->catg_name }}</option>
 						@endforeach
 					</select>
-					@error('trade_lead_catg')
+					@error('catg_id')
 				        <span class="help-block text-danger font-size-12">
 				            <strong>{{ $message }}</strong>
 				        </span>
@@ -100,7 +97,7 @@
 				<div class="row">
 				<div class="col-md-6 form-group">
 					<label><strong>Email :</strong></label>
-					<input type="text" class="form-control" name="keywords" value="{{ $atz->email }}" readonly="">
+					<input type="text" class="form-control" name="keywords" value="{{ Auth::user()->email }}" readonly="">
 					@error('keywords')
 				        <span class="help-block text-danger font-size-12">
 				            <strong>{{ $message }}</strong>
@@ -109,7 +106,7 @@
 				</div>
 				<div class="col-md-6 form-group">
 					<label><strong>Contact Person :</strong></label>
-					<input type="text" class="form-control" name="keywords" value="{{ $atz->name }}" readonly="">
+					<input type="text" class="form-control" name="keywords" value="{{ Auth::user()->name }}" readonly="">
 					@error('valid_for')
 				        <span class="help-block text-danger font-size-12">
 				            <strong>{{ $message }}</strong>
@@ -120,7 +117,7 @@
 				<div class="row">
 				<div class="col-md-6 form-group">
 					<label><strong>Company :</strong></label>
-					<input type="text" class="form-control" name="keywords" value="{{ $atz->comp_name }}" readonly="">
+					<input type="text" class="form-control" name="keywords" value="{{ Auth::user()->comp_name }}" readonly="">
 					@error('keywords')
 				        <span class="help-block text-danger font-size-12">
 				            <strong>{{ $message }}</strong>
@@ -129,7 +126,7 @@
 				</div>
 				<div class="col-md-6 form-group">
 					<label><strong>Country :</strong></label>
-					<input type="text" class="form-control" name="keywords" value="{{ $atz->country->country_name }}" readonly="">
+					<input type="text" class="form-control" name="keywords" value="{{ Auth::user()->country->country_name }}" readonly="">
 					@error('valid_for')
 				        <span class="help-block text-danger font-size-12">
 				            <strong>{{ $message }}</strong>
@@ -140,7 +137,7 @@
 				<div class="row">
 				<div class="col-md-6 form-group">
 					<label><strong>state :</strong></label>
-					<input type="text" class="form-control" name="keywords" value="{{ $atz->state->state_name }}" readonly="">
+					<input type="text" class="form-control" name="keywords" value="{{ Auth::user()->state->state_name }}" readonly="">
 					@error('keywords')
 				        <span class="help-block text-danger font-size-12">
 				            <strong>{{ $message }}</strong>
@@ -149,7 +146,7 @@
 				</div>
 				<div class="col-md-6 form-group">
 					<label><strong>City :</strong></label>
-					<input type="text" class="form-control" name="keywords" value="{{ $atz->city->city_name }}" readonly="">
+					<input type="text" class="form-control" name="keywords" value="{{ Auth::user()->city->city_name }}" readonly="">
 					@error('valid_for')
 				        <span class="help-block text-danger font-size-12">
 				            <strong>{{ $message }}</strong>
@@ -160,7 +157,7 @@
 				<div class="row">
 				<div class="col-md-6 form-group">
 					<label><strong>Mobile No. :</strong></label>
-					<input type="text" class="form-control" name="keywords" value="{{ $atz->mobile }}" readonly="">
+					<input type="text" class="form-control" name="keywords" value="{{ Auth::user()->mobile }}" readonly="">
 					@error('keywords')
 				        <span class="help-block text-danger font-size-12">
 				            <strong>{{ $message }}</strong>

@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Backend\Seller;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\SellTrade_cat;
 use App\Models\QuatationRfq;
+use App\Models\CatgMast;
 use App\Models\User;
 use Auth;
 
@@ -19,9 +19,8 @@ class QuatationController extends Controller
 	}
 
 	public function create(){
-        $t_cat =  SellTrade_cat::all();
-        $atz = User::find(Auth::user()->id);
-		return view('backend.seller.Quatation.create',compact('t_cat','atz'));
+    $catgs =  CatgMast::where('catg_type','SP')->where('parent_id',null)->orderBy('catg_name')->get();
+		return view('backend.seller.Quatation.create',compact('catgs'));
 	}
 
 	public function store(Request $request){
@@ -32,7 +31,7 @@ class QuatationController extends Controller
           'estim_qty'=>'required',       
           'qty_type'=>'required',      
           'expiry_time_in_day'=>'required',          
-          'trade_lead_catg'=>'required',          
+          'catg_id'=>'required',          
           'expiry_time_in_day'=>'required',          
                  
           ]);
@@ -50,8 +49,9 @@ class QuatationController extends Controller
 	
   public function edit($id){
     $edit = QuatationRfq::find($id);
-    $atz = User::find(Auth::user()->id);
-    return view('backend.seller.Quatation.edit',compact('edit','atz'));
+    $catgs =  CatgMast::where('catg_type','SP')->where('parent_id',null)->orderBy('catg_name')->get();
+
+    return view('backend.seller.Quatation.edit',compact('edit','catgs'));
   }
 
   public function update(Request $request ,$id){
@@ -62,7 +62,7 @@ class QuatationController extends Controller
           'estim_qty'=>'required',       
           'qty_type'=>'required',      
           'expiry_time_in_day'=>'required',          
-          'trade_lead_catg'=>'required',          
+          'catg_id'=>'required',          
           'expiry_time_in_day'=>'required',          
                  
           ]);
