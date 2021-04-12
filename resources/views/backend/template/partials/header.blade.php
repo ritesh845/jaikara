@@ -9,6 +9,7 @@
 
     <title>@yield('title','Jaikara')</title>
     <script src="{{asset('backend/js/jquery.min.js')}}"></script>
+    
 
     <!-- vendor css -->
     <link href="{{asset('backend/css/all.min.css')}}" rel="stylesheet">
@@ -197,7 +198,9 @@
                     </ul>
                 </li><!-- nav-item -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link"><i class="fa fa-bullhorn fa f-14"></i>My Classifieds</a>
+
+             
+                    <a href="{{ route('my_classified') }}" class="nav-link"><i class="fa fa-bullhorn fa f-14"></i>My Classifieds</a>
                    
                 </li><!-- nav-item --> 
                 <li class="nav-item">

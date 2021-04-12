@@ -131,6 +131,16 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::patch('/my_posted_rfq/update/{id}',[App\Http\Controllers\Backend\Seller\QuatationController::class,'update'])->name('my_posted_rfq.update');
 
 	Route::get('/my_posted_rfq/delete/{id}',[App\Http\Controllers\Backend\Seller\QuatationController::class,'delete'])->name('my_posted_rfq.delete');
+     // my Classified
+	Route::get('/my_classified',[App\Http\Controllers\Backend\Seller\MyClassifiedController::class,'index'])->name('my_classified');
+	Route::get('/my_classified/create',[App\Http\Controllers\Backend\Seller\MyClassifiedController::class,'create'])->name('my_classified.create');
+	Route::post('/my_classified',[App\Http\Controllers\Backend\Seller\MyClassifiedController::class,'store'])->name('my_classified.store');
+	Route::get('/my_classified/edit/{id}',[App\Http\Controllers\Backend\Seller\MyClassifiedController::class,'edit'])->name('my_classified.edit');
+	Route::patch('/my_classified/update/{id}',[App\Http\Controllers\Backend\Seller\MyClassifiedController::class,'update'])->name('my_classified.update');
+
+	Route::get('/my_classified/delete/{id}',[App\Http\Controllers\Backend\Seller\MyClassifiedController::class,'delete'])->name('my_classified.delete');
+	Route::get('/my_classified/getsubcatg',[App\Http\Controllers\Backend\Seller\MyClassifiedController::class,'getsubcatg'])->name('my_classified.getsubcatg');
+	
 
 	//Route for product.....................
 	Route::resource('/products',App\Http\Controllers\Backend\Seller\ProductsController::class);
