@@ -178,16 +178,21 @@
 											</tr>
 											<tr>
 												<th>Key Personnel</th>
-												<td>{{session('user.personnel') !=null ? Arr::get(KeyPersonnel,session('user.personnel')) : ''}}</td>
+												<td>
+													{{-- {{session('user.personnel') !=null ? Arr::get(KeyPersonnel,session('user.personnel')) : ''}} --}}
+
+												</td>
 											</tr>
 											<tr>
 												<th>Ownership Type </th>
-												<td> {{session('user.own_type') !=null ? Arr::get(OwnershipType,session('user.own_type')) : ''}}</td>
+												<td>
+													 {{-- {{session('user.own_type') !=null ? Arr::get(OwnershipType,session('user.own_type')) : ''}} --}}
+												</td>
 											</tr>
 											<tr>
 												<th>Certification</th>
 												<td>
-												    {{session('user.certifications') !=null ? getArrayValueString(session('user.certifications'),'code') : ''}}
+												   {{--  {{session('user.certifications') !=null ? getArrayValueString(session('user.certifications'),'code') : ''}} --}}
 												</td>
 
 											</tr>
@@ -229,19 +234,28 @@
 										</tr>
 										<tr>
 											<th>Office Size</th>
-											<td>{{session('user.tradeProduction') !=null ? Arr::get(OfficeSize,session('user.tradeProduction.office_size')) : ''}}</td>
+											<td>
+												{{-- {{session('user.tradeProduction') !=null ? Arr::get(OfficeSize,session('user.tradeProduction.office_size')) : ''}} --}}
+											</td>
 										</tr>
 										<tr>
 											<th>Main Export Markets (Country)</th>
-											<td>{{session('user.tradeProduction') !=null ? Arr::get(MainExportMarkets,session('user.tradeProduction.export_market'))  : ''}}</td>
+											<td>
+												{{-- {{session('user.tradeProduction') !=null ? Arr::get(MainExportMarkets,session('user.tradeProduction.export_market'))  : ''}} --}}
+											</td>
 										</tr>
 										<tr>
 											<th>Nearest Port</th>
-											<td>{{session('user.tradeProduction') !=null ? session('user.tradeProduction.five_countries') : ''}}</td>
+											<td>
+												
+												{{-- {{session('user.tradeProduction') !=null ? session('user.tradeProduction.five_countries') : ''}} --}}
+											</td>
 										</tr>
 										<tr>
 											<th>Factory Location </th>
-											<td>{{session('user.tradeProduction') !=null ? session('user.tradeProduction.factory_loc') : ''}}</td>
+											<td>
+												{{-- {{session('user.tradeProduction') !=null ? session('user.tradeProduction.factory_loc') : ''}} --}}
+											</td>
 										</tr>
 										<tr>
 											<th>Major Product(s) you sell (For Sellers) </th>
