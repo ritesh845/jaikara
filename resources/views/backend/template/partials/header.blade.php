@@ -196,7 +196,7 @@
                     </ul>
                 </li><!-- nav-item -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link with-sub"><i class="fa fa-bullhorn fa f-14"></i>My Classifieds</a>
+                    <a href="{{ route('my_classified') }}" class="nav-link"><i class="fa fa-bullhorn fa f-14"></i>My Classifieds</a>
                    
                 </li><!-- nav-item --> 
                 <li class="nav-item">
