@@ -31,13 +31,4 @@ class MyClassifiedController extends Controller
          
         return $catg =  CatgMast::where('catg_type' ,'cc')->where('parent_id', $request->id)->orderby('catg_name')->get();
     }
-    // public function getstate(Request $request){
-         
-    //     return $state =  State::where('country_code' ,$request->id)->get();
-    // }
-
-    //  public function getcity(Request $request){
-         
-    //     return $city =  City::where('state_code' ,$request->id)->get();
-    // }
 }

@@ -312,12 +312,11 @@
 
         var countryCode  = "{{old('country_code')}}";
         var stateCode  = "{{old('state_code')}}";
-        if(stateCode !=null){
+        if(stateCode !=''){
             fn_state(countryCode,stateCode)
         }
-
         var cityCode  = "{{old('city_code')}}";
-        if(cityCode !=null){
+        if(cityCode !=''){
             fn_city(stateCode,cityCode)
         }
     });

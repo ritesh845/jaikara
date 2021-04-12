@@ -140,8 +140,7 @@ Route::group(['middleware' => 'auth'],function(){
 
 	Route::get('/my_classified/delete/{id}',[App\Http\Controllers\Backend\Seller\MyClassifiedController::class,'delete'])->name('my_classified.delete');
 	Route::get('/my_classified/getsubcatg',[App\Http\Controllers\Backend\Seller\MyClassifiedController::class,'getsubcatg'])->name('my_classified.getsubcatg');
-	Route::get('/my_classified/getstate',[App\Http\Controllers\Backend\Seller\MyClassifiedController::class,'getstate'])->name('my_classified.getstate');
-	Route::get('/my_classified/getcity',[App\Http\Controllers\Backend\Seller\MyClassifiedController::class,'getcity'])->name('my_classified.getcity');
+	
 
 	//Route for product.....................
 	Route::resource('/products',App\Http\Controllers\Backend\Seller\ProductsController::class);
