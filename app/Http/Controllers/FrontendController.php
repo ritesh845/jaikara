@@ -21,17 +21,7 @@ class FrontendController extends Controller
         return view('frontend.home');
     }
 
-    public function get_states($id){
-    	return State::where('country_code',$id)->orderBy('state_name')->get();
-    }
-
-    public function get_cities($id){
-    	return City::where('state_code',$id)->orderBy('city_name')->get();
-    }
-    public function refreshCaptcha() {
-      
-        return captcha_img('math');
-    }
+    
 
     public function domain_redirect($domain,$page_name =null) {
        if($page_name == null) {
