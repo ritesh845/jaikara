@@ -1,4 +1,5 @@
 <script src="{{asset('js/jquery.validate.min.js')}}"></script>
+
 <footer class="footer" >
 	<div class="container-fluid p-5">
 		<div class="row">

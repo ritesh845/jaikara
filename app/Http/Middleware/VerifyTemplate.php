@@ -49,7 +49,7 @@ class VerifyTemplate
         }else{
             $domain_name = '';
         }
-        if($domain_name == 'login' || $domain_name == 'register'){
+        if($domain_name == 'login' || $domain_name == 'register' || $domain_name == 'logout' ){
             $user = User::firstWhere(['domain_url' => $this->url,'status' => 'A']);
         }else{
           if($domain_name !=null){
@@ -65,13 +65,13 @@ class VerifyTemplate
         }
           
         if(!empty($user)){
-            // if($this->url === '127.0.0.1:8000'){
-            //     $catg_type = '1';
-            // }else{
-            //     $catg_type = '2';
-            // }
-          //  $catgs =  CatgMast::select('catg_id','catg_name','catg_url')->where('catg_type',$catg_type)->orderBy('catg_order','asc')->get();
-            //Session::put('catgs',$catgs);
+            if($user->role == '4'){
+                $page_type = '1';
+            }else{
+                $page_type = '2';
+            }
+           $pages =  Page::where('page_type',$page_type)->orderBy('page_order','asc')->get();
+            Session::put('pages',$pages);
 
             $template_name = $user->template_name;
             $site_name = $user->site_name;

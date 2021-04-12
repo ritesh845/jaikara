@@ -53,24 +53,12 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
-          <li class="nav-item p-2" style="border-right:1px solid #cfcfcf ">
-            <a class="nav-link" href="#">Home</a>
-          </li>
-          <li class="nav-item p-2" style="border-right:1px solid #cfcfcf ">
-            <a class="nav-link" href="#">Company Profile</a>
-          </li>
-          <li class="nav-item p-2" style="border-right:1px solid #cfcfcf ">
-            <a class="nav-link" href="#">Product List</a>
-          </li> 
-          <li class="nav-item p-2" style="border-right:1px solid #cfcfcf ">
-            <a class="nav-link" href="#">Classified</a>
-          </li> 
-          <li class="nav-item p-2" style="border-right:1px solid #cfcfcf ">
-            <a class="nav-link" href="#">Seller Feedback</a>
-          </li> 
-          <li class="nav-item p-2" style="border-right:1px solid #cfcfcf ">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
+          @foreach(session('pages') as $page)
+            <li class="nav-item p-2" style="border-right:1px solid #cfcfcf ">
+              <a class="nav-link" href="{{url(session('domain_name').'/'.$page->page_url)}}">{{$page->page_name}}</a>
+            </li>
+            @endforeach
+          
         </ul>
          <ul class="navbar-nav ml-auto">
             <li class="nav-item ">

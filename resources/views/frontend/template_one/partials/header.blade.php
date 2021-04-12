@@ -9,13 +9,12 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('css/font-size.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
 	<style >
 		.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-
-</style>
+		  display: block;
+		}
+	</style>
 </head>
 <body>
 <header>
@@ -128,10 +127,19 @@
 		</div>
 		<div class="col-md-4 mb-2">
 				<i class="fa fa-user-o f-28 "></i>
-				<a href="{{route('login')}}" class="text-muted f-15 ">Sign In |</a>
-				<a href="{{route('register')}}" class="text-muted f-15 ">Join Free</a>
+				@guest
+					<a href="{{route('login')}}" class="text-muted f-13 ">Sign In |</a>
+					<a href="{{route('register')}}" class="text-muted f-13 ">Join Free</a>
+				@else
+					<a href="{{route('home')}}" class="text-muted f-12 ">My Account |</a>
+					<a href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="text-muted f-12 ">Logout</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+				@endguest
+
 			<button class="btn btn-success btn-sm ml-5">Get Quote</button>
-			<button class="btn btn-theme btn-sm ml-3">Get Quote</button>
+			<button class="btn btn-theme btn-sm ml-3">SourcePRO</button>
 
 
 		</div>
