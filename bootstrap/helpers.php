@@ -62,7 +62,14 @@ const CatgType =[
     'BT'  => 'Buy Trade Categories',
 ];
 
-
+const ValidDays = [
+    '30' => '30 Days',
+    '60' => '60 Days',
+    '90' => '90 Days',
+    '120' => '120 Days',
+    '150' => '150 Days',
+    '180' => '180 Days',
+];
 
 
 if (!function_exists('file_upload')) {

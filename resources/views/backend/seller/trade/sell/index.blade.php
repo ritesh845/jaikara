@@ -1,48 +1,48 @@
 @extends('backend.layouts.main')
 @section('content')
+
 <div class="card mb-2">
+    <div class="card-header">
+        <h5 class="card-title">Sell trade leads <a class="pull-right btn btn-sm btn-warning" href="{{ route('sell_trade.create') }}">Add Trade lead Sell</a></h5>
+    </div>
 	<div class="card-body">
-</div>
-<div class="card mb-2">
-	<div class="card-body">
-		<div class="row mt-4">
-			<div class="col-md-12">
-				<h5 class="font-weight-bold">Sell trade leads <a class="pull-right btn btn-sm btn-warning" href="{{ route('sell_trade.create') }}"><span><i class="fa fa-plus"></i></span>Add Trade lead Sell</a></h5>
-				<hr>
-                @if($message = Session::get('message'))
+        @if($message = Session::get('message'))
             <div class="alert alert-success">
                 {{$message}}
             </div>
         @endif
+		<div class="row mt-4">
+			<div class="col-md-12 table-responsive">
 				<table class="table table-bordered table-striped">
-    		<thead>
-    			<tr>
-    				<th>#</th>
-    				<th>Subject</th>
-    				<th>Category</th>
-    				<th>Start At</th>
-    				<th>Close At</th>
-    				<th>Status</th>
-    				<th>Action</th>
-    			</tr>
-    		</thead>
-            @php $i = 1; @endphp
-                @foreach($stl as $lit)
-    		<tbody id="tbody">
-    			<td>{{ $i++ }}</td>
-    			<td>{{ $lit->subject }}</td>
-    			<td>{{ $lit->gettracat->trd_catg_name}}</td>
-    			<td>25-03-2021</td>
-    			<td>24-04-2021</td>
-    			<td>Active</td>
-    			<td><a href="{{ route('sell_trade.edit',$lit->sell_trd_id ) }}" class="btn btn-sm btn-info">Edit</a>
-    			<a href="{{ route('sell_trade.delete',$lit->sell_trd_id ) }}" class="btn btn-sm btn-warning" onclick="return confirm('Are you sure?')">Delete</a></td>
-    		</tbody>
-             @endforeach
-    	</table>
-				{{-- <ul class="nav nav-bar">
-					<li class=""><a href="" class="btn btn-sm btn-success">Add Sell Trade</a></li>
-				</ul> --}}
+            		<thead>
+            			<tr>
+            				<th>#</th>
+            				<th>Subject</th>
+            				<th>Category</th>
+            				<th>Start At</th>
+            				<th>Close At</th>
+            				<th>Status</th>
+            				<th>Action</th>
+            			</tr>
+            		</thead>
+            		<tbody id="tbody">
+                        @php $i = 1; @endphp
+                        @foreach($stl as $lit)
+                            <tr>
+                    			<td>{{ $i++ }}</td>
+                    			<td>{{ $lit->subject }}</td>
+                    			<td>{{ $lit->category->catg_name}}</td>
+                    			<td>{{date('d-m-Y',strtotime($lit->created_at))}}</td>
+                    			<td>{{date('d-m-Y',strtotime($lit->created_at."+".$lit->valid_for." days"))}}</td>
+                    			<td><strong>{{$lit->status == 'P' ? 'InActive' : 'Active' }}</strong></td>
+                    			<td>
+                                    <a href="{{ route('sell_trade.edit',$lit->sell_trd_id ) }}" class="bg-success text-white p-2 ml-2 rounded-circle"><i class="fa fa-edit"></i></a>
+                    			     <a href="{{ route('sell_trade.delete',$lit->sell_trd_id ) }}" class="bg-danger text-white p-2 ml-2 rounded-circle" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></a>
+                                 </td>
+                             </tr>
+                         @endforeach
+            		</tbody>
+            	</table>
 			</div>
 		</div>
 	</div>

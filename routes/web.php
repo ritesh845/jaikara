@@ -54,6 +54,13 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::get('/userDelete/{id}', [App\Http\Controllers\Backend\UserController::class, 'userDelete'])->name('userDelete');
 	Route::get('/userPerDay', [App\Http\Controllers\Backend\UserController::class, 'userPerDay'])->name('userPerDay');
 	Route::get('/userApproval/{id}', [App\Http\Controllers\Backend\UserController::class, 'userApproval'])->name('userApproval');
+
+
+	// Approval Controller
+
+	Route::group(['prefix' => 'approval/'],function(){
+		Route::get('product',[App\Http\Controllers\Backend\ApprovalController::class,'productIndex'])->name('approval.product');
+	});
 	
 	//Staff create
 	

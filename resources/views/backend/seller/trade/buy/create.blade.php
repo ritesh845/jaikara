@@ -4,8 +4,8 @@
     <div class="card-header p-2">
         <h5 class="card-title">Add Trade lead Buy</h5>
     </div><!-- card-header -->
-    	<p class="mt-2">Your Remaining Products :- 29</p>
     <div class="card-body">
+    	<p class="mt-2">Your Remaining Products :- 29</p>
     	<form name="add_user" action="{{ route('buy_trade.store') }}" method="post" enctype="multipart/form-data" class="search_form general_form">
     		@csrf
 			<div class="row">
@@ -20,7 +20,7 @@
 				</div>
 				<div class="col-md-6 form-group">
 					<label><strong>quantity : </strong></label>
-					<input type="text" class="form-control" name="quantity"  value="{{ old('quantity') }}">
+					<input type="text" class="form-control" name="quantity"  value="{{ old('quantity') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" >
 					@error('quantity')
 				        <span class="help-block text-danger font-size-12">
 				            <strong>{{ $message }}</strong>
@@ -62,18 +62,18 @@
 			<div class="row">
 				<div class="col-md-6 form-group">
 					<label><strong>Buyer Information</strong></label>
-					<p>Company Name: Ritech</p>
-					<p>User Name: Ritesh Panchal</p>
-					<p>Email: riteshpanchal845@gmail.com</p>
-					<p>Mobile: 7828773421</p>
+					<p>Company Name: {{Auth::user()->comp_name}}</p>
+					<p>User Name: {{Auth::user()->name}}</p>
+					<p>Email: {{Auth::user()->email}}</p>
+					<p>Mobile: {{Auth::user()->mobile}}</p>
 					</div>
 				<div class="col-md-6 form-group">
 					<label><strong>Location </strong></label>
-					<p>Country: India</p>
-					<p>State: Madhya Pradesh</p>
-					<p>City: Indore</p>
+					<p>Country: {{Auth::user()->country->country_name}}</p>
+					<p>State: {{Auth::user()->state->state_name}}</p>
+					<p>City: {{Auth::user()->city->city_name}}</p>
 				</div>
-				</div>
+			</div>
 			<div class="row">
 				<div class="col-md-6 form-group">
 					<label><strong>Search Keywords:</strong></label>
@@ -87,11 +87,9 @@
 				<div class="col-md-6 form-group">
 					<label><strong>Valid for Days:</strong></label>
 					<select name="valid_for" class="form-control">
-						<option value="30" {{ (old('valid_for') == '30') ? 'selected' : '' }}>30 Days</option>
-						<option value="60" {{ (old('valid_for') == '60') ? 'selected' : '' }}>60 Days</option>
-						<option value="90" {{ (old('valid_for') == '90') ? 'selected' : '' }}>90 Days</option>
-						<option value="120" {{ (old('valid_for') == '120') ? 'selected' : '' }}>120 Days</option>
-						<option value="180" {{ (old('valid_for') == '180') ? 'selected' : '' }}>180 Days</option>
+						@foreach(ValidDays as $key => $valid)
+							<option value="{{$key}}" {{ old('valid_for') == $key ? 'selected' : '' }}>{{$valid}}</option>
+						@endforeach
 					</select>	
 					@error('valid_for')
 				        <span class="help-block text-danger font-size-12">
@@ -99,21 +97,18 @@
 				        </span>
 				    @enderror
 				</div>
-				</div>
 				<div class="col-md-12 form-group">
 					<label><strong>category : </strong></label><br>
-					Sell Trade Lead
+					<strong>Buy Trade Lead</strong>
 					<hr>
-					@php 
-					$t_cat = App\Models\SellTrade_cat::all();
-					@endphp
+				
 					<div class="row">
-						@foreach($t_cat as $cat)
+						@foreach($catgs as $cat)
 						<div class="col-md-4 form-group">
-                        <input type="radio" class="mr-2" name="trade_lead_catg" value="{{ $cat->trd_catg_id }}" {{($cat->trd_catg_id == old('trade_lead_catg')) ? 'checked' : '' }}>{{ $cat->trd_catg_name }}
+                        <input type="radio" class="mr-2" name="catg_id" value="{{ $cat->catg_id }}" {{($cat->catg_id == old('catg_id')) ? 'checked' : '' }}>{{ $cat->catg_name }}
 						</div>
 						@endforeach
-						@error('trade_lead_catg')
+						@error('catg_id')
 				        <span class="help-block text-danger font-size-12">
 				            <strong>{{ $message }}</strong>
 				        </span>

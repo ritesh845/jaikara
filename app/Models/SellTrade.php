@@ -13,8 +13,8 @@ class SellTrade extends Model
     protected $guarded = []; 
 
 
-    public function gettracat(){
+    public function category(){
 
-    	return $this->belongsTo('App\Models\SellTrade_cat','trade_lead_catg');
+    	return $this->belongsTo('App\Models\CatgMast','catg_id');
     }
 }
