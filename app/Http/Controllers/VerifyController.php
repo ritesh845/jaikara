@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\State;
+use App\Models\City;
 class VerifyController extends Controller
 {
     
@@ -50,5 +52,18 @@ class VerifyController extends Controller
         }else{
             return "warning";
         }
+    }
+
+
+    public function get_states($id){
+        return State::where('country_code',$id)->orderBy('state_name')->get();
+    }
+
+    public function get_cities($id){
+        return City::where('state_code',$id)->orderBy('city_name')->get();
+    }
+    public function refreshCaptcha() {
+      
+        return captcha_img('math');
     }
 }
