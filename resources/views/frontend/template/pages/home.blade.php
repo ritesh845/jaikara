@@ -222,15 +222,21 @@
 										</tr>
 										<tr>
 											<th>Export Percentage </th>
-											<td>{{session('user.tradeProduction') !=null ? Arr::get(ExportPer,session('user.tradeProduction.export_per') )  : ''}}</td>
+											<td>
+											{{-- {{session('user.tradeProduction') !=null ? Arr::get(ExportPer,session('user.tradeProduction.export_per') )  : ''}} --}}
+											</td>
 										</tr>
 										<tr>
 											<th>Annual Sales Volume </th>
-											<td> {{session('user.tradeProduction') !=null ? Arr::get(AnnualSales,session('user.tradeProduction.sales_volume') )  : ''}}</td>
+											<td> 
+											{{-- {{session('user.tradeProduction') !=null ? Arr::get(AnnualSales,session('user.tradeProduction.sales_volume') )  : ''}} --}}
+											</td>
 										</tr>
 										<tr>
 											<th>Packaging Details</th>
-											<td>{{session('user.tradeProduction') !=null ? session('user.tradeProduction.packg_dtl') : ''}}</td>
+											<td>
+											{{-- {{session('user.tradeProduction') !=null ? session('user.tradeProduction.packg_dtl') : ''}} --}}
+											</td>
 										</tr>
 										<tr>
 											<th>Office Size</th>
