@@ -50,9 +50,11 @@
 				<div class="row">
 				<div class="col-md-4 form-group">
 					<label><strong>Select Category <span class="text-danger">*</span> :</strong></label>
-					<select name="catg_id" class="form-control">
+					<select name="catg_id" class="form-control" id="catg_id">
 						<option value="">select</option>
-						<option value="">New</option>
+						@foreach($catg as $cg)
+						<option value="{{ $cg->catg_id }}">{{ $cg->catg_name }}</option>
+						@endforeach
 					</select>	
 					@error('catg_id')
 				        <span class="help-block text-danger font-size-12">
@@ -62,7 +64,9 @@
 				</div>
 				<div class="col-md-4 form-group">
 					<label><strong>Select Sub Category  <span class="text-danger">*</span> :</strong></label>
-					<input type="text" class="form-control" name="sub_catg_id" value="{{ old('sub_catg_id') }}">
+					<select name="sub_catg_id" class="form-control" id="sub_catg_id">
+						<option value="">select</option>
+					</select>
 					@error('sub_catg_id')
 				        <span class="help-block text-danger font-size-12">
 				            <strong>{{ $message }}</strong>
@@ -72,7 +76,9 @@
 
 				<div class="col-md-4 form-group">
 					<label><strong>Select Type  <span class="text-danger">*</span> :</strong></label>
-					<input type="text" class="form-control" name="type" value="{{ old('type') }}">
+					<select name="type" class="form-control" id="type">
+						<option value="">select</option>
+					</select>
 					@error('type')
 				        <span class="help-block text-danger font-size-12">
 				            <strong>{{ $message }}</strong>
@@ -154,7 +160,7 @@
 				<div class="row">
 				<div class="col-md-4 form-group">
 					<label><strong>Name  <span class="text-danger">*</span> :</strong></label>
-					<input type="text" class="form-control" name="prod_sevice" value="{{ old('prod_sevice') }}">
+					<input type="text" class="form-control" name="prod_sevice" value="{{ $atz->name }}" readonly="">
 					@error('prod_sevice')
 				        <span class="help-block text-danger font-size-12">
 				            <strong>{{ $message }}</strong>
@@ -163,7 +169,7 @@
 				</div>
 				<div class="col-md-4 form-group">
 					<label><strong>Email  <span class="text-danger">*</span> :</strong></label>
-					<input type="text" class="form-control" name="prod_sevice" value="{{ old('prod_sevice') }}">
+					<input type="text" class="form-control" name="prod_sevice" value="{{ $atz->email }}" readonly="">
 					@error('prod_sevice')
 				        <span class="help-block text-danger font-size-12">
 				            <strong>{{ $message }}</strong>
@@ -173,7 +179,7 @@
 
 				<div class="col-md-4 form-group">
 					<label><strong>Mobile No.  <span class="text-danger">*</span> :</strong></label>
-					<input type="text" class="form-control" name="prod_sevice" value="{{ old('prod_sevice') }}">
+					<input type="text" class="form-control" name="prod_sevice" value="{{ $atz->mobile }}" readonly="">
 					@error('prod_sevice')
 				        <span class="help-block text-danger font-size-12">
 				            <strong>{{ $message }}</strong>
@@ -184,7 +190,12 @@
 				<div class="row">
 				<div class="col-md-4 form-group">
 					<label><strong>Country  <span class="text-danger">*</span> :</strong></label>
-					<input type="text" class="form-control" name="country_code" value="{{ old('country_code') }}">
+					<select name="country_code" id="country" class="form-control">
+						<option value="">select</option>
+						@foreach( $cnty as $cot)
+						<option value="{{ $cot->country_code }}">{{ $cot->country_name }}</option>
+						@endforeach
+					</select>	
 					@error('country_code')
 				        <span class="help-block text-danger font-size-12">
 				            <strong>{{ $message }}</strong>
@@ -192,8 +203,10 @@
 				    @enderror
 				</div>
 				<div class="col-md-4 form-group">
-					<label><strong>State  <span class="text-danger">*</span> :</strong></label>
-					<input type="text" class="form-control" name="state_code" value="{{ old('state_code') }}">
+					<label><strong>State<span class="text-danger">*</span> :</strong></label>
+					<select name="state_code" class="form-control" id="state">
+						<option value="">select</option>
+					</select>	
 					@error('state_code')
 				        <span class="help-block text-danger font-size-12">
 				            <strong>{{ $message }}</strong>
@@ -202,8 +215,10 @@
 				</div>
 
 				<div class="col-md-4 form-group">
-					<label><strong>City  <span class="text-danger">*</span> :</strong></label>
-					<input type="text" class="form-control" name="city_code" value="{{ old('city_code') }}">
+					<label><strong>City<span class="text-danger">*</span> :</strong></label>
+					<select name="city_code" class="form-control" id="city">
+						<option value="">select</option>
+					</select>
 					@error('city_code')
 				        <span class="help-block text-danger font-size-12">
 				            <strong>{{ $message }}</strong>
@@ -259,4 +274,53 @@
 		</form>
 	</div>
 </div>
+ <script>
+      $(document).ready(function (){
+        $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+  });
+       $("#catg_id").on("change",function(){
+       var rec_id = $(this).val();
+       //alert(rec_id);
+       $.ajax({
+                 type: "GET",
+                 url: "{{ route('my_classified.getsubcatg') }}?id="+rec_id,
+                 success: function(res){
+                    $.each(res,function(index, recev){
+                    $("#sub_catg_id").append('<option value='+recev.catg_id+'>'+recev.catg_name+'</option>');
+              });
+              
+                        
+                   }
+                      });
+
+            
+      
+       });
+        $('#country').on('change',function(e){
+            e.preventDefault();
+            var countryCode = $(this).val();
+            fn_state(countryCode);
+        });
+        $('#state').on('change',function(e){
+            e.preventDefault();
+            var stateCode = $(this).val();
+            fn_city(stateCode);
+        });
+
+        var countryCode  = "{{old('country_code')}}";
+        var stateCode  = "{{old('state_code')}}";
+        if(stateCode !=null){
+            fn_state(countryCode,stateCode)
+        }
+
+        var cityCode  = "{{old('city_code')}}";
+        if(cityCode !=null){
+            fn_city(stateCode,cityCode)
+        }
+    });
+
+    </script>
 @endsection

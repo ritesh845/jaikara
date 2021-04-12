@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\SellTrade_cat;
 use App\Models\SellTrade;
 use App\Models\BuyTrade;
-use Illuminate\Support\Facades\Storage;
+use App\Models\CatgMast;
 use Auth;
 
 class TradeLeadController extends Controller
@@ -15,13 +15,13 @@ class TradeLeadController extends Controller
     
     public function sellTrade(){
 
-        $stl = SellTrade::all();
+        $stl = SellTrade::where('user_id',Auth::user()->id)->get();
     	return view('backend.seller.trade.sell.index',compact('stl'));
     }
 
     public function sellTradeCreate(){
-        $t_cat =  SellTrade_cat::all();
-    	return view('backend.seller.trade.sell.create',compact('t_cat'));
+        $catgs =  CatgMast::where('catg_type','ST')->orderBy('catg_name')->get();
+    	return view('backend.seller.trade.sell.create',compact('catgs'));
     }
 
     public function sellTradeStore(Request $request){
@@ -29,12 +29,14 @@ class TradeLeadController extends Controller
           'subject'=>'required', 
           'detls'=>'required',      
           'keywords'=>'required',       
-          'trade_lead_catg'=>'required',      
+          'catg_id'=>'required',      
           'valid_for'=>'required',          
                  
-          ]);
+      ]);
     
     	$data['user_id'] = Auth::user()->id;
+      
+
       if($request->hasFile('picture')){
        	$data['picture'] = file_upload($request->picture,Auth::user()->id.'/image');
       }
@@ -43,8 +45,9 @@ class TradeLeadController extends Controller
     }
 
     public function sellTradeEdit($id){
-            $edit =  SellTrade::find($id);
-          return view('backend.seller.trade.sell.edit',compact('edit'));
+      $edit =  SellTrade::find($id);
+      $catgs =  CatgMast::where('catg_type','ST')->orderBy('catg_name')->get();
+      return view('backend.seller.trade.sell.edit',compact('edit','catgs'));
     }
 
 
@@ -54,14 +57,14 @@ class TradeLeadController extends Controller
           'subject'=>'required', 
           'detls'=>'required',      
           'keywords'=>'required',       
-          'trade_lead_catg'=>'required',      
-          'valid_for'=>'required',          
-            
-          ]);
-
+          'catg_id'=>'required',      
+          'valid_for'=>'required',
+      ]);
+      
       if($request->hasFile('picture')){
         $data['picture'] = file_upload($request->picture,Auth::user()->id.'/image');
       }
+
       SellTrade::where('sell_trd_id',$id)->update($data);
       return redirect('sell_trade')->with('message','Updated Successfully');
 
@@ -76,31 +79,32 @@ class TradeLeadController extends Controller
 
 
     public function buyTrade(){
-          $btl = BuyTrade::all();
+        $btl = BuyTrade::where('user_id',Auth::user()->id)->get();
         return view('backend.seller.trade.buy.index',compact('btl'));
     }
 
     public function buyTradeCreate(){
 
-      // $t_cat =  SellTrade_cat::all();
-      return view('backend.seller.trade.buy.create');
+      $catgs =  CatgMast::where('catg_type','BT')->orderBy('catg_name')->get();
+      return view('backend.seller.trade.buy.create',compact('catgs'));
     }
 
     public function buyTradeStore(Request $request){
             
-            $data = $request->validate([   
+      $data = $request->validate([   
           'product'=>'required', 
           'quantity'=>'required',      
           'price_range'=>'required',       
           'detls'=>'required',      
           'keywords'=>'required',      
           'valid_for'=>'required',      
-          'trade_lead_catg'=>'required',      
+          'catg_id'=>'required',      
           'valid_for'=>'required',          
                  
-          ]);
+      ]);
     
       $data['user_id'] = Auth::user()->id;
+      
       if($request->hasFile('picture')){
         $data['picture'] = file_upload($request->picture,Auth::user()->id.'/image');
       }
@@ -111,25 +115,26 @@ class TradeLeadController extends Controller
 
     public function buyTradeEdit($id){
 
-       $edit =  BuyTrade::find($id);
-      return view('backend.seller.trade.buy.edit',compact('edit'));
+      $edit =  BuyTrade::find($id);
+      $catgs =  CatgMast::where('catg_type','BT')->orderBy('catg_name')->get();
+      return view('backend.seller.trade.buy.edit',compact('edit','catgs'));
     }
 
     public function buyTradeUpdate(Request $request, $id){
 
-           $data = $request->validate([   
+        $data = $request->validate([   
           'product'=>'required', 
           'quantity'=>'required',      
           'price_range'=>'required',       
           'detls'=>'required',      
           'keywords'=>'required',      
           'valid_for'=>'required',      
-          'trade_lead_catg'=>'required',      
+          'catg_id'=>'required',      
           'valid_for'=>'required',          
                  
-          ]);
-
-            if($request->hasFile('picture')){
+        ]);
+  
+      if($request->hasFile('picture')){
         $data['picture'] = file_upload($request->picture,Auth::user()->id.'/image');
       }
       BuyTrade::where('buy_trd_id',$id)->update($data);

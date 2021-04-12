@@ -12,8 +12,8 @@ class BuyTrade extends Model
     protected $primaryKey = 'buy_trd_id';
     protected $guarded = []; 
 
-     public function getbtracat(){
+    public function category(){
 
-    	return $this->belongsTo('App\Models\SellTrade_cat','trade_lead_catg');
+    	return $this->belongsTo('App\Models\CatgMast','catg_id');
     }
 }

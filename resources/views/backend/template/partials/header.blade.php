@@ -9,6 +9,7 @@
 
     <title>@yield('title','Jaikara')</title>
     <script src="{{asset('backend/js/jquery.min.js')}}"></script>
+    
 
     <!-- vendor css -->
     <link href="{{asset('backend/css/all.min.css')}}" rel="stylesheet">
@@ -23,6 +24,7 @@
     <link rel="stylesheet" href="{{asset('backend/css/azia.css')}}">
     <link rel="stylesheet" href="{{asset('css/font-size.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{asset('backend/css/jquery.dataTables.min.css')}}">
 
 </head>
 <body class="az-body az-body-sidebar">
@@ -90,7 +92,7 @@
                     <a href="#" class="nav-link with-sub"><i class="fa fa-file-o fa f-14"></i>Approval Centter</a>
                     <ul class="nav-sub">
                         <li class="nav-sub-item">
-                            <a href="{{route('userIndex')}}" class="nav-sub-link">Product Approval</a>
+                            <a href="{{route('approval.product')}}" class="nav-sub-link">Product Approval</a>
                         </li>
                         {{-- <li class="nav-sub-item">
                             <a href="app-chat.html" class="nav-sub-link">Show Customer</a>
@@ -156,7 +158,7 @@
                         </li>
                         <li class="nav-sub-item">
 
-                            <a href="{{ route('buy_trade') }}" class="nav-sub-link"> <i class="fa fa-tasks" aria-hidden="true"></i>Buy trade leads</a>
+                            <a href="{{ route('buy_trade') }}" class="nav-sub-link"> Buy trade leads</a>
                         </li>
                         <li class="nav-sub-item">
                             <a href="app-calendar.html" class="nav-sub-link"> Add Trade Lead</a>
@@ -169,10 +171,10 @@
                     <a href="#" class="nav-link with-sub"><i class="fa fa-quote-right  fa f-14"></i>Quotation</a>
                     <ul class="nav-sub">
                         <li class="nav-sub-item">
-                            <a href="{{ route('my_posted_rfq') }}" class="nav-sub-link"><i class="fa fa-file-text"></i>My Posted RFQ</a>
+                            <a href="{{ route('my_posted_rfq') }}" class="nav-sub-link">My Posted RFQ</a>
                         </li>
                         <li class="nav-sub-item">
-                            <a href="app-chat.html" class="nav-sub-link"><i class="fa fa-file-text">
+                            <a href="app-chat.html" class="nav-sub-link">
                             </i>My Submited Quotes</a>
                         </li>
                        
@@ -196,14 +198,16 @@
                     </ul>
                 </li><!-- nav-item -->
                 <li class="nav-item">
+
+             
                     <a href="{{ route('my_classified') }}" class="nav-link"><i class="fa fa-bullhorn fa f-14"></i>My Classifieds</a>
                    
                 </li><!-- nav-item --> 
                 <li class="nav-item">
-                    <a href="#" class="nav-link with-sub"><i class="fa fa-bullhorn fa f-14"></i>Selected Ref</a>
+                    <a href="#" class="nav-link"><i class="fa fa-bullhorn fa f-14"></i>Selected Ref</a>
                 </li><!-- nav-item -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link with-sub"><i class="fa fa-wallet fa f-14"></i>My Wallet</a>
+                    <a href="#" class="nav-link"><i class="fa fa-wallet fa f-14"></i>My Wallet</a>
                 </li><!-- nav-item -->
             @endrole
      

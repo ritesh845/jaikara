@@ -7,7 +7,7 @@
         </h5>
     </div><!-- card-header -->
     <div class="card-body">
-    	{{-- <div class="row d-none" id="add"></div> --}}
+    	{{-- <div class="row d-none" id="add"></div> --}}															
 
 
     	<table class="table table-bordered table-striped">

@@ -59,5 +59,14 @@ class User extends Authenticatable
     public function certifications(){
         return $this->belongsToMany('App\Models\Certification','user_certfications','user_id','cert_id');
     }
+    public function tradeProduction(){
+        return $this->belongsTo('App\Models\TradeAndProduction','id','user_id');
+    }
+    public function inforPolicies(){
+        return $this->belongsTo('App\Models\InforPolicy','id','user_id');
+    }
+    public function imageGalleries(){
+        return $this->hasMany('App\Models\Documents','user_id')->where('doc_type','image_gallery');
+    }
 }
 

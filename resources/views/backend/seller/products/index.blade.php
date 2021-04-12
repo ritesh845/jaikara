@@ -24,13 +24,21 @@
 						</tr>
 					</thead>
 					<tbody>
+						@foreach($products as $product)
 						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>{{ $product->name }}</td>
+							<td>{{ $product->created_at }}</td>
+							<td>{{ $product->price }}</td>
+							<td><a href="{{ route('products.edit',$product->prdt_id) }}" class="btn btn-primary btn-sm">
+							<i class="fa fa-pencil-square-o"></i></a>&nbsp;
+			                <form action="{{route('products.destroy',$product->prdt_id )}}" method="POST" id="form1">
+							@method('DELETE')
+							@csrf
+							   <a href="#" onclick="document.getElementById('form1').submit(); "><i class="fa fa-trash-o btn-warning btn"></i></a>			           
+							           
+						</form></td>
 						</tr>
+						@endforeach
 					</tbody>
 				</table>
 			</div>

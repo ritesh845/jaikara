@@ -10,13 +10,13 @@
 	          <div class="alert alert-success">{{ $message }}</div>
 	    	@endif
 		</div>
-		<form method="post" action="{{route('product.store')}}" enctype="multipart/form-data">
+		<form method="post" action="{{route('products.store')}}" enctype="multipart/form-data">
 		 @csrf
 			<div class="card-body">
 				<div class="row">
 					<div class="col-md-6 form-group error-div">
 						<label>Product Name:*</label><br>
-						<input class="form-control" type="text" name="brand" value="">
+						<input class="form-control" type="text" name="name" value="">
 					</div>
 					<div class="col-md-6 form-group error-div">
 						<label>Brand Name: *</label><br>
@@ -67,7 +67,7 @@
 					</div> --}}
 					<div class="col-md-12 form-group error-div">
 						<label>  Payment Terms</label><br>
-						<textarea class="form-control"></textarea>
+						<textarea class="form-control" name="pay_terms"></textarea>
 					</div>
 
 					<div class="col-md-12 form-group error-div">
@@ -151,7 +151,12 @@
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Material</label><br>
-							<input class="form-control" type="text" name="material" value="" placeholder="Enter Material">
+							<select class="form-control" name="material">
+								<option value="0">Select material</option>
+								@foreach($materialMasts as $materialMast)
+									<option value="{{$materialMast->material_id}}">{{$materialMast->material_name}}</option>
+								@endforeach		 
+						 	</select>
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Thickness</label><br>
@@ -163,7 +168,12 @@
 						</div>
 						<div class="col-md-4 form-group">
 							<label> Type of packing product </label><br>
-							<input class="form-control" type="text" name="packing_type" value="" placeholder="Enter type of packing product">
+							<select class="form-control" name="packing_type">
+								<option value="0">Select packing product</option>
+								@foreach($packingProducttMasts as $packingProducttMast)
+									<option value="{{$packingProducttMast->packing_id}}">{{$packingProducttMast->packing_name}}</option>
+								@endforeach		 
+						 	</select>
 						</div>
 						<div class="col-md-4 form-group">
 							<label> Number of Pc per inner </label><br>
@@ -175,7 +185,12 @@
 						</div>
 						<div class="col-md-4 form-group">
 							<label>  Type of inner packing  </label><br>
-							<input class="form-control" type="text" name="inner_packing" value="" placeholder="Enter SKU Number">
+							<select class="form-control" name="inner_packing">
+								<option value="0">Select packing</option>
+								@foreach($paymentMethods as $paymentMethod)
+									<option value="{{$paymentMethod->pay_md_id}}">{{$paymentMethod->pay_name}}</option>
+								@endforeach		 
+						 	</select>
 						</div>
 						<div class="col-md-4 form-group">
 							<label>  Number of Outer per inner  </label><br>
@@ -230,7 +245,9 @@
 						<select class="form-control" name="grp_prim_id">
 							<option value="0">Select payment Method</option>
 							@foreach($productGroups as $productGroup)
-								<option value="{{$productGroup->prdt_grp_id}}">{{$productGroup->grp_name}}</option>
+								@if($productGroup->parent_id == NULL)
+									<option value="{{$productGroup->prdt_grp_id}}">{{$productGroup->grp_name}}</option>
+								@endif	
 							@endforeach		 
 						 </select>
 					</div>
@@ -239,7 +256,9 @@
 						<select class="form-control" name="grp_sec_id">
 							<option value="0">Select payment Method</option>
 							@foreach($productGroups as $paymentMethod)
-								<option value="{{$productGroup->prdt_grp_id}}">{{$productGroup->grp_name}}</option>
+								@if($productGroup->parent_id != NULL)
+									<option value="{{$productGroup->prdt_grp_id}}">{{$productGroup->grp_name}}</option>
+								@endif	
 							@endforeach		 
 						 </select>
 					</div>
@@ -257,43 +276,43 @@
 				<div class="row">
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 1 : </label><br>
-						<input class="form-control" type="file" name="image" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 1 : </label><br>
-						<input class="form-control" type="file" name="image" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 3 : </label><br>
-						<input class="form-control" type="file" name="image" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 4 : </label><br>
-						<input class="form-control" type="file" name="image" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 5 : </label><br>
-						<input class="form-control" type="file" name="image" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 6 : </label><br>
-						<input class="form-control" type="file" name="image" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 7 : </label><br>
-						<input class="form-control" type="file" name="image" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 8 : </label><br>
-						<input class="form-control" type="file" name="image" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 9 : </label><br>
-						<input class="form-control" type="file" name="image" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 10 : </label><br>
-						<input class="form-control" type="file" name="image" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Youtube Video No. 1 : </label><br>

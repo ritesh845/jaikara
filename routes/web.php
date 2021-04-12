@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\FrontendController::class, 'index']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
 Auth::routes();
 
 
@@ -52,6 +54,13 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::get('/userDelete/{id}', [App\Http\Controllers\Backend\UserController::class, 'userDelete'])->name('userDelete');
 	Route::get('/userPerDay', [App\Http\Controllers\Backend\UserController::class, 'userPerDay'])->name('userPerDay');
 	Route::get('/userApproval/{id}', [App\Http\Controllers\Backend\UserController::class, 'userApproval'])->name('userApproval');
+
+
+	// Approval Controller
+
+	Route::group(['prefix' => 'approval/'],function(){
+		Route::get('product',[App\Http\Controllers\Backend\ApprovalController::class,'productIndex'])->name('approval.product');
+	});
 	
 	//Staff create
 	
@@ -130,6 +139,9 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::patch('/my_classified/update/{id}',[App\Http\Controllers\Backend\Seller\MyClassifiedController::class,'update'])->name('my_classified.update');
 
 	Route::get('/my_classified/delete/{id}',[App\Http\Controllers\Backend\Seller\MyClassifiedController::class,'delete'])->name('my_classified.delete');
+	Route::get('/my_classified/getsubcatg',[App\Http\Controllers\Backend\Seller\MyClassifiedController::class,'getsubcatg'])->name('my_classified.getsubcatg');
+	Route::get('/my_classified/getstate',[App\Http\Controllers\Backend\Seller\MyClassifiedController::class,'getstate'])->name('my_classified.getstate');
+	Route::get('/my_classified/getcity',[App\Http\Controllers\Backend\Seller\MyClassifiedController::class,'getcity'])->name('my_classified.getcity');
 
 	//Route for product.....................
 	Route::resource('/products',App\Http\Controllers\Backend\Seller\ProductsController::class);
@@ -140,5 +152,6 @@ Route::group(['middleware' => 'auth'],function(){
 });
 
 
-// Route::get('/{domain}',[App\Http\Controllers\FrontendController::class, 'domain_redirect']);
+Route::get('/{domain}/{page?}',[App\Http\Controllers\FrontendController::class, 'domain_redirect']);
+// Route::get('/{domain}/{page}',[App\Http\Controllers\FrontendController::class, 'page_redirect']);
 
