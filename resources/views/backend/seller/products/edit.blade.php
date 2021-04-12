@@ -10,72 +10,73 @@
 	          <div class="alert alert-success">{{ $message }}</div>
 	    	@endif
 		</div>
-		<form method="post" action="{{route('products.store')}}" enctype="multipart/form-data">
+		<form method="post" action="{{route('products.update',$product->prdt_id)}}" enctype="multipart/form-data">
 		 @csrf
+		 @method('PUT')
 			<div class="card-body">
 				<div class="row">
 					<div class="col-md-6 form-group error-div">
 						<label>Product Name:*</label><br>
-						<input class="form-control" type="text" name="name" value="">
+						<input class="form-control" type="text" name="name" value="{{ $product->name }}">
 					</div>
 					<div class="col-md-6 form-group error-div">
 						<label>Brand Name: *</label><br>
-						<input class="form-control" type="text" name="brand" value="">
+						<input class="form-control" type="text" name="brand" value="{{ $product->brand }}">
 					</div>
 					<div class="col-md-6 form-group error-div">
 						<label> Categories Type:</label><br>
 						 <select class="form-control" name="catg_id">
 							<option value="0">Select Categories</option>
 							@foreach($catgMasts as $catgMast)
-								<option value="{{$catgMast->catg_id}}">{{$catgMast->catg_name}}</option>
+								<option value="{{$catgMast->catg_id}}" {{ $catgMast->catg_id ==$product->catg_id ? 'selected=selected' :'' }}>{{$catgMast->catg_name}}</option>
 							@endforeach		 
 						 </select>
 					</div>
-					<div class="col-md-12 form-group error-div">
+					<div class="col-md-6 form-group error-div">
 						<label>  Product Short Description*</label><br>
-						<textarea class="form-control" name="desc"></textarea>
+						<textarea class="form-control" name="desc">{{$product->desc}}</textarea>
 					</div>
 					<div class="col-md-6 form-group error-div">
 						<label> Default Currency</label><br>
 						 <select class="form-control" name="curr_id">
 							<option value="0">Select currency</option>
 							@foreach($currencies as $currency)
-								<option value="{{$currency->curr_id}}">{{$currency->curr_name}}</option>
+								<option value="{{$currency->curr_id}}" {{$currency->curr_id == $product->curr_id ? 'selected=selected' : ''}}>{{$currency->curr_name}}</option>
 							@endforeach		 
 						 </select>
 					</div>
 					<div class="col-md-6 form-group error-div">
 						<label>Product Price *</label><br>
-						<input class="form-control" type="number" name="price" value="" placeholder="Product price">
+						<input class="form-control" type="number" name="price" value="{{$product->price}}" placeholder="Product price">
 					</div>
-					<div class="col-md-12 form-group error-div">
+					<div class="col-md-6 form-group error-div">
 						<label>Delivery Terms</label><br>
 						<select class="form-control" name="is_terms">
 							<option value="0">Select deliveryTerms</option>
 							@foreach($deliveryTerms as $deliveryTerm)
-								<option value="{{$deliveryTerm->dlvry_trms_id}}">{{$deliveryTerm->shrt_name}}</option>
+								<option value="{{$deliveryTerm->dlvry_trms_id}}" {{$deliveryTerm->dlvry_trms_id == $product->dlvry_trms_id ? 'selected' : ''}}>{{$deliveryTerm->shrt_name}}</option>
 							@endforeach		 
 						 </select>
 					</div>
-					<div class="col-md-12 form-group error-div">
+					<div class="col-md-6 form-group error-div">
 						<label>SKU No</label><br>
-						<input class="form-control" type="text" name="sku_no" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="text" name="sku_no" value="{{ $product->sku_no }}" placeholder="Enter SKU Number">
 					</div>
 					{{-- <div class="col-md-12 form-group error-div">
 						<label> Delivery Method </label><br>
 						<input class="form-control" type="text" name="payment_curre[]" value="">
 					</div> --}}
-					<div class="col-md-12 form-group error-div">
+					<div class="col-md-6 form-group error-div">
 						<label>  Payment Terms</label><br>
-						<textarea class="form-control" name="pay_terms"></textarea>
+						<textarea class="form-control" name="pay_terms"> {{ $product->pay_terms }}</textarea>
 					</div>
 
-					<div class="col-md-12 form-group error-div">
+					<div class="col-md-6 form-group error-div">
 						<label>Payment Method</label><br>
 						<select class="form-control" name="pay_method">
 							<option value="0">Select payment Method</option>
 							@foreach($paymentMethods as $paymentMethod)
-								<option value="{{$paymentMethod->pay_md_id}}">{{$paymentMethod->pay_name}}</option>
+								<option value="{{$paymentMethod->pay_md_id}}" {{$paymentMethod->pay_md_id == $product->pay_method ? 'selected=selected' :''}}>{{$paymentMethod->pay_name}}</option>
 							@endforeach		 
 						 </select>
 					</div>
@@ -94,7 +95,7 @@
 		                    <select class="form-control required" name="country_code" id="country">
 		                        <option value="">Select Country</option>
 		                        @foreach($countries as $country)
-		                            <option value="{{$country->country_code}}" {{old('country_code') == $country->country_code ? 'selected=selected' : ''}}>{{$country->country_name}}</option>
+		                            <option value="{{$country->country_code}}" {{$country->country_code == $product->country_code ? 'selected=selected' : ''}}>{{$country->country_name}}</option>
 		                        @endforeach
 		                    </select>
 		                    @error('country_code')
@@ -106,7 +107,7 @@
 		                <div class="col-md-4 form-group error-div">
 		                    <label> ManufacturerState * </label>
 		                    <select class="form-control required" name="state_code" id="state">
-		                        <option value="">Please Select State</option>
+		                        <option value="" >Please Select State</option>
 		                    </select>
 		                    @error('state_code')
 		                        <span class="help-block text-danger font-size-12">
@@ -127,105 +128,109 @@
 		                </div>
 		                <div class="col-md-4 form-group">
 							<label>Model number</label><br>
-							<input class="form-control" type="text" name="model_no" value="" placeholder="Enter Model numberr">
+							<input class="form-control" type="text" name="model_no" value="{{ $product->model_no }}" placeholder="Enter Model numberr">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Ean Code</label><br>
-							<input class="form-control" type="text" name="ean_code" value="" placeholder="Enter SKU Number">
+							<input class="form-control" type="text" name="ean_code" value="{{ $product->ean_code }}" placeholder="Enter ean code">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Size</label><br>
-							<input class="form-control" type="text" name="size" value="" placeholder="Enter Ean Code">
+							<input class="form-control" type="text" name="size" value="{{ $product->size }}" placeholder="Enter Size">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Net Weight</label><br>
-							<input class="form-control" type="text" name="weight" value="" placeholder="Enter Net Weight">
+							<input class="form-control" type="text" name="weight" value="{{ $product->weight }}" placeholder="Enter Net Weight">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Shape</label><br>
-							<input class="form-control" type="text" name="shape" value="" placeholder="Enter Shape">
+							<input class="form-control" type="text" name="shape" value="{{ $product->shape }}" placeholder="Enter Shape">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Color</label><br>
-							<input class="form-control" type="text" name="color" value="" placeholder="Enter Color">
+							<input class="form-control" type="text" name="color" value="{{ $product->color }}" placeholder="Enter Color">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Material</label><br>
 							<select class="form-control" name="material">
 								<option value="0">Select material</option>
 								@foreach($materialMasts as $materialMast)
-									<option value="{{$materialMast->material_id}}">{{$materialMast->material_name}}</option>
+									<option value="{{$materialMast->material_id}}" {{$materialMast->material_id == $product->material ? 'selected=selected' : ''}}>{{$materialMast->material_name}}</option>
 								@endforeach		 
 						 	</select>
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Thickness</label><br>
-							<input class="form-control" type="text" name="thickness" value="" placeholder="Enter Thickness">
+							<input class="form-control" type="text" name="thickness" value="{{ $product->thickness }}" placeholder="Enter Thickness">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Available size range</label><br>
-							<input class="form-control" type="text" name="size_range" value="" placeholder="Enter size range">
+							<input class="form-control" type="text" name="size_range" value="{{ $product->size_range }}" placeholder="Enter size range">
 						</div>
 						<div class="col-md-4 form-group">
 							<label> Type of packing product </label><br>
 							<select class="form-control" name="packing_type">
 								<option value="0">Select packing product</option>
 								@foreach($packingProducttMasts as $packingProducttMast)
-									<option value="{{$packingProducttMast->packing_id}}">{{$packingProducttMast->packing_name}}</option>
+								@if($packingProducttMast->packing_id =='O')
+									<option value="{{$packingProducttMast->packing_id}}" {{$packingProducttMast->packing_id == $product->packing_type ? 'selected=selected' : ''}}>{{$packingProducttMast->packing_name}}</option>
+								@endif
 								@endforeach		 
 						 	</select>
 						</div>
 						<div class="col-md-4 form-group">
 							<label> Number of Pc per inner </label><br>
-							<input class="form-control" type="text" name="no_per_inner" value="" placeholder="Enter number of Pc per inner">
+							<input class="form-control" type="text" name="no_per_inner" value="{{ $product->no_per_inner }}" placeholder="Enter number of Pc per inner">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Size inner </label><br>
-							<input class="form-control" type="text" name="size_inner" value="" placeholder="Enter size inner">
+							<input class="form-control" type="text" name="size_inner" value="{{ $product->size_inner }}" placeholder="Enter size inner">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>  Type of inner packing  </label><br>
 							<select class="form-control" name="inner_packing">
-								<option value="0">Select packing</option>
-								@foreach($paymentMethods as $paymentMethod)
-									<option value="{{$paymentMethod->pay_md_id}}">{{$paymentMethod->pay_name}}</option>
+								<option value="0">Select inner packing product</option>
+								@foreach($packingProducttMasts as $packingProducttMast)
+								@if($packingProducttMast->packing_id =='I')
+									<option value="{{$packingProducttMast->packing_id}}" {{$packingProducttMast->packing_id == $product->inner_packing ? 'selected=selected' : ''}}>{{$packingProducttMast->packing_name}}</option>
+								@endif	
 								@endforeach		 
 						 	</select>
 						</div>
 						<div class="col-md-4 form-group">
 							<label>  Number of Outer per inner  </label><br>
-							<input class="form-control" type="text" name="no_per_outer" value="" placeholder="Enter type of inner packing ">
+							<input class="form-control" type="text" name="inner_packing" value="{{ $product->inner_packing }}" placeholder="Enter type of inner packing ">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Type of outer packing</label><br>
-							<input class="form-control" type="text" name="no_per_outer" value="" placeholder="Enter type of outer packing">
+							<input class="form-control" type="text" name="no_per_outer" value="{{ $product->no_per_outer }}" placeholder="Enter type of outer packing">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Size outer</label><br>
-							<input class="form-control" type="text" name="size_outer" value="" placeholder="Enter size outer">
+							<input class="form-control" type="text" name="size_outer" value="{{ $product->size_range }}" placeholder="Enter size outer">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Number of masters per pallet</label><br>
-							<input class="form-control" type="text" name="no_per_pallet" value="" placeholder="Enter number of masters per pallet">
+							<input class="form-control" type="text" name="no_per_pallet" value="{{ $product->no_per_pallet }}" placeholder="Enter number of masters per pallet">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Type of pallet</label><br>
-							<input class="form-control" type="text" name="pallet_type" value="" placeholder="Enter type of pallet">
+							<input class="form-control" type="text" name="pallet_type" value="{{ $product->pallet_type }}" placeholder="Enter type of pallet">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Available certificates</label><br>
-							<input class="form-control" type="text" name="certificates" value="" placeholder="Enter  available certificates">
+							<input class="form-control" type="text" name="certificates" value="{{ $product->certificates }}" placeholder="Enter  available certificates">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Minimum Order Quantity :</label><br>
-							<input class="form-control" type="text" name="order_qunt" value="" placeholder="Enter Minimum Order Quantity">
+							<input class="form-control" type="text" name="order_qunt" value="{{ $product->order_qunt }}" placeholder="Enter Minimum Order Quantity">
 						</div>
 						<div class="col-md-4 form-group">
 							<label> Inco terms </label><br>
 							<select class="form-control" name="pay_method">
-							<option value="0">Select payment Method</option>
+							<option value="">Select payment Method</option>
 							@foreach($paymentMethods as $paymentMethod)
-								<option value="{{$paymentMethod->pay_md_id}}">{{$paymentMethod->pay_name}}</option>
+								<option value="{{$paymentMethod->pay_md_id}}" {{$paymentMethod->pay_md_id == $product->pay_method ? 'selected' : ''}}>{{$paymentMethod->pay_name}}</option>
 							@endforeach		 
 						 </select>
 						</div>
@@ -246,7 +251,7 @@
 							<option value="0">Select payment Method</option>
 							@foreach($productGroups as $productGroup)
 								@if($productGroup->parent_id == NULL)
-									<option value="{{$productGroup->prdt_grp_id}}">{{$productGroup->grp_name}}</option>
+									<option value="{{$productGroup->prdt_grp_id}}" {{$productGroup->prdt_grp_id == $product->grp_prim_id ? 'selected' : ''}}>{{$productGroup->grp_name}}</option>
 								@endif	
 							@endforeach		 
 						 </select>
@@ -257,7 +262,7 @@
 							<option value="0">Select payment Method</option>
 							@foreach($productGroups as $paymentMethod)
 								@if($productGroup->parent_id != NULL)
-									<option value="{{$productGroup->prdt_grp_id}}">{{$productGroup->grp_name}}</option>
+									<option value="{{$productGroup->prdt_grp_id}}" {{$productGroup->prdt_grp_id == $product->grp_sec_id ? 'selected' : ''}}>{{$productGroup->grp_name}}</option>
 								@endif	
 							@endforeach		 
 						 </select>
@@ -276,47 +281,71 @@
 				<div class="row">
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 1 : </label><br>
-						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="{{ @$product->p_images[0]->doc_name }}" placeholder="Enter SKU Number">
+						<a href="{{ asset('storage'.'/'.@$product->p_images[0]->doc_path) }}" target="_blank">{{ @$product->p_images[0]->doc_name }}</a>
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 1 : </label><br>
-						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="{{ @$product->p_images[1]->doc_name }}" >
+						<a href="{{ asset('storage'.'/'.@$product->p_images[1]->doc_path) }}" target="_blank">{{ @$product->p_images[1]->doc_name }}</a>
+
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 3 : </label><br>
-						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="{{ @$product->p_images[2]->doc_name }}" >
+						<a href="{{ asset('storage'.'/'.@$product->p_images[2]->doc_path) }}" target="_blank">{{ @$product->p_images[2]->doc_name }}</a>
+
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 4 : </label><br>
-						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="{{ @$product->p_images[3]->doc_name }}">
+						<a href="{{ asset('storage'.'/'.@$product->p_images[3]->doc_path) }}" target="_blank">{{ @$product->p_images[3]->doc_name }}</a>
+
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 5 : </label><br>
-						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="{{ @$product->p_images[4]->doc_name }}">
+						<a href="{{ asset('storage'.'/'.@$product->p_images[4]->doc_path) }}" target="_blank">{{ @$product->p_images[4]->doc_name }}</a>
+
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 6 : </label><br>
-						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="{{ @$product->p_images[5]->doc_name }}" placeholder="Enter SKU Number">
+						<a href="{{ asset('storage'.'/'.@$product->p_images[5]->doc_path) }}" target="_blank">{{ @$product->p_images[5]->doc_name }}</a>
+
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 7 : </label><br>
-						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="{{ @$product->p_images[6]->doc_name }}" >
+						<a href="{{ asset('storage'.'/'.@$product->p_images[6]->doc_path) }}" target="_blank">{{ @$product->p_images[6]->doc_name }}</a>
+
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 8 : </label><br>
-						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="{{ @$product->p_images[7]->doc_name }}" >
+						<a href="{{ asset('storage'.'/'.@$product->p_images[7]->doc_path) }}" target="_blank">{{ @$product->p_images[7]->doc_name }}</a>
+
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 9 : </label><br>
-						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="{{ @$product->p_images[8]->doc_name }}" placeholder="Enter SKU Number">
+						<a href="{{ asset('storage'.'/'.@$product->p_images[8]->doc_path) }}" target="_blank">{{ @$product->p_images[8]->doc_name }}</a>
+
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 10 : </label><br>
-						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="{{ @$product->p_images[9]->doc_name }}" >
+						<a href="{{ asset('storage'.'/'.@$product->p_images[8]->doc_path) }}" target="_blank">{{ @$product->p_images[9]->doc_name }}</a>
+
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Youtube Video No. 1 : </label><br>
-						<input class="form-control" type="text" name="youtube_link" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="text" name="youtube_link" value="{{ @$product->youtube_link }}" placeholder="Enter Youtube Video url">
+
+					</div>
+					<div class="col-md-6 form-group">
+						<label> Youtube Video No. 1 : </label><br>
+						<input class="form-control" type="text" name="youtube_link1" value="{{ @$product->youtube_link1 }}" placeholder="Enter Youtube Video url">
 					</div>
 				</div>
 			</div>
@@ -331,7 +360,7 @@
 				<div class="row">
 					<div class="col-md-12 form-group">
 						<label> Search Keywords </label><br>
-						<textarea class="form-control" name="keywords"></textarea>
+						<textarea class="form-control" name="keywords">{{ $product->keywords}}</textarea>
 						
 					</div>
 				</div>
