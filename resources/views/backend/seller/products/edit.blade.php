@@ -173,7 +173,7 @@
 							<select class="form-control" name="packing_type">
 								<option value="">Select packing product</option>
 								@foreach($packingProducttMasts as $packingProducttMast)
-								@if($packingProducttMast->packing_id ==NULL)
+								@if($packingProducttMast->packing_type =='O')
 									<option value="{{$packingProducttMast->packing_id}}" {{$packingProducttMast->packing_id == $product->packing_type ? 'selected=selected' : ''}}>{{$packingProducttMast->packing_name}}</option>
 								@endif
 								@endforeach		 
@@ -192,8 +192,10 @@
 							<select class="form-control" name="inner_packing">
 								<option value="">Select inner packing product</option>
 								@foreach($packingProducttMasts as $packingProducttMast)
-								@if($packingProducttMast->packing_id =='I')
+								@if($packingProducttMast->packing_type =='O')
 									<option value="{{$packingProducttMast->packing_id}}" {{$packingProducttMast->packing_id == $product->inner_packing ? 'selected=selected' : ''}}>{{$packingProducttMast->packing_name}}</option>
+								}
+								}
 								@endif	
 								@endforeach		 
 						 	</select>

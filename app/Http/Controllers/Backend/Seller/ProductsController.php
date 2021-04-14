@@ -80,6 +80,7 @@ class ProductsController extends Controller
         $productGroups  = ProductGroup::get();
         $materialMasts  = MaterialMast::get();
         $packingProducttMasts= PackingProducttMast::get();
+        // dd($product);
         return view('backend.seller.products.edit',compact('catgMasts','currencies','deliveryTerms','paymentMethods','productGroups','materialMasts','packingProducttMasts','product'));
     }
 
