@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer(['auth.register','backend.admin.user.edit','backend.admin.user.staff_create','backend.admin.user.staff_edit','backend.seller.products.create','backend.seller.products.edit'], function ($view) {
             $view->with('countries', Country::orderBy('country_name','asc')->cursor());
         });
-        View::composer(['backend.seller.company.profile','backend.seller.company.profile-edit'],function($view){
+        View::composer(['backend.seller.company.profile','backend.seller.company.profile-edit','backend.seller.products.edit'],function($view){
              $view->with('user', User::find(Auth::user()->id));
         });
 
