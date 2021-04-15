@@ -41,7 +41,7 @@ class ProductsController extends Controller
         
     }
 
-    //test
+    
     public function store(Request $request)
     {
         $data = $this->validation($request);
