@@ -181,6 +181,7 @@ class ProductsController extends Controller
         
         return $data;
     }
+
     public function getGrpPrim($id){
         return ProductGroup::where('parent_id',$id)->orderBy('grp_name')->get();
     }
