@@ -13,7 +13,7 @@ class Products extends Model
     protected $guarded = [];
 
     public function p_images(){
-    	 return $this->hasMany('App\Models\Documents', 'user_id','prdt_id');
+    	 return $this->hasMany('App\Models\Documents', 'user_id','prdt_id')->where('doc_type','product');
     } 
     public function currency(){
     	return $this->belongsTo('App\Models\Currency','curr_id','curr_id');
