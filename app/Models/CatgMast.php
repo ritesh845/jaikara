@@ -16,5 +16,8 @@ class CatgMast extends Model
     public function subcategories(){
     	return $this->hasMany('App\Models\CatgMast','parent_id','catg_id');
     }
+
+    
+    
     
 }
