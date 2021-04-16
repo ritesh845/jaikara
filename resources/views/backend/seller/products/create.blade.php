@@ -10,74 +10,95 @@
 	          <div class="alert alert-success">{{ $message }}</div>
 	    	@endif
 		</div>
-		<form method="post" action="{{route('products.store')}}" enctype="multipart/form-data">
+		<form method="post" action="{{route('products.store')}}" enctype="multipart/form-data" id="example-form">
 		 @csrf
 			<div class="card-body">
 				<div class="row">
 					<div class="col-md-6 form-group error-div">
-						<label>Product Name:*</label><br>
-						<input class="form-control" type="text" name="name" value="">
+						<label>Product Name:</label><span class="text-danger">*</span><br>
+						<input class="form-control required" type="text" name="name" value="{{old('name')}}" id="name" >
+						@error('name')
+							<span class="help-block text-danger font-size-12">
+								<strong>{{$message}}</strong>
+							</span>
+						@enderror
 					</div>
 					<div class="col-md-6 form-group error-div">
-						<label>Brand Name: *</label><br>
-						<input class="form-control" type="text" name="brand" value="">
+						<label>Brand Name: </label><span class="text-danger">*</span><br>
+						<input class="form-control required" type="text" name="brand" value="{{old('brand')}}" id="brand" >
+						@error('brand')
+							<span class="help-block text-danger font-size-12">
+								<strong>{{$message}}</strong>
+							</span>
+						@enderror
 					</div>
 					<div class="col-md-6 form-group error-div">
 						<label> Categories Type:</label><br>
 						 <select class="form-control" name="catg_id">
-							<option value="0">Select Categories</option>
+							<option value="">Select Categories</option>
 							@foreach($catgMasts as $catgMast)
-								<option value="{{$catgMast->catg_id}}">{{$catgMast->catg_name}}</option>
+								<option value="{{$catgMast->catg_id}}" {{old('catg_id') == $catgMast->catg_id ? 'selected=selected' : ''}}>{{$catgMast->catg_name}}</option>
 							@endforeach		 
 						 </select>
 					</div>
 					<div class="col-md-12 form-group error-div">
-						<label>  Product Short Description*</label><br>
-						<textarea class="form-control" name="desc"></textarea>
+						<label>  Product Short Description</label><span class="text-danger">*</span><br>
+						<textarea class="form-control" name="desc" value="{{old('desc')}}"></textarea>
+						@error('desc')
+							<span class="help-block text-danger font-size-12">
+								<strong>{{$message}}</strong>
+							</span>
+						@enderror
 					</div>
 					<div class="col-md-6 form-group error-div">
 						<label> Default Currency</label><br>
 						 <select class="form-control" name="curr_id">
-							<option value="0">Select currency</option>
+							<option value="">Select currency</option>
 							@foreach($currencies as $currency)
-								<option value="{{$currency->curr_id}}">{{$currency->curr_name}}</option>
+								<option value="{{$currency->curr_id}}" {{old('curr_id') == $currency->catg_id ? 'selected=selected' : ''}}>{{$currency->curr_name}}</option>
 							@endforeach		 
 						 </select>
 					</div>
 					<div class="col-md-6 form-group error-div">
-						<label>Product Price *</label><br>
-						<input class="form-control" type="number" name="price" value="" placeholder="Product price">
+						<label>Product Price </label><span class="text-danger">*</span><br>
+						<input class="form-control" type="number" name="price" value="{{old('price')}}" placeholder="Product price">
+						@error('price')
+							<span class="help-block text-danger font-size-12">
+								<strong>{{$message}}</strong>
+							</span>
+						@enderror
 					</div>
 					<div class="col-md-12 form-group error-div">
 						<label>Delivery Terms</label><br>
 						<select class="form-control" name="is_terms">
-							<option value="0">Select deliveryTerms</option>
+							<option value="">Select deliveryTerms</option>
 							@foreach($deliveryTerms as $deliveryTerm)
-								<option value="{{$deliveryTerm->dlvry_trms_id}}">{{$deliveryTerm->shrt_name}}</option>
+								<option value="{{$deliveryTerm->dlvry_trms_id}}" {{old('is_terms')== $deliveryTerm->dlvry_trms_id ? 'selected=selected' : ''}}>{{$deliveryTerm->shrt_name}}</option>
 							@endforeach		 
 						 </select>
 					</div>
 					<div class="col-md-12 form-group error-div">
 						<label>SKU No</label><br>
-						<input class="form-control" type="text" name="sku_no" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="text" name="sku_no" value="{{old('sku_no')}}" placeholder="Enter SKU Number">
 					</div>
 					{{-- <div class="col-md-12 form-group error-div">
 						<label> Delivery Method </label><br>
-						<input class="form-control" type="text" name="payment_curre[]" value="">
+						<input class="form-control" type="text" name="payment_curre[]" value="{{old('name')}}">
 					</div> --}}
 					<div class="col-md-12 form-group error-div">
 						<label>  Payment Terms</label><br>
-						<textarea class="form-control" name="pay_terms"></textarea>
+						<textarea class="form-control" name="pay_terms">{{old('pay_terms')}}</textarea>
 					</div>
 
 					<div class="col-md-12 form-group error-div">
 						<label>Payment Method</label><br>
 						<select class="form-control" name="pay_method">
-							<option value="0">Select payment Method</option>
+							<option value="">Select payment Method</option>
 							@foreach($paymentMethods as $paymentMethod)
-								<option value="{{$paymentMethod->pay_md_id}}">{{$paymentMethod->pay_name}}</option>
+								<option value="{{$paymentMethod->pay_md_id}}" {{old('pay_method') == $paymentMethod->pay_md_id ? 'selected=selected' : ''}}>{{$paymentMethod->pay_name}}</option>
 							@endforeach		 
 						 </select>
+
 					</div>
 				</div>
 			</div>
@@ -90,9 +111,9 @@
 				<div class="card-body">
 					<div class="row">
 		                <div class="col-md-4 form-group error-div">
-		                    <label> ManufacturerCountry *  </label>
+		                    <label> ManufacturerCountry   </label><span class="text-danger">*</span>l>
 		                    <select class="form-control required" name="country_code" id="country">
-		                        <option value="">Select Country</option>
+		                        <option value="{{old('name')}}">Select Country</option>
 		                        @foreach($countries as $country)
 		                            <option value="{{$country->country_code}}" {{old('country_code') == $country->country_code ? 'selected=selected' : ''}}>{{$country->country_name}}</option>
 		                        @endforeach
@@ -104,7 +125,7 @@
 		                    @enderror
 		                </div>
 		                <div class="col-md-4 form-group error-div">
-		                    <label> ManufacturerState * </label>
+		                    <label> ManufacturerState  </label><span class="text-danger">*</span>>
 		                    <select class="form-control required" name="state_code" id="state">
 		                        <option value="">Please Select State</option>
 		                    </select>
@@ -115,7 +136,7 @@
 		                    @enderror
 		                </div>
 		                <div class="col-md-4 form-group error-div">
-		                    <label> ManufacturerCity * </label>
+		                    <label> ManufacturerCity  </label><span class="text-danger">*</span>>
 		                    <select class="form-control required" name="city_code"  id="city">
 		                        <option value="">Please Select City</option>
 		                    </select>
@@ -127,106 +148,106 @@
 		                </div>
 		                <div class="col-md-4 form-group">
 							<label>Model number</label><br>
-							<input class="form-control" type="text" name="model_no" value="" placeholder="Enter Model numberr">
+							<input class="form-control" type="text" name="model_no" value="{{old('model_no')}}" placeholder="Enter Model numberr">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Ean Code</label><br>
-							<input class="form-control" type="text" name="ean_code" value="" placeholder="Enter SKU Number">
+							<input class="form-control" type="text" name="ean_code" value="{{old('ean_code')}}" placeholder="Enter SKU Number">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Size</label><br>
-							<input class="form-control" type="text" name="size" value="" placeholder="Enter Ean Code">
+							<input class="form-control" type="text" name="size" value="{{old('size')}}" placeholder="Enter Ean Code">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Net Weight</label><br>
-							<input class="form-control" type="text" name="weight" value="" placeholder="Enter Net Weight">
+							<input class="form-control" type="text" name="weight" value="{{old('weight')}}" placeholder="Enter Net Weight">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Shape</label><br>
-							<input class="form-control" type="text" name="shape" value="" placeholder="Enter Shape">
+							<input class="form-control" type="text" name="shape" value="{{old('shape')}}" placeholder="Enter Shape">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Color</label><br>
-							<input class="form-control" type="text" name="color" value="" placeholder="Enter Color">
+							<input class="form-control" type="text" name="color" value="{{old('color')}}" placeholder="Enter Color">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Material</label><br>
 							<select class="form-control" name="material">
-								<option value="0">Select material</option>
+								<option value="">Select material</option>
 								@foreach($materialMasts as $materialMast)
-									<option value="{{$materialMast->material_id}}">{{$materialMast->material_name}}</option>
+									<option value="{{$materialMast->material_id}}" {{old('material') == $materialMast->material_id ? 'selected=selected' : ''}}>{{$materialMast->material_name}}</option>
 								@endforeach		 
 						 	</select>
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Thickness</label><br>
-							<input class="form-control" type="text" name="thickness" value="" placeholder="Enter Thickness">
+							<input class="form-control" type="text" name="thickness" value="{{old('thickness')}}" placeholder="Enter Thickness">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Available size range</label><br>
-							<input class="form-control" type="text" name="size_range" value="" placeholder="Enter size range">
+							<input class="form-control" type="text" name="size_range" value="{{old('size_range')}}" placeholder="Enter size range">
 						</div>
 						<div class="col-md-4 form-group">
 							<label> Type of packing product </label><br>
 							<select class="form-control" name="packing_type">
-								<option value="0">Select packing product</option>
+								<option value="">Select packing product</option>
 								@foreach($packingProducttMasts as $packingProducttMast)
-									<option value="{{$packingProducttMast->packing_id}}">{{$packingProducttMast->packing_name}}</option>
+									<option value="{{$packingProducttMast->packing_id}}" {{old('packing_type') ==$packingProducttMast->packing_id ? 'selected=selected' : ''}}>{{$packingProducttMast->packing_name}}</option>
 								@endforeach		 
 						 	</select>
 						</div>
 						<div class="col-md-4 form-group">
 							<label> Number of Pc per inner </label><br>
-							<input class="form-control" type="text" name="no_per_inner" value="" placeholder="Enter number of Pc per inner">
+							<input class="form-control" type="text" name="no_per_inner" value="{{old('no_per_inner')}}" placeholder="Enter number of Pc per inner">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Size inner </label><br>
-							<input class="form-control" type="text" name="size_inner" value="" placeholder="Enter size inner">
+							<input class="form-control" type="text" name="size_inner" value="{{old('size_inner')}}" placeholder="Enter size inner">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>  Type of inner packing  </label><br>
 							<select class="form-control" name="inner_packing">
-								<option value="0">Select packing</option>
+								<option value="">Select packing</option>
 								@foreach($paymentMethods as $paymentMethod)
-									<option value="{{$paymentMethod->pay_md_id}}">{{$paymentMethod->pay_name}}</option>
+									<option value="{{$paymentMethod->pay_md_id}}" {{old('inner_packing')==$paymentMethod->pay_md_id ? 'selected=selected' : ''}}>{{$paymentMethod->pay_name}}</option>
 								@endforeach		 
 						 	</select>
 						</div>
 						<div class="col-md-4 form-group">
 							<label>  Number of Outer per inner  </label><br>
-							<input class="form-control" type="text" name="no_per_outer" value="" placeholder="Enter type of inner packing ">
+							<input class="form-control" type="text" name="no_per_outer" value="{{old('no_per_outer')}}" placeholder="Enter type of inner packing ">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Type of outer packing</label><br>
-							<input class="form-control" type="text" name="no_per_outer" value="" placeholder="Enter type of outer packing">
+							<input class="form-control" type="text" name="no_per_outer" value="{{old('no_per_outer')}}" placeholder="Enter type of outer packing">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Size outer</label><br>
-							<input class="form-control" type="text" name="size_outer" value="" placeholder="Enter size outer">
+							<input class="form-control" type="text" name="size_outer" value="{{old('size_outer')}}" placeholder="Enter size outer">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Number of masters per pallet</label><br>
-							<input class="form-control" type="text" name="no_per_pallet" value="" placeholder="Enter number of masters per pallet">
+							<input class="form-control" type="text" name="no_per_pallet" value="{{old('no_per_pallet')}}" placeholder="Enter number of masters per pallet">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Type of pallet</label><br>
-							<input class="form-control" type="text" name="pallet_type" value="" placeholder="Enter type of pallet">
+							<input class="form-control" type="text" name="pallet_type" value="{{old('pallet_type')}}" placeholder="Enter type of pallet">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Available certificates</label><br>
-							<input class="form-control" type="text" name="certificates" value="" placeholder="Enter  available certificates">
+							<input class="form-control" type="text" name="certificates" value="{{old('certificates')}}" placeholder="Enter  available certificates">
 						</div>
 						<div class="col-md-4 form-group">
 							<label>Minimum Order Quantity :</label><br>
-							<input class="form-control" type="text" name="order_qunt" value="" placeholder="Enter Minimum Order Quantity">
+							<input class="form-control" type="text" name="order_qunt" value="{{old('order_qunt')}}" placeholder="Enter Minimum Order Quantity">
 						</div>
 						<div class="col-md-4 form-group">
 							<label> Inco terms </label><br>
 							<select class="form-control" name="pay_method">
-							<option value="0">Select payment Method</option>
-							@foreach($paymentMethods as $paymentMethod)
-								<option value="{{$paymentMethod->pay_md_id}}">{{$paymentMethod->pay_name}}</option>
-							@endforeach		 
+								<option value="">Select payment Method</option>
+								@foreach($paymentMethods as $paymentMethod)
+									<option value="{{$paymentMethod->pay_md_id}}" {{old('pay_method')== $paymentMethod->pay_md_id ? 'selected=selected':''}}>{{$paymentMethod->pay_name}}</option>
+								@endforeach		 
 						 </select>
 						</div>
 				</div>
@@ -241,26 +262,36 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col-md-6 form-group error-div">
-						<label>  Select Primary Product *  </label><br>
-						<select class="form-control" name="grp_prim_id">
-							<option value="0">Select payment Method</option>
+						<label>  Select Primary Product   </label><span class="text-danger">*</span>l><br>
+						<select class="form-control error-div" name="grp_prim_id" required="" id="grp_prim_id">
+							<option value="">Select Primary Product</option>
 							@foreach($productGroups as $productGroup)
 								@if($productGroup->parent_id == NULL)
-									<option value="{{$productGroup->prdt_grp_id}}">{{$productGroup->grp_name}}</option>
+									<option value="{{$productGroup->prdt_grp_id}}"{{old('grp_prim_id')==$productGroup->prdt_grp_id ? 'selected=selected' :''}}>{{$productGroup->grp_name}}</option>
 								@endif	
 							@endforeach		 
 						 </select>
+						  @error('grp_prim_id')
+	                        <span class="help-block text-danger font-size-12">
+	                            <strong>{{ $message }}</strong>
+	                        </span>
+		                   @enderror
 					</div>
 					<div class="col-md-6 form-group error-div">
 						<label>  Select Secondary Product  </label><br>
-						<select class="form-control" name="grp_sec_id">
-							<option value="0">Select payment Method</option>
-							@foreach($productGroups as $paymentMethod)
+						<select class="form-control error-div" name="grp_sec_id" required="" id="grp_sec_id">
+							{{-- <option value="">Select Secondary Product</option> --}}
+							{{-- @foreach($productGroups as $paymentMethod)
 								@if($productGroup->parent_id != NULL)
-									<option value="{{$productGroup->prdt_grp_id}}">{{$productGroup->grp_name}}</option>
+									<option value="{{$productGroup->prdt_grp_id}}" {{old('grp_sec_id')==$productGroup->prdt_grp_id ? 'selected=selected' : ''}}>{{$productGroup->grp_name}}</option>
 								@endif	
-							@endforeach		 
+							@endforeach	 --}}	 
 						 </select>
+						  @error('grp_sec_id')
+	                        <span class="help-block text-danger font-size-12">
+	                            <strong>{{ $message }}</strong>
+	                        </span>
+	                    @enderror
 					</div>
 				</div>
 			</div>
@@ -268,55 +299,60 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="col-md-12 ">
-					<h5 class="font-weight-bold">   Product Images Video Information *   </h5><br>
-					<h5 class="font-weight-bold">    Don't Use Special Characters    </h5>
+					<h5 class="font-weight-bold">Product Images Video Information  </h5><br><span class="text-danger">
+					<h5 class="font-weight-bold">Don't Use Special Characters </h5>*</span>
 				</div>
 			</div>
 			<div class="card-body">
 				<div class="row">
-					<div class="col-md-6 form-group">
+					<div class="col-md-6 form-group error-div">
 						<label> Upload Product Image No. 1 : </label><br>
-						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
+						<input class="form-control required" type="file" name="image[]" value="{{old('image.0')}}" required="">
+
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 1 : </label><br>
-						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="{{old('image.1')}}" >
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 3 : </label><br>
-						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="{{old('image.2')}}" >
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 4 : </label><br>
-						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="{{old('image.3')}}" >
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 5 : </label><br>
-						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="{{old('image.4')}}" >
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 6 : </label><br>
-						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="{{old('image.5')}}" >
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 7 : </label><br>
-						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="{{old('image.6')}}" >
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 8 : </label><br>
-						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="{{old('image.7')}}" >
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 9 : </label><br>
-						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="{{old('image.8')}}" >
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 10 : </label><br>
-						<input class="form-control" type="file" name="image[]" value="" placeholder="Enter SKU Number">
+						<input class="form-control" type="file" name="image[]" value="{{old('image.9')}}" >
 					</div>
 					<div class="col-md-6 form-group">
-						<label> Youtube Video No. 1 : </label><br>
-						<input class="form-control" type="text" name="youtube_link" value="" placeholder="Enter SKU Number">
+						<label> Youtube Video No. : </label><br>
+						<input class="form-control" type="text" name="youtube_link" value="{{old('youtube_link')}}" placeholder="Enter Youtube Video No.">
+					</div>
+					<div class="col-md-6 form-group">
+						<label> Youtube Video No. : </label><br>
+						<input class="form-control" type="text" name="youtube_link1" value="{{old('youtube_link1')}}" placeholder="Enter Youtube Video No. 1">
 					</div>
 				</div>
 			</div>
@@ -331,7 +367,7 @@
 				<div class="row">
 					<div class="col-md-12 form-group">
 						<label> Search Keywords </label><br>
-						<textarea class="form-control" name="keywords"></textarea>
+						<textarea class="form-control" name="keywords" value={{old('keywords')}}></textarea>
 						
 					</div>
 				</div>
@@ -342,8 +378,30 @@
 		</div>	
 	</form>
 </div>	
-
 <script type="text/javascript">
+ $("#grp_prim_id").on('change',function(){
+ 	var grp_prim_id = $('#grp_prim_id').val()
+    var oldStateCode  = "{{old('grp_name')}}";
+
+ 	// alert(grp_prim_id);
+       // if(grp_prim_id){
+        $.ajax({
+            type:'GET',
+            url:"/get_grp_prim/"+grp_prim_id,
+            success:function(res){
+                $('#grp_sec_id').empty();
+                $('#grp_sec_id').append('<option value="">Please Secondary Product</option>');
+                $.each(res,function(i,v){
+                    $('#grp_sec_id').append('<option value="'+v.prdt_grp_id+'" '+(oldStateCode == v.prdt_grp_id ? 'selected' : '')+'> '+v.grp_name+' </option>')
+                })
+            }
+        });
+    // }else{
+    //     // $('#state').empty();
+    // }
+
+    });
+
 	$('#country').on('change',function(e){
             e.preventDefault();
             var countryCode = $(this).val();
@@ -352,37 +410,37 @@
         $('#state').on('change',function(e){
             e.preventDefault();
             var stateCode = $(this).val();
-            fn_city(stateCode);
+            fn_city(stateCode); 
         });
 
         var countryCode  = "{{old('country_code')}}";
         var stateCode  = "{{old('state_code')}}";
-        if(stateCode !=null){
+        if(stateCode !=''){
             fn_state(countryCode,stateCode)
         }
 
         var cityCode  = "{{old('city_code')}}";
-        console.log(cityCode);
-        if(cityCode !=null){
+        if(cityCode !=''){
             fn_city(stateCode,cityCode)
         }
-         var form = $("#example-form");
-
+        var form = $("#example-form");
         form.validate({   
             rules: {    
-                'mobile' :{
-                    minlength:10,
-                    maxlength:10,
+                'name' :{
+                    required:true
                 },
-                'password' :{
-                    minlength:8,
+                 'brand' :{
+                    required:true
+
                 },
-                'password_confirmation' : {
-                    minlength : 8,
-                    equalTo : "#password"
+                'desc' :{
+                    required:true
                 },
-                'c_email' : {
-                    equalTo : "#email"
+                'price' :{
+                    required:true
+                },
+    			'country_code' :{
+                    required:true
                 }
             },
             errorElement: "em",
