@@ -54,6 +54,7 @@ class MyClassifiedController extends Controller
         	if($request->hasFile('images.'.$key)){
     			$test = document_upload($request->images[$key],Auth::user()->id.'/classified');
     			$test['user_id'] = $classified_id->mycl_id;
+          $test['doc_type'] = 'class';
    				Documents::create($test);
 	    	}
 
@@ -70,9 +71,9 @@ class MyClassifiedController extends Controller
     public function edit($id){
 
          $edit = MyClassifieds::find($id);
-         $images = Documents::where('user_id',$id)->get();
+         $catg =  CatgMast::where('catg_type' ,'cc')->where('parent_id', null)->orderby('catg_name')->get();
          $atz = User::find(Auth::user()->id);
-         return view('backend.seller.myclassified.edit',compact('edit','images','atz'));
+         return view('backend.seller.myclassified.edit',compact('edit','atz','catg'));
     }
 
     public function update(Request $request ,$id){

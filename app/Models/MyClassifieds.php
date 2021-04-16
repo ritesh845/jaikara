@@ -17,4 +17,7 @@ class MyClassifieds extends Model
     public function category(){
     	return $this->belongsTo('App\Models\CatgMast','catg_id','catg_id');
     }
+    public function images(){
+    	return $this->hasMany('App\Models\Documents','user_id','mycl_id')->where('doc_type','classified');
+    }
 }

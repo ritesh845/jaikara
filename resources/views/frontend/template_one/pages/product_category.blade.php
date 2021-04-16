@@ -129,7 +129,7 @@
 							<h6>Company Information</h6>
 						</div>
 						<div class="card-body">
-							
+							<div class=""></div>
 						</div>
 					</div>
 				</div>

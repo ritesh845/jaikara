@@ -49,9 +49,7 @@
 				<div class="row">
 				<div class="col-md-4 form-group">
 					<label><strong>Select Category <span class="text-danger">*</span> :</strong></label>
-					@php 
-					$catg = App\Models\CatgMast::all();
-					@endphp
+					
 					<select name="catg_id" class="form-control" id="catg_id">
 						<option value="">select</option>
 						@foreach($catg as $cg)
@@ -112,10 +110,10 @@
 				</div>
 				<div class="col-md-1 form-group">
 					<label><strong>Image :</strong></label>
-					@if(isset($images[$key]) != '')
-                  			<img src="{{asset('storage/'.$images[$key]->doc_path) }}" style="height:50px;width:100%;">
-					        <input type="hidden" class="form-control" name="doc_id[]" value="{{$images[$key]->doc_id}}">
-					        <input type="hidden" class="form-control img_{{$image}}" name="img[]" value="{{$images[$key]->doc_path}}">
+					@if(isset($edit->images[$key]) != '')
+                  			<img src="{{asset('storage/'.$edit->images[$key]->doc_path) }}" style="height:50px;width:100%;">
+					        <input type="hidden" class="form-control" name="doc_id[]" value="{{$edit->images[$key]->doc_id}}">
+					        <input type="hidden" class="form-control img_{{$image}}" name="img[]" value="{{$edit->images[$key]->doc_path}}">
           			
                   	@else
         				N/A
