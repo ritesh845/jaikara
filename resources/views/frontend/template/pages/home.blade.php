@@ -32,6 +32,7 @@
 				</div>
 			</div>
 		</div>
+<<<<<<< HEAD
 		<div class="col-md-8"></div>
 	</div>
 	<div class="row">
@@ -254,7 +255,13 @@
 
 					</div>
 				</div>
+=======
+		<div class="col-md-8">
+			<div class="row">
+				<div class=""></div>
+>>>>>>> 1a8c756b08293ca97c25bcda7467faab3306c59c
 			</div>
 		</div>
 	</div>
 </div>
+	@include('frontend.template.pages.company_profile')

@@ -106,10 +106,13 @@ class ProductGroupController extends Controller
         if ($request->parent_id) {
             ProductGroup::where(['prdt_grp_id'=>$id])->delete();
         }else{
-            // dd($id);
 
             ProductGroup::where('prdt_grp_id',$id)->where('parent_id',$request->parent_id)->delete();
         }
             return redirect()->back()->with('success','Product Group deleted Successfully');
     }
+
+    // public function getGrpPrim($id){
+    //     return ProductGroup::where('parent_id',$id)->orderBy('grp_name')->get();
+    // }
 }

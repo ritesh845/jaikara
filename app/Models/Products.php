@@ -15,4 +15,10 @@ class Products extends Model
     public function p_images(){
     	 return $this->hasMany('App\Models\Documents', 'user_id','prdt_id');
     } 
+    public function currency(){
+    	return $this->belongsTo('App\Models\Currency','curr_id','curr_id');
+    }
+    public function user(){
+        return $this->belongsTo('App\Models\User','user_id');
+    }
 }

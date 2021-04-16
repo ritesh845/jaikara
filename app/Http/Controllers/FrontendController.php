@@ -22,8 +22,6 @@ class FrontendController extends Controller
         return view('frontend.home');
     }
 
-    
-
     public function domain_redirect($domain,$page_name =null) {
        if($page_name == null) {
             $page_name = 'home';
@@ -31,4 +29,6 @@ class FrontendController extends Controller
        return view('frontend.pages.index',compact('page_name'));
         
     }
+   
+     
 }

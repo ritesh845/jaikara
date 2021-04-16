@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\State;
 use App\Models\City;
+use App\Models\Contact;
+
 class VerifyController extends Controller
 {
     
@@ -65,5 +67,31 @@ class VerifyController extends Controller
     public function refreshCaptcha() {
       
         return captcha_img('math');
+    }
+    
+
+    public function contactStore(Request $request){
+        $request->validate([
+            'name'      => 'required',
+            'email'     => 'required|email',
+            'mobile'    => 'required|min:10|max:10',
+            'subject'   => 'required|min:4|max:200',
+            'message'   => 'required',
+            'captcha'   => 'required|captcha',
+        ],
+        [
+            'captcha.captcha'=>'Invalid captcha code.'
+        ]);
+
+        $data = [
+            'name' => $request->name,
+            'user_id' => session('user.id'),
+            'email' => $request->email,
+            'mobile' => $request->mobile,
+            'subject' => $request->subject,
+            'message' => $request->message,
+        ];
+        Contact::create($data);
+        return redirect()->back()->with(['success'=>'Thank You! For Contact Us. We Will Contact You Soon...']);
     }
 }

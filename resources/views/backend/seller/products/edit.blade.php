@@ -10,7 +10,7 @@
 	          <div class="alert alert-success">{{ $message }}</div>
 	    	@endif
 		</div>
-		<form method="post" action="{{route('products.update',$product->prdt_id)}}" enctype="multipart/form-data">
+		<form method="post" action="{{route('products.update',$product->prdt_id)}}" enctype="multipart/form-data" id="example-form">
 		 @csrf
 		 @method('PUT')
 			<div class="card-body">
@@ -21,12 +21,12 @@
 					</div>
 					<div class="col-md-6 form-group error-div">
 						<label>Brand Name: *</label><br>
-						<input class="form-control" type="text" name="brand" value="{{ $product->brand }}">
+						<input class="form-control required" type="text" name="brand" value="{{ $product->brand }}" required="">
 					</div>
 					<div class="col-md-6 form-group error-div">
 						<label> Categories Type:</label><br>
-						 <select class="form-control" name="catg_id">
-							<option value="0">Select Categories</option>
+						 <select class="form-control required" name="catg_id" required="">
+							<option value="">Select Categories</option>
 							@foreach($catgMasts as $catgMast)
 								<option value="{{$catgMast->catg_id}}" {{ $catgMast->catg_id ==$product->catg_id ? 'selected=selected' :'' }}>{{$catgMast->catg_name}}</option>
 							@endforeach		 
@@ -34,27 +34,27 @@
 					</div>
 					<div class="col-md-6 form-group error-div">
 						<label>  Product Short Description*</label><br>
-						<textarea class="form-control" name="desc">{{$product->desc}}</textarea>
+						<textarea class="form-control required " name="desc" required="">{{$product->desc}}</textarea>
 					</div>
 					<div class="col-md-6 form-group error-div">
 						<label> Default Currency</label><br>
 						 <select class="form-control" name="curr_id">
-							<option value="0">Select currency</option>
+							<option value="">Select currency</option>
 							@foreach($currencies as $currency)
 								<option value="{{$currency->curr_id}}" {{$currency->curr_id == $product->curr_id ? 'selected=selected' : ''}}>{{$currency->curr_name}}</option>
 							@endforeach		 
 						 </select>
 					</div>
-					<div class="col-md-6 form-group error-div">
+					<div class="col-md-6 form-group error-div ">
 						<label>Product Price *</label><br>
-						<input class="form-control" type="number" name="price" value="{{$product->price}}" placeholder="Product price">
+						<input class="form-control required" type="number" name="price" value="{{$product->price}}" placeholder="Product price" required="">
 					</div>
 					<div class="col-md-6 form-group error-div">
 						<label>Delivery Terms</label><br>
 						<select class="form-control" name="is_terms">
-							<option value="0">Select deliveryTerms</option>
+							<option value="">Select deliveryTerms</option>
 							@foreach($deliveryTerms as $deliveryTerm)
-								<option value="{{$deliveryTerm->dlvry_trms_id}}" {{$deliveryTerm->dlvry_trms_id == $product->dlvry_trms_id ? 'selected' : ''}}>{{$deliveryTerm->shrt_name}}</option>
+								<option value="{{$deliveryTerm->dlvry_trms_id}}" {{$deliveryTerm->dlvry_trms_id == $product->is_terms ? 'selected=selected' : ''}}>{{$deliveryTerm->shrt_name}}</option>
 							@endforeach		 
 						 </select>
 					</div>
@@ -74,7 +74,7 @@
 					<div class="col-md-6 form-group error-div">
 						<label>Payment Method</label><br>
 						<select class="form-control" name="pay_method">
-							<option value="0">Select payment Method</option>
+							<option value="">Select payment Method</option>
 							@foreach($paymentMethods as $paymentMethod)
 								<option value="{{$paymentMethod->pay_md_id}}" {{$paymentMethod->pay_md_id == $product->pay_method ? 'selected=selected' :''}}>{{$paymentMethod->pay_name}}</option>
 							@endforeach		 
@@ -91,13 +91,13 @@
 				<div class="card-body">
 					<div class="row">
 		                <div class="col-md-4 form-group error-div">
-		                    <label> ManufacturerCountry *  </label>
-		                    <select class="form-control required" name="country_code" id="country">
-		                        <option value="">Select Country</option>
-		                        @foreach($countries as $country)
-		                            <option value="{{$country->country_code}}" {{$country->country_code == $product->country_code ? 'selected=selected' : ''}}>{{$country->country_name}}</option>
-		                        @endforeach
-		                    </select>
+	                    <label> ManufacturerCity * </label>
+		                   <select name="country_code" id="country" class="form-control">
+								<option value="">Select Country</option>
+								@foreach($countries as $country)
+									<option value="{{$country->country_code}}" {{(old('country_code') ?? $user->country_code) == $country->country_code ? 'selected=selected' : ''}}>{{$country->country_name}}</option>
+								@endforeach
+							</select>
 		                    @error('country_code')
 		                        <span class="help-block text-danger font-size-12">
 		                            <strong>{{ $message }}</strong>
@@ -106,8 +106,9 @@
 		                </div>
 		                <div class="col-md-4 form-group error-div">
 		                    <label> ManufacturerState * </label>
-		                    <select class="form-control required" name="state_code" id="state">
+		                    <select class="form-control required" name="state_code" id="state" required="">
 		                        <option value="" >Please Select State</option>
+		                         
 		                    </select>
 		                    @error('state_code')
 		                        <span class="help-block text-danger font-size-12">
@@ -117,14 +118,14 @@
 		                </div>
 		                <div class="col-md-4 form-group error-div">
 		                    <label> ManufacturerCity * </label>
-		                    <select class="form-control required" name="city_code"  id="city">
-		                        <option value="">Please Select City</option>
-		                    </select>
-		                    @error('city_code')
-		                        <span class="help-block text-danger font-size-12">
-		                            <strong>{{ $message }}</strong>
-		                        </span>
-		                    @enderror
+		                     <select class="form-control required" name="city_code"  id="city">
+						        <option value="">Please Select City</option>
+						    </select>
+						    @error('city_code')
+						        <span class="help-block text-danger font-size-12">
+						            <strong>{{ $message }}</strong>
+						        </span>
+						    @enderror
 		                </div>
 		                <div class="col-md-4 form-group">
 							<label>Model number</label><br>
@@ -153,7 +154,7 @@
 						<div class="col-md-4 form-group">
 							<label>Material</label><br>
 							<select class="form-control" name="material">
-								<option value="0">Select material</option>
+								<option value="">Select material</option>
 								@foreach($materialMasts as $materialMast)
 									<option value="{{$materialMast->material_id}}" {{$materialMast->material_id == $product->material ? 'selected=selected' : ''}}>{{$materialMast->material_name}}</option>
 								@endforeach		 
@@ -170,9 +171,9 @@
 						<div class="col-md-4 form-group">
 							<label> Type of packing product </label><br>
 							<select class="form-control" name="packing_type">
-								<option value="0">Select packing product</option>
+								<option value="">Select packing product</option>
 								@foreach($packingProducttMasts as $packingProducttMast)
-								@if($packingProducttMast->packing_id =='O')
+								@if($packingProducttMast->packing_type =='O')
 									<option value="{{$packingProducttMast->packing_id}}" {{$packingProducttMast->packing_id == $product->packing_type ? 'selected=selected' : ''}}>{{$packingProducttMast->packing_name}}</option>
 								@endif
 								@endforeach		 
@@ -189,10 +190,12 @@
 						<div class="col-md-4 form-group">
 							<label>  Type of inner packing  </label><br>
 							<select class="form-control" name="inner_packing">
-								<option value="0">Select inner packing product</option>
+								<option value="">Select inner packing product</option>
 								@foreach($packingProducttMasts as $packingProducttMast)
-								@if($packingProducttMast->packing_id =='I')
+								@if($packingProducttMast->packing_type =='O')
 									<option value="{{$packingProducttMast->packing_id}}" {{$packingProducttMast->packing_id == $product->inner_packing ? 'selected=selected' : ''}}>{{$packingProducttMast->packing_name}}</option>
+								}
+								}
 								@endif	
 								@endforeach		 
 						 	</select>
@@ -227,11 +230,11 @@
 						</div>
 						<div class="col-md-4 form-group">
 							<label> Inco terms </label><br>
-							<select class="form-control" name="pay_method">
-							<option value="">Select payment Method</option>
-							@foreach($paymentMethods as $paymentMethod)
-								<option value="{{$paymentMethod->pay_md_id}}" {{$paymentMethod->pay_md_id == $product->pay_method ? 'selected' : ''}}>{{$paymentMethod->pay_name}}</option>
-							@endforeach		 
+							<select class="form-control" name="incoterms">
+							<option value="">Select Inco terms</option>
+								@foreach($paymentMethods as $paymentMethod)
+									<option value="{{$paymentMethod->pay_md_id}}" {{$paymentMethod->pay_md_id == $product->pay_method ? 'selected=selected' : ''}}>{{$paymentMethod->pay_name}}</option>
+								@endforeach		 
 						 </select>
 						</div>
 				</div>
@@ -247,8 +250,8 @@
 				<div class="row">
 					<div class="col-md-6 form-group error-div">
 						<label>  Select Primary Product *  </label><br>
-						<select class="form-control" name="grp_prim_id">
-							<option value="0">Select payment Method</option>
+						<select class="form-control required" name="grp_prim_id" required="">
+							<option value="">Select Primary Product</option>
 							@foreach($productGroups as $productGroup)
 								@if($productGroup->parent_id == NULL)
 									<option value="{{$productGroup->prdt_grp_id}}" {{$productGroup->prdt_grp_id == $product->grp_prim_id ? 'selected' : ''}}>{{$productGroup->grp_name}}</option>
@@ -259,8 +262,8 @@
 					<div class="col-md-6 form-group error-div">
 						<label>  Select Secondary Product  </label><br>
 						<select class="form-control" name="grp_sec_id">
-							<option value="0">Select payment Method</option>
-							@foreach($productGroups as $paymentMethod)
+							<option value="">Select pSecondary Product</option>
+							@foreach($productGroups as $productGroup)
 								@if($productGroup->parent_id != NULL)
 									<option value="{{$productGroup->prdt_grp_id}}" {{$productGroup->prdt_grp_id == $product->grp_sec_id ? 'selected' : ''}}>{{$productGroup->grp_name}}</option>
 								@endif	
@@ -279,61 +282,79 @@
 			</div>
 			<div class="card-body">
 				<div class="row">
-					<div class="col-md-6 form-group">
+					<div class="col-md-6 form-group error-div">
 						<label> Upload Product Image No. 1 : </label><br>
-						<input class="form-control" type="file" name="image[]" value="{{ @$product->p_images[0]->doc_name }}" placeholder="Enter SKU Number">
+						<input class="form-control " type="file" name="image[]" value="{{ @$product->p_images[0]->doc_name }}" >
 						<a href="{{ asset('storage'.'/'.@$product->p_images[0]->doc_path) }}" target="_blank">{{ @$product->p_images[0]->doc_name }}</a>
+						<input class="form-control" type="hidden" name="doc_id[]" value="{{ @$product->p_images[0]->doc_id }}">
+
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 1 : </label><br>
 						<input class="form-control" type="file" name="image[]" value="{{ @$product->p_images[1]->doc_name }}" >
 						<a href="{{ asset('storage'.'/'.@$product->p_images[1]->doc_path) }}" target="_blank">{{ @$product->p_images[1]->doc_name }}</a>
+						<input class="form-control" type="hidden" name="doc_id[]" value="{{ @$product->p_images[1]->doc_id }}">
+
 
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 3 : </label><br>
 						<input class="form-control" type="file" name="image[]" value="{{ @$product->p_images[2]->doc_name }}" >
 						<a href="{{ asset('storage'.'/'.@$product->p_images[2]->doc_path) }}" target="_blank">{{ @$product->p_images[2]->doc_name }}</a>
+						<input class="form-control" type="hidden" name="doc_id[]" value="{{ @$product->p_images[2]->doc_id }}">
+
 
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 4 : </label><br>
 						<input class="form-control" type="file" name="image[]" value="{{ @$product->p_images[3]->doc_name }}">
 						<a href="{{ asset('storage'.'/'.@$product->p_images[3]->doc_path) }}" target="_blank">{{ @$product->p_images[3]->doc_name }}</a>
+						<input class="form-control" type="hidden" name="doc_id[]" value="{{ @$product->p_images[3]->doc_id }}">
+						
+
 
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 5 : </label><br>
 						<input class="form-control" type="file" name="image[]" value="{{ @$product->p_images[4]->doc_name }}">
 						<a href="{{ asset('storage'.'/'.@$product->p_images[4]->doc_path) }}" target="_blank">{{ @$product->p_images[4]->doc_name }}</a>
+						<input class="form-control" type="hidden" name="doc_id[]" value="{{ @$product->p_images[4]->doc_id }}">
+
 
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 6 : </label><br>
 						<input class="form-control" type="file" name="image[]" value="{{ @$product->p_images[5]->doc_name }}" placeholder="Enter SKU Number">
 						<a href="{{ asset('storage'.'/'.@$product->p_images[5]->doc_path) }}" target="_blank">{{ @$product->p_images[5]->doc_name }}</a>
+						<input class="form-control" type="hidden" name="doc_id[]" value="{{ @$product->p_images[5]->doc_id }}">
 
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 7 : </label><br>
 						<input class="form-control" type="file" name="image[]" value="{{ @$product->p_images[6]->doc_name }}" >
 						<a href="{{ asset('storage'.'/'.@$product->p_images[6]->doc_path) }}" target="_blank">{{ @$product->p_images[6]->doc_name }}</a>
+						<input class="form-control" type="hidden" name="doc_id[]" value="{{ @$product->p_images[6]->doc_id }}">
 
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 8 : </label><br>
+						<input class="form-control" type="hidden" name="doc_id[]" value="{{ @$product->p_images[7]->doc_id }}">
+
 						<input class="form-control" type="file" name="image[]" value="{{ @$product->p_images[7]->doc_name }}" >
 						<a href="{{ asset('storage'.'/'.@$product->p_images[7]->doc_path) }}" target="_blank">{{ @$product->p_images[7]->doc_name }}</a>
 
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 9 : </label><br>
+						
 						<input class="form-control" type="file" name="image[]" value="{{ @$product->p_images[8]->doc_name }}" placeholder="Enter SKU Number">
 						<a href="{{ asset('storage'.'/'.@$product->p_images[8]->doc_path) }}" target="_blank">{{ @$product->p_images[8]->doc_name }}</a>
+						<input class="form-control" type="hidden" name="doc_id[]" value="{{ @$product->p_images[8]->doc_id }}">
 
 					</div>
 					<div class="col-md-6 form-group">
 						<label> Upload Product Image No. 10 : </label><br>
+						<input class="form-control" type="hidden" name="doc_id[]" value="{{ @$product->p_images[9]->doc_id }}">
 						<input class="form-control" type="file" name="image[]" value="{{ @$product->p_images[9]->doc_name }}" >
 						<a href="{{ asset('storage'.'/'.@$product->p_images[8]->doc_path) }}" target="_blank">{{ @$product->p_images[9]->doc_name }}</a>
 
@@ -365,13 +386,12 @@
 					</div>
 				</div>
 				<div class=" form-group">
-					<input type="submit" name="submit" value="Submit" class="form-control btn btn-success" >
+					<input type="submit" name="submit" value="Update" class="form-control btn btn-success" >
 				</div>
 			</div>
 		</div>	
 	</form>
 </div>	
-
 <script type="text/javascript">
 	$('#country').on('change',function(e){
             e.preventDefault();
@@ -384,34 +404,35 @@
             fn_city(stateCode);
         });
 
-        var countryCode  = "{{old('country_code')}}";
-        var stateCode  = "{{old('state_code')}}";
+        var countryCode  = "{{old('country_code') ?? $user->country_code}}";
+        var stateCode  = "{{old('state_code') ?? $user->state_code}}";
         if(stateCode !=null){
             fn_state(countryCode,stateCode)
         }
 
-        var cityCode  = "{{old('city_code')}}";
-        console.log(cityCode);
+        var cityCode  = "{{old('city_code') ?? $user->city_code}}";
+        // alert(cityCode)
         if(cityCode !=null){
             fn_city(stateCode,cityCode)
         }
-         var form = $("#example-form");
-
+        var form = $("#example-form");
         form.validate({   
             rules: {    
-                'mobile' :{
-                    minlength:10,
-                    maxlength:10,
+                'name' :{
+                    required:true
                 },
-                'password' :{
-                    minlength:8,
+                 'brand' :{
+                    required:true
+
                 },
-                'password_confirmation' : {
-                    minlength : 8,
-                    equalTo : "#password"
+                'desc' :{
+                    required:true
                 },
-                'c_email' : {
-                    equalTo : "#email"
+                'price' :{
+                    required:true
+                },
+    			'country_code' :{
+                    required:true
                 }
             },
             errorElement: "em",
@@ -427,5 +448,27 @@
                 $( element ).parents( ".error-div" ).addClass( "has-success" ).removeClass( "has-error" );
             },
         });
+        $("#grp_prim_id").on('change',function(){
+		 	var grp_prim_id = $('#grp_prim_id').val()
+		    var oldStateCode  = "{{old('grp_name')}}";
+
+		 	// alert(grp_prim_id);
+		       // if(grp_prim_id){
+		        $.ajax({
+		            type:'GET',
+		            url:"/get_grp_prim/"+grp_prim_id,
+		            success:function(res){
+		                $('#grp_sec_id').empty();
+		                $('#grp_sec_id').append('<option value="">Please Secondary Product</option>');
+		                $.each(res,function(i,v){
+		                    $('#grp_sec_id').append('<option value="'+v.prdt_grp_id+'" '+(oldStateCode == v.prdt_grp_id ? 'selected' : '')+'> '+v.grp_name+' </option>')
+		                })
+		            }
+		        });
+		    // }else{
+		    //     // $('#state').empty();
+		    // }
+
+		    });
 </script>
 @endsection

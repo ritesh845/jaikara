@@ -27,7 +27,7 @@
 						<div class="col-md-4 form-group col-xs-12">
 							<label>Company Sub-Domain Name <a data-toggle="tooltip" data-placement="bottom" title="Please select your micro website subdomain name. You can not edit this later!" class="fa fa-question-circle" ></a></label>
 
-							<input type="text" class="form-control"  name="comp_sub_domain" value="{{$user->comp_sub_domain ??  old('comp_sub_domain')}}" oninput="this.value = this.value.replace(/[^a-z]/g,'')" >
+							<input type="text" class="form-control"  name="comp_sub_domain" value="{{$user->comp_sub_domain ??  old('comp_sub_domain')}}" oninput="this.value = this.value.replace(/[^a-z|-]/g,'')" >
 							@error('comp_sub_domain')
 						        <span class="help-block text-danger font-size-12">
 						            <strong>{{ $message }}</strong>
