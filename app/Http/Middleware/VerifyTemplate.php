@@ -41,7 +41,8 @@ class VerifyTemplate
         //     abort(404);
         // }
 
-        $this->url = request()->getHttpHost();
+        // = request()->getHttpHost();
+        $this->url =  str_replace("www.","",request()->getHttpHost());
         
 
         if(count(explode('/', request()->getRequestUri())) > 1){

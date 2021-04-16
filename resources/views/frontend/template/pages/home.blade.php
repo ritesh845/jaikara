@@ -208,75 +208,7 @@
 											<th>Production Capacity</th>
 											<td>{{session('user.tradeProduction') !=null ? session('user.tradeProduction.prdt_capacity') : ''}}</td>
 										</tr>
-										<tr>
-											<th>Factory Size</th>
-											<td>{{session('user.tradeProduction') !=null ? session('user.tradeProduction.size_sqft') : ''}}</td>
-										</tr>
-										<tr>
-											<th>Average Lead Time / Day(s)</th>
-											<td>{{session('user.tradeProduction') !=null ? session('user.tradeProduction.lead_time_days') : ''}}</td>
-										</tr>
-										<tr>
-											<th>Compliance Maintaining </th>
-											<td>{{session('user.tradeProduction') !=null ? session('user.tradeProduction.maintaining') : ''}}</td>
-										</tr>
-										<tr>
-											<th>Export Percentage </th>
-											<td>{{session('user.tradeProduction') !=null ? Arr::get(ExportPer,session('user.tradeProduction.export_per') )  : ''}}</td>
-										</tr>
-										<tr>
-											<th>Annual Sales Volume </th>
-											<td> {{session('user.tradeProduction') !=null ? Arr::get(AnnualSales,session('user.tradeProduction.sales_volume') )  : ''}}</td>
-										</tr>
-										<tr>
-											<th>Packaging Details</th>
-											<td>{{session('user.tradeProduction') !=null ? session('user.tradeProduction.packg_dtl') : ''}}</td>
-										</tr>
-										<tr>
-											<th>Office Size</th>
-											<td>
-												{{-- {{session('user.tradeProduction') !=null ? Arr::get(OfficeSize,session('user.tradeProduction.office_size')) : ''}} --}}
-											</td>
-										</tr>
-										<tr>
-											<th>Main Export Markets (Country)</th>
-											<td>
-												{{-- {{session('user.tradeProduction') !=null ? Arr::get(MainExportMarkets,session('user.tradeProduction.export_market'))  : ''}} --}}
-											</td>
-										</tr>
-										<tr>
-											<th>Nearest Port</th>
-											<td>
-												
-												{{-- {{session('user.tradeProduction') !=null ? session('user.tradeProduction.five_countries') : ''}} --}}
-											</td>
-										</tr>
-										<tr>
-											<th>Factory Location </th>
-											<td>
-												{{-- {{session('user.tradeProduction') !=null ? session('user.tradeProduction.factory_loc') : ''}} --}}
-											</td>
-										</tr>
-										<tr>
-											<th>Major Product(s) you sell (For Sellers) </th>
-											<td>{{session('user.tradeProduction') !=null ? session('user.tradeProduction.major_prdt_sell') : ''}}</td>
-										</tr>
-										<tr>
-											<th>Main Products 1</th>
-											<td>{{session('user.tradeProduction') !=null ? session('user.tradeProduction.main_prdt1') : ''}}</td>
-										</tr>
-										<tr>
-											<th>Main Products 2</th>
-											<td>{{session('user.tradeProduction') !=null ? session('user.tradeProduction.main_prdt2') : ''}}</td>
-										</tr>
-										<tr>
-											<th>Main Products 3</th>
-											<td>{{session('user.tradeProduction') !=null ? session('user.tradeProduction.main_prdt3') : ''}}</td>
-										</tr>
-										<tr>
-											<th>Other Products You Sell</th>
-											<td>{{session('user.tradeProduction') !=null ? session('user.tradeProduction.product_you_sell') : ''}}</td>
-										</tr>
+									
 									</tbody>
 								</table>
 
