@@ -25,16 +25,16 @@
     			</tr>
     		</thead>
             @php $i = 1; @endphp
-                {{-- @foreach($rfq as $lit) --}}
+                @foreach($mycat as $lit)
     		<tbody id="tbody">
     			<td>{{ $i++ }}</td>
-    			<td>eet</td>
-    			<td>eter</td>
-    			<td>eter</td>
-    			<td><a href="" class="btn btn-sm btn-info">Edit</a>
-    			<a href="" class="btn btn-sm btn-warning" onclick="return confirm('Are you sure?')">Delete</a></td>
+    			<td>{{ $lit->title }}</td>
+    			<td>{{ $lit->category->catg_name }}</td>
+    			<td>13-04-2021</td>
+    			<td><a href="{{ route('my_classified.edit',$lit->mycl_id ) }}" class="btn btn-sm btn-info">Edit</a>
+    			<a href="{{ route('my_classified.delete',$lit->mycl_id) }}" class="btn btn-sm btn-warning" onclick="return confirm('Are you sure?')">Delete</a></td>
     		</tbody>
-            {{--  @endforeach --}}
+             @endforeach
     	</table>
 				{{-- <ul class="nav nav-bar">
 					<li class=""><a href="" class="btn btn-sm btn-success">Add Sell Trade</a></li>
