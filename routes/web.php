@@ -24,14 +24,19 @@ Auth::routes();
 
 //Frontend
 
+
+//For data show and store data we use verifycontroller beacuse frontendcontroller brack the url beacuse of middelware
 Route::get('/get_states/{id}', [App\Http\Controllers\VerifyController::class, 'get_states']);
 Route::get('/get_cities/{id}', [App\Http\Controllers\VerifyController::class, 'get_cities']);
 
 Route::get('/refresh_captcha', [App\Http\Controllers\VerifyController::class, 'refreshCaptcha']);
+Route::post('/contact/store', [App\Http\Controllers\VerifyController::class, 'contactStore'])->name('contactStore');
 
 
 Route::get('/verify/{token}','App\Http\Controllers\VerifyController@verifyUser');
 
+
+Route::get('product-category/{name}/{id}',[App\Http\Controllers\Frontend\HomeController::class, 'product_category'])->name('product_category');
 
 
 

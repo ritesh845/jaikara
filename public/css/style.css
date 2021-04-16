@@ -62,3 +62,7 @@
 .form-group.has-success .help-block {
 	color: #00a65a
 }
+
+.bg-back-color{
+	background-color: rgba(142,142,142,.17) !important;
+}
