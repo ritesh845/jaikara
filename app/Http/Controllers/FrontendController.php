@@ -8,7 +8,7 @@ use App\Models\City;
 use App\Models\User;
 use App\Models\Page;
 use Session;
-
+use App\Models\Products;
 class FrontendController extends Controller
 {
 	public function __construct()
@@ -39,6 +39,18 @@ class FrontendController extends Controller
         
     }
 
+    public function product_category($domain = null,$url =null){
+
+      $page_name = 'product_category';
+      if($url == null){
+        $url = $domain;
+      }
+
+      $product = Products::firstWhere(['user_id'=>session('user.id'),'sefriendly' => $url]);
+
+  
+       return view('frontend.pages.index',compact('page_name','product'));
+    }
    
 
 }

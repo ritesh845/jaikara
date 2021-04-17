@@ -10,7 +10,7 @@
 	          <div class="alert alert-success">{{ $message }}</div>
 	    	@endif
 		</div>
-		<form method="post" action="{{route('products.store')}}" enctype="multipart/form-data" id="example-form">
+		<form method="post" action="{{route('products.store')}}" enctype="multipart/form-data" id="example-form" autocomplete="off">
 		 @csrf
 			<div class="card-body">
 				<div class="row">
@@ -112,7 +112,7 @@
 				<div class="card-body">
 					<div class="row">
 		                <div class="col-md-4 form-group error-div">
-		                    <label> ManufacturerCountry   </label><span class="text-danger">*</span>l>
+		                    <label> ManufacturerCountry   </label><span class="text-danger">*</span>
 		                    <select class="form-control required" name="country_code" id="country">
 		                        <option value="{{old('name')}}">Select Country</option>
 		                        @foreach($countries as $country)
@@ -126,7 +126,7 @@
 		                    @enderror
 		                </div>
 		                <div class="col-md-4 form-group error-div">
-		                    <label> ManufacturerState  </label><span class="text-danger">*</span>>
+		                    <label> ManufacturerState  </label><span class="text-danger">*</span>
 		                    <select class="form-control required" name="state_code" id="state">
 		                        <option value="">Please Select State</option>
 		                    </select>
@@ -137,7 +137,7 @@
 		                    @enderror
 		                </div>
 		                <div class="col-md-4 form-group error-div">
-		                    <label> ManufacturerCity  </label><span class="text-danger">*</span>>
+		                    <label> ManufacturerCity  </label><span class="text-danger">*</span>
 		                    <select class="form-control required" name="city_code"  id="city">
 		                        <option value="">Please Select City</option>
 		                    </select>
