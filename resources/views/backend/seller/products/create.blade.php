@@ -16,7 +16,8 @@
 				<div class="row">
 					<div class="col-md-6 form-group error-div">
 						<label>Product Name:</label><span class="text-danger">*</span><br>
-						<input class="form-control required" type="text" name="name" value="{{old('name')}}" id="name" >
+						<input class="form-control required" type="text" name="name" value="{{old('name')}}" id="title" >
+						<input type="hidden" name="sefriendly" id="sefriendly" value="">
 						@error('name')
 							<span class="help-block text-danger font-size-12">
 								<strong>{{$message}}</strong>
@@ -379,7 +380,16 @@
 	</form>
 </div>	
 <script type="text/javascript">
- $("#grp_prim_id").on('change',function(){
+$(document).ready(function(){
+	$('#title').blur(function(e){
+        var text = document.getElementById("title").value;
+        str = text.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
+        str = str.replace(/^\s+|\s+$/gm,'');
+        str = str.replace(/\s+/g, '-')+'.html';   
+        $("#sefriendly").val(str); 
+    });
+
+	$("#grp_prim_id").on('change',function(){
  	var grp_prim_id = $('#grp_prim_id').val()
     var oldStateCode  = "{{old('grp_name')}}";
 
@@ -456,5 +466,6 @@
                 $( element ).parents( ".error-div" ).addClass( "has-success" ).removeClass( "has-error" );
             },
         });
+})
 </script>
 @endsection
