@@ -52,6 +52,7 @@ class VerifyTemplate
         }
         if($domain_name == 'login' || $domain_name == 'register' || $domain_name == 'logout' ){
             $user = User::firstWhere(['domain_url' => $this->url,'status' => 'A']);
+            
         }else{
           if($domain_name !=null){
               $page = Page::firstWhere('page_name',$domain_name);
@@ -62,6 +63,9 @@ class VerifyTemplate
               }
           }else{
             $user = User::firstWhere(['domain_url' => $this->url,'status' => 'A']);
+            if(empty($user)){
+                $user = User::firstWhere(['domain_url1' => $this->url,'status' => 'A']);
+            }
           }
         }
           
