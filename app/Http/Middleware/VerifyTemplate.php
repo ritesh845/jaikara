@@ -56,11 +56,22 @@ class VerifyTemplate
               $page = Page::firstWhere('page_name',$domain_name);
               if(empty($page)){
                   $user =  User::firstWhere('domain_url',$domain_name);
+                  if(empty($user)){
+                      $user = User::firstWhere(['domain_url1' => $this->url,'status' => 'A']);
+                       $domain_name = '';
+                  }
               }else{
                   $user = User::firstWhere(['domain_url' => $this->url,'status' => 'A']);
+                   if(empty($user)){
+                      $user = User::firstWhere(['domain_url1' => $this->url,'status' => 'A']);
+                      $domain_name = '';
+                  }
               }
           }else{
             $user = User::firstWhere(['domain_url' => $this->url,'status' => 'A']);
+            if(empty($user)){
+                $user = User::firstWhere(['domain_url1' => $this->url,'status' => 'A']);
+            }
           }
         }
           
@@ -70,7 +81,7 @@ class VerifyTemplate
             }else{
                 $page_type = '2';
             }
-           $pages =  Page::where('page_type',$page_type)->orderBy('page_order','asc')->get();
+            $pages =  Page::where('page_type',$page_type)->orderBy('page_order','asc')->get();
             Session::put('pages',$pages);
 
             $template_name = $user->template_name;
