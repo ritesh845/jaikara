@@ -95,7 +95,7 @@
 		                   <select name="country_code" id="country" class="form-control">
 								<option value="">Select Country</option>
 								@foreach($countries as $country)
-									<option value="{{$country->country_code}}" {{(old('country_code') ?? $user->country_code) == $country->country_code ? 'selected=selected' : ''}}>{{$country->country_name}}</option>
+									<option value="{{$country->country_code}}" {{(old('country_code') ?? $product->country_code) == $country->country_code ? 'selected=selected' : ''}}>{{$country->country_name}}</option>
 								@endforeach
 							</select>
 		                    @error('country_code')
@@ -393,7 +393,8 @@
 	</form>
 </div>	
 <script type="text/javascript">
-	$('#country').on('change',function(e){
+	$(document).ready(function(){
+		$('#country').on('change',function(e){
             e.preventDefault();
             var countryCode = $(this).val();
             fn_state(countryCode);
@@ -404,15 +405,15 @@
             fn_city(stateCode);
         });
 
-        var countryCode  = "{{old('country_code') ?? $user->country_code}}";
-        var stateCode  = "{{old('state_code') ?? $user->state_code}}";
-        if(stateCode !=null){
+        var countryCode  = "{{old('country_code') ?? $product->country_code}}";
+        var stateCode  = "{{old('state_code') ?? $product->state_code}}";
+        if(stateCode !=''){
             fn_state(countryCode,stateCode)
         }
 
-        var cityCode  = "{{old('city_code') ?? $user->city_code}}";
+        var cityCode  = "{{old('city_code') ?? $product->city_code}}";
         // alert(cityCode)
-        if(cityCode !=null){
+        if(cityCode !=''){
             fn_city(stateCode,cityCode)
         }
         var form = $("#example-form");
@@ -470,5 +471,6 @@
 		    // }
 
 		    });
+	})
 </script>
 @endsection
