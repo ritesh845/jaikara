@@ -20,9 +20,9 @@
 <body style="background-color: #dfdede !important">
 <header style="background-color: #d2d2d2 !important">
   <nav class="navbar navbar-expand-md  ">
-    <a class="navbar-brand mr-4" href="www.jaikara.in">Jaikara</a>
+    <a class="navbar-brand mr-4" href="http://www.jaikara.in/">Jaikara</a>
     <ul class="nav navbar ml-auto">
-      <li><a href="http://jaikara.in/" class="text-dark">Go to Main Site</a></li>
+      <li><a href="http://www.jaikara.in/" class="text-dark">Go to Main Site</a></li>
       <li><a href="#" class="text-dark ml-3">This store has been open since {{date('D M d Y',strtotime(session('user.joining_date')))}}</a></li>
     </ul>
   </nav>
@@ -55,7 +55,12 @@
         <ul class="navbar-nav">
           @foreach(session('pages') as $page)
             <li class="nav-item p-2" style="border-right:1px solid #cfcfcf ">
-              <a class="nav-link" href="{{url(session('domain_name').'/'.$page->page_url)}}">{{$page->page_name}}</a>
+             @if($page->page_url == '/')
+                <a class="nav-link" href="{{url( session('domain_name') !=null ? session('domain_name') : '/'  )}}">{{$page->page_name}}</a>
+
+              @else
+                <a class="nav-link" href="{{url(session('domain_name').'/'.$page->page_url)}}">{{$page->page_name}}</a>
+                 @endif
             </li>
             @endforeach
           

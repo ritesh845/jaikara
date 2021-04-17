@@ -17,7 +17,8 @@
 				<div class="row">
 					<div class="col-md-6 form-group error-div">
 						<label>Product Name:*</label><br>
-						<input class="form-control" type="text" name="name" value="{{ $product->name }}">
+						<input class="form-control" type="text" name="name" value="{{ $product->name }}" id="title">
+						
 					</div>
 					<div class="col-md-6 form-group error-div">
 						<label>Brand Name: *</label><br>
