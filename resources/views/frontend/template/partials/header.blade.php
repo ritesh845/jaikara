@@ -20,9 +20,9 @@
 <body style="background-color: #dfdede !important">
 <header style="background-color: #d2d2d2 !important">
   <nav class="navbar navbar-expand-md  ">
-    <a class="navbar-brand mr-4" href="#">Jaikara</a>
+    <a class="navbar-brand mr-4" href="www.jaikara.in">Jaikara</a>
     <ul class="nav navbar ml-auto">
-      <li><a href="{{url('/')}}" class="text-dark">Go to Main Site</a></li>
+      <li><a href="http://jaikara.in/" class="text-dark">Go to Main Site</a></li>
       <li><a href="#" class="text-dark ml-3">This store has been open since {{date('D M d Y',strtotime(session('user.joining_date')))}}</a></li>
     </ul>
   </nav>

@@ -17,4 +17,5 @@ class HomeController extends Controller
 	
       	return view('frontend.pages.index',compact('page_name','product'));
     }
+   
 }

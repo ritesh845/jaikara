@@ -156,7 +156,7 @@ Route::group(['middleware' => 'auth'],function(){
 
 });
 
-
 Route::get('/{domain}/{page?}',[App\Http\Controllers\FrontendController::class, 'domain_redirect']);
+
 // Route::get('/{domain}/{page}',[App\Http\Controllers\FrontendController::class, 'page_redirect']);
 

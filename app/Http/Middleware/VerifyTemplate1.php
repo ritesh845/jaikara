@@ -22,6 +22,10 @@ class VerifyTemplate1
         
 
         $user = User::select('domain_url','status','template_id','template_name','site_name','site_logo')->firstWhere(['domain_url' => $this->url,'status' => 'A']);
+
+        if(empty($user)){
+            $user = User::firstWhere(['domain_url1' => $this->url,'status' => 'A']);
+        }
         if(!empty($user)){
            
 
