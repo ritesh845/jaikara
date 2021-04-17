@@ -36,8 +36,6 @@ Route::post('/contact/store', [App\Http\Controllers\VerifyController::class, 'co
 Route::get('/verify/{token}','App\Http\Controllers\VerifyController@verifyUser');
 
 
-Route::get('product-category/{name}/{id}',[App\Http\Controllers\Frontend\HomeController::class, 'product_category'])->name('product_category');
-
 
 
 //Backend User
@@ -156,7 +154,14 @@ Route::group(['middleware' => 'auth'],function(){
 
 });
 
+Route::get('product-category/{url}',[App\Http\Controllers\FrontendController::class, 'product_category']);
+
+Route::get('/{domain}/product-category/{url?}',[App\Http\Controllers\FrontendController::class, 'product_category']);
+
 Route::get('/{domain}/{page?}',[App\Http\Controllers\FrontendController::class, 'domain_redirect']);
+
+
+
 
 // Route::get('/{domain}/{page}',[App\Http\Controllers\FrontendController::class, 'page_redirect']);
 
