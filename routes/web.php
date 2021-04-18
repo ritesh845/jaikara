@@ -153,7 +153,7 @@ Route::group(['middleware' => 'auth'],function(){
 
 	//buyer company profile
 	Route::get('/company/profile',[App\Http\Controllers\Backend\Seller\CompanyController::class,'BuyerCompanyProfile'])->name('company_profile');
-	Route::put('/company/profile/update',[App\Http\Controllers\Backend\Seller\CompanyController::class,'buyerCompanyProUpdate'])->name('buyer_cmp_pro_update');
+	Route::patch('/company/profile/update/{id}',[App\Http\Controllers\Backend\Seller\CompanyController::class,'buyerCompanyProUpdate'])->name('buyer_cmp_pro_update');
 
 
 });

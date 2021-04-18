@@ -20,7 +20,7 @@
 					@method('patch')
 					@csrf
 					<div class="row">
-						<div class="col-md-5 form-group col-xs-12">
+						<div class="col-md-6 form-group col-xs-12">
 							<label> Company Name </label>
 							<input type="text" class="form-control"  name="comp_name" value="{{$user->comp_name}}" readonly="readonly"  >
 						</div>

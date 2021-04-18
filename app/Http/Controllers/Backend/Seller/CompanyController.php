@@ -241,12 +241,12 @@ class CompanyController extends Controller
     {
         $user = User::find($id);
 
-        $request->validate([
-            'comp_sub_domain' => 'nullable|unique:users,comp_sub_domain,'.$request->id,          
-        ]);
+        // $request->validate([
+        //     'comp_sub_domain' => 'nullable|unique:users,comp_sub_domain,'.$request->id,          
+        // ]);
         $data = [
-            'comp_sub_domain' => $request->comp_sub_domain,
-            'domain_url'      => $request->comp_sub_domain,
+            // 'comp_sub_domain' => $request->comp_sub_domain,
+            // 'domain_url'      => $request->comp_sub_domain,
             'website_url'     => $request->website_url,
             'description'     => $request->description,
             'address'         => $request->address,
