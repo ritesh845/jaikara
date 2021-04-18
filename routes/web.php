@@ -153,6 +153,10 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::resource('/product-group',App\Http\Controllers\Backend\Seller\ProductGroupController::class);
 	Route::get('/get_grp_prim/{id}',[App\Http\Controllers\Backend\Seller\ProductsController::class,'getGrpPrim']);
 
+	//buyer company profile
+	Route::get('/company/profile',[App\Http\Controllers\Backend\Seller\CompanyController::class,'BuyerCompanyProfile'])->name('company_profile');
+	Route::put('/company/profile/update',[App\Http\Controllers\Backend\Seller\CompanyController::class,'buyerCompanyProUpdate'])->name('buyer_cmp_pro_update');
+
 
 });
 
