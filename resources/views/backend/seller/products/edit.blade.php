@@ -17,7 +17,14 @@
 				<div class="row">
 					<div class="col-md-6 form-group error-div">
 						<label>Product Name:*</label><br>
-						<input class="form-control" type="text" name="name" value="{{ $product->name }}">
+						<input class="form-control" type="text" name="name" value="{{ $product->name }}" id="title" >
+						<input type="hidden" name="sefriendly" id="sefriendly" value="{{$product->sefriendly}}">
+						@error('name')
+							<span class="help-block text-danger font-size-12">
+								<strong>{{$message}}</strong>
+							</span>
+						@enderror
+						
 					</div>
 					<div class="col-md-6 form-group error-div">
 						<label>Brand Name: *</label><br>
@@ -91,11 +98,11 @@
 				<div class="card-body">
 					<div class="row">
 		                <div class="col-md-4 form-group error-div">
-	                    <label> ManufacturerCity * </label>
+	                    <label> ManufacturerCountry   </label><span class="text-danger">*</span>
 		                   <select name="country_code" id="country" class="form-control">
 								<option value="">Select Country</option>
 								@foreach($countries as $country)
-									<option value="{{$country->country_code}}" {{(old('country_code') ?? $user->country_code) == $country->country_code ? 'selected=selected' : ''}}>{{$country->country_name}}</option>
+									<option value="{{$country->country_code}}" {{(old('country_code') ?? $product->country_code) == $country->country_code ? 'selected=selected' : ''}}>{{$country->country_name}}</option>
 								@endforeach
 							</select>
 		                    @error('country_code')
@@ -105,7 +112,7 @@
 		                    @enderror
 		                </div>
 		                <div class="col-md-4 form-group error-div">
-		                    <label> ManufacturerState * </label>
+		                   <label> ManufacturerState  </label><span class="text-danger">*</span>
 		                    <select class="form-control required" name="state_code" id="state" required="">
 		                        <option value="" >Please Select State</option>
 		                         
@@ -117,7 +124,7 @@
 		                    @enderror
 		                </div>
 		                <div class="col-md-4 form-group error-div">
-		                    <label> ManufacturerCity * </label>
+		                    <label> ManufacturerCity  </label><span class="text-danger">*</span>
 		                     <select class="form-control required" name="city_code"  id="city">
 						        <option value="">Please Select City</option>
 						    </select>
@@ -393,7 +400,16 @@
 	</form>
 </div>	
 <script type="text/javascript">
-	$('#country').on('change',function(e){
+	$(document).ready(function(){
+		$('#title').blur(function(e){
+	        var text = document.getElementById("title").value;
+	        str = text.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
+	        str = str.replace(/^\s+|\s+$/gm,'');
+	        str = str.replace(/\s+/g, '-')+'.html';   
+	        $("#sefriendly").val(str); 
+	    });
+		
+		$('#country').on('change',function(e){
             e.preventDefault();
             var countryCode = $(this).val();
             fn_state(countryCode);
@@ -404,15 +420,15 @@
             fn_city(stateCode);
         });
 
-        var countryCode  = "{{old('country_code') ?? $user->country_code}}";
-        var stateCode  = "{{old('state_code') ?? $user->state_code}}";
-        if(stateCode !=null){
+        var countryCode  = "{{old('country_code') ?? $product->country_code}}";
+        var stateCode  = "{{old('state_code') ?? $product->state_code}}";
+        if(stateCode !=''){
             fn_state(countryCode,stateCode)
         }
 
-        var cityCode  = "{{old('city_code') ?? $user->city_code}}";
+        var cityCode  = "{{old('city_code') ?? $product->city_code}}";
         // alert(cityCode)
-        if(cityCode !=null){
+        if(cityCode !=''){
             fn_city(stateCode,cityCode)
         }
         var form = $("#example-form");
@@ -470,5 +486,6 @@
 		    // }
 
 		    });
+	})
 </script>
 @endsection

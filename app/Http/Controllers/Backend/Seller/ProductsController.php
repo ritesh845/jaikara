@@ -139,6 +139,7 @@ class ProductsController extends Controller
 
         $data = [
             'name'          => $request->name,
+            'sefriendly'    => $request->sefriendly,
             'brand'         => $request->brand,
             'catg_id'       => $request->catg_id,
             'desc'          => $request->desc,

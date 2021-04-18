@@ -19,7 +19,7 @@
 <body>
 <header>
 	<nav class="navbar navbar-expand-md  ">
-	  <a class="navbar-brand mr-4" href="#">Jaikara</a>
+	  <a class="navbar-brand mr-4" href="www.jaikara.in">Jaikara</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
 	     <span class="fa fa-bars"></span>
 	  </button>

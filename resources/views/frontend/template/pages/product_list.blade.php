@@ -13,7 +13,7 @@ $products = \App\Models\Products::where('user_id',session('user.id'))->orderBy('
 						<div class="col-md-3">
 							<div class="card">
 								<div class="card-header bg-white">
-									<a href="{{url('product-category/'.$product->name.'/'.$product->prdt_id)}}">
+									<a href="{{url(session('domain_name').'/product-category/'.$product->sefriendly)}}">
 										<img src="{{asset('storage/'.$product->p_images[0]->doc_path)}}" class="w-100" height="200">
 									</a>
 								</div>
