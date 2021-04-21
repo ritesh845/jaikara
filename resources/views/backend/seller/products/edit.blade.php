@@ -48,7 +48,7 @@
 							</span>
 						@enderror
 					</div>
-					<div class="col-md-6 form-group error-div">
+					<div class="col-md-12 form-group error-div">
 						<label>  Product Short Description*</label><br>
 						<textarea class="form-control required " name="shrt_desc" required="">{{$product->shrt_desc}}</textarea>
 					</div>
@@ -409,6 +409,8 @@
 	</form>
 </div>	
 {{-- test --}}
+<script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
+
 <script type="text/javascript">
 
  ClassicEditor

@@ -4,4 +4,5 @@
   @yield('content')
 </div>
 <script src="{{asset('js/helper.js')}}"></script>
+
 @include('backend.template.partials.footer')

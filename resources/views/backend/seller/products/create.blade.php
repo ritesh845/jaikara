@@ -60,7 +60,7 @@
 							</span>
 						@enderror
 					</div>
-					<div class="col-md-6 form-group error-div">
+					<div class="col-md-12 form-group error-div">
 						<label> Default Currency</label><br>
 						 <select class="form-control" name="curr_id">
 							<option value="">Select currency</option>
@@ -388,13 +388,15 @@
 		</div>	
 	</form>
 </div>
-    <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
 
 {{-- <script src="http://example.com/ckeditor/plugins/colorbutton"></script> --}}
 <script type="text/javascript">
-
-$('#description').ckeditor();
-
+ ClassicEditor
+    .create( document.querySelector( '#description' ) )
+    .catch( error => {
+        console.error( error );
+    } );
 $(document).ready(function(){
 	$('#title').blur(function(e){
         var text = document.getElementById("title").value;
