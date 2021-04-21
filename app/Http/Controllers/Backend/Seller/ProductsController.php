@@ -15,7 +15,7 @@ use App\Models\Products;
 use App\Models\MaterialMast;
 use App\Models\PackingProducttMast;
 use App\Models\Documents;
-
+use DB;
 use Auth;
 class ProductsController extends Controller
 {
@@ -30,13 +30,13 @@ class ProductsController extends Controller
     
     public function create()
     {
-        $catgMasts      = CatgMast::get();
+        $catgMasts      = CatgMast::where(['catg_type' => 'SP','level' => '3'])->orderBy('catg_name')->cursor();
         $currencies     = Currency::get();
         $deliveryTerms  = DeliveryTerms::get();
         $paymentMethods = PaymentMethod::get();
         $productGroups  = ProductGroup::get();
         $materialMasts  = MaterialMast::get();
-        $packingProducttMasts= PackingProducttMast::get();
+        $packingProducttMasts = PackingProducttMast::get();
         return view('backend.seller.products.create',compact('catgMasts','currencies','deliveryTerms','paymentMethods','productGroups','materialMasts','packingProducttMasts'));
         
     }
@@ -47,13 +47,15 @@ class ProductsController extends Controller
         $data = $this->validation($request);
         // dd($data);
         $data['user_id'] = Auth::user()->id;
-        $productsId = Products::create($data)->prdt_id;
+        $product = Products::create($data);
+        $product->categories()->sync($request->catg_id);
+
          foreach ($request->image as $key => $image) {
            
             if($request->hasFile('image.'.$key)){
                 $docs =  document_upload($request->image[$key],Auth::user()->id.'/Product_images');
             }
-            $docs['user_id'] = $productsId; 
+            $docs['user_id'] = $product->prdt_id; 
             $docs['doc_type'] = 'product'; 
                 Documents::create($docs);
         }
@@ -73,7 +75,8 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $product = Products::with('p_images')->where('prdt_id',$id)->first();
-        $catgMasts      = CatgMast::get();
+
+        $catgMasts      = CatgMast::where(['catg_type' => 'SP','level' => '3'])->orderBy('catg_name')->cursor();
         $currencies     = Currency::get();
         $deliveryTerms  = DeliveryTerms::get();
         $paymentMethods = PaymentMethod::get();
@@ -90,8 +93,10 @@ class ProductsController extends Controller
         $data = $this->validation($request);
         // dd($data);
         $data['user_id'] = Auth::user()->id;
-        $productsId = Products::where('prdt_id',$id)->update($data);
+        $product = Products::find($id);
 
+        $product->update($data);
+        $product->categories()->sync($request->catg_id);
         if(!empty($request->image)){
          foreach ($request->image as $key => $image) {
             if($request->image[$key] !=null){
@@ -105,7 +110,7 @@ class ProductsController extends Controller
             if(!empty($documents)){
                 $documents->update($docs);
             }else{
-                $docs['user_id'] = $productsId; 
+                $docs['user_id'] = $id; 
                 $docs['doc_type'] = 'product'; 
                 Documents::create($docs);
             }
@@ -118,7 +123,10 @@ class ProductsController extends Controller
    
     public function destroy($id)
     {
-        //
+        Products::find($id)->delete();
+        DB::table('product_catg')->where('prdt_id',$id)->delete();
+        Documents::where(['user_id' => $id , 'doc_type' => 'product'])->delete();
+        return redirect()->back()->with('success','Product updated successfully');
     }
 
     public function validation($request,$id=null){
@@ -142,7 +150,6 @@ class ProductsController extends Controller
             'name'          => $request->name,
             'sefriendly'    => $request->sefriendly,
             'brand'         => $request->brand,
-            'catg_id'       => $request->catg_id,
             'desc'          => $request->desc,
             'shrt_desc'     => $request->shrt_desc,
             'curr_id'       => $request->curr_id,

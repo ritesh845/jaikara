@@ -10,7 +10,7 @@
 	          <div class="alert alert-success">{{ $message }}</div>
 	    	@endif
 		</div>
-		<form method="post" action="{{route('products.update',$product->prdt_id)}}" enctype="multipart/form-data" id="example-form">
+		<form method="post" action="{{route('products.update',$product->prdt_id)}}" enctype="multipart/form-data" id="example-form" autocomplete="off">
 		 @csrf
 		 @method('PUT')
 			<div class="card-body">
@@ -32,16 +32,16 @@
 					</div>
 					<div class="col-md-6 form-group error-div">
 						<label> Categories Type:</label><br>
-						 <select class="form-control required" name="catg_id" required="">
+						 <select class="form-control required select2" name="catg_id[]" required="" multiple="multiple">
 							<option value="">Select Categories</option>
 							@foreach($catgMasts as $catgMast)
-								<option value="{{$catgMast->catg_id}}" {{ $catgMast->catg_id ==$product->catg_id ? 'selected=selected' :'' }}>{{$catgMast->catg_name}}</option>
+								<option value="{{$catgMast->catg_id}}" {{  in_array($catgMast->catg_id, collect($product->categories)->pluck('catg_id')->toArray()) ? 'selected=selected' : '' }}>{{$catgMast->catg_name}}</option>
 							@endforeach		 
 						 </select>
 					</div>
 					<div class="col-md-12 form-group error-div">
 						<label>  Product Long Description</label><span class="text-danger">*</span><br>
-						<textarea class="form-control required" name="desc" value="{{old('desc')}}" id="description" style="width:300px; height:150px;" required="">{{$product->desc}}</textarea>
+						<textarea class="form-control required" name="desc" value="{{old('desc')}}" id="editor" cols="20" rows="10" required="">{{$product->desc}}</textarea>
 						@error('desc')
 							<span class="help-block text-danger font-size-12">
 								<strong>{{$message}}</strong>
@@ -409,18 +409,18 @@
 	</form>
 </div>	
 {{-- test --}}
-<script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
 
 <script type="text/javascript">
 
- ClassicEditor
-    .create( document.querySelector( '#description' ) )
-    .catch( error => {
-        console.error( error );
-    } );
-
-
 	$(document).ready(function(){
+		CKEDITOR.replace('editor');
+
+	$('.select2').select2({
+		placeholder: "Select Catgeory",
+		allowClear: true
+	});
+
+
 		$('#title').blur(function(e){
 	        var text = document.getElementById("title").value;
 	        str = text.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();

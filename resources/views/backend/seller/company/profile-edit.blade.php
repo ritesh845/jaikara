@@ -43,6 +43,11 @@
 					</div>
 					<div class="row">
 						<div class="col-md-6 form-group col-xs-12">
+							<label> Company Top Level Domain</label>
+							<input type="text" class="form-control" name="comp_top_level_domain" value="{{$user->domain_url1 }}" >
+							
+						</div>
+						<div class="col-md-6 form-group col-xs-12">
 							<label> Mobile</label>
 							<input type="text" class="form-control" name="mobile" value="{{$user->mobile }}" readonly="readonly">
 							

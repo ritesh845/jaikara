@@ -5,10 +5,11 @@
         <h5 class="card-title">Request for Quotation</h5>
         <p>One Request, Multiple Quotes</p>
     </div><!-- card-header -->
+    	
+    <div class="card-body">
     	<h1 class="mt-2">Tell us your Buy Requirement</h1>
     	<p>Complete Your RFQ</p>
     	<p>The more specific your information, the more accurately we can match your request to the right suppliers</p>
-    <div class="card-body">
     	<form name="add_user" action="{{ route('my_posted_rfq.store') }}" method="post" enctype="multipart/form-data" class="search_form general_form">
     		@csrf
 			<div class="row">
@@ -194,7 +195,7 @@
 				</div>
 		</div>
 			<div class="col-md-3 form-group">
-				card space
+				
 			</div>
 		</div>
 		</div>
