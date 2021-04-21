@@ -1,6 +1,7 @@
     
     </div> <!-- Content -->
    </div> <!-- Content -->
+   
     <script src="{{asset('backend/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('backend/js/jquery.sparkline.min.js')}}"></script>
     <script src="{{asset('backend/js/raphael.min.js')}}"></script>
