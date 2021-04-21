@@ -3,14 +3,14 @@
         <div class="col-md-12 mt-5">
 
 			<div class="row">
-				<div class="col-md-4 p-0" >
+				<div class="col-md-4 pr-0" >
 					<div class="card">
 						<div class="card-body">
 							<div id="slider" class="flexslider">
 			          <ul class="slides">
 			          	@foreach($product->p_images as $img)
 			            <li>
-			  	    	    <img src="{{asset('storage/'.$img->doc_path)}}" style="height: 295px !important" />
+			  	    	    <img src="{{asset('storage/'.$img->doc_path)}}" style="height: 290px !important" />
 			  	    		</li>
 			  	    	@endforeach
 			          </ul>
@@ -63,15 +63,15 @@
 										<tbody>
 											<tr>
 												<td class="with_td_auto">Brand Name</td>
-												<td>tes </td>
+												<td>{{$product->brand !=null ? $product->brand : 'N/A'}} </td>
 											</tr>
 											<tr>
 												<td class="with_td_auto">Model number</td>
-												<td>N/A </td>
+												<td>{{$product->model_no !=null ? $product->model_no : 'N/A'}} </td>
 											</tr>
 											<tr>
 												<td class="with_td_auto">Shape</td>
-												<td>N/A
+												<td>{{$product->shape !=null ? $product->shape : 'N/A'}}
 												</td>
 											</tr>
 											<tr>
@@ -130,6 +130,129 @@
 						</div>
 						<div class="card-body">
 							<div class=""></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row mb-5">
+				<div class="col-md-9 mt-2">
+					<div class="card">
+						<div class="card-body">
+							<div class="card">
+								<div class="card-header p-0 bg-white">
+
+									<ul class="nav nav-tabs" role="tablist">
+										<li class="nav-item">
+											<a class="nav-link btn btn-sm  f-14 active text-dark" href="#product" role="tab" data-toggle="tab">  Products Details</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link btn btn-sm  f-14 text-dark" href="#imgVideo" role="tab" data-toggle="tab">  Images & Videos</a>
+										</li>
+										
+									</ul>
+								</div>
+								<div class="card-body">
+									<div class="tab-content">
+									  <div role="tabpanel" class="tab-pane active" id="product">
+									  		<div class="row">
+												<div class="col-md-6 col-xs-12">
+													<table class="table table-bordered table-striped p-0 f-12">
+														<tbody>
+															<tr>
+																<td class="with_td_auto">Brand Name</td>
+																<td>tes </td>
+															</tr>
+															<tr>
+																<td class="with_td_auto">Model number</td>
+																<td>N/A </td>
+															</tr>
+															<tr>
+																<td class="with_td_auto">Shape</td>
+																<td>N/A
+																</td>
+															</tr>
+															<tr>
+																<td class="with_td_auto">Color</td>
+																<td>N/A </td>
+															</tr>
+															<tr>
+																<td class="with_td_auto">Material</td>
+																<td>N/A </td>
+															</tr>
+															<tr>
+																<td class="with_td_auto">Available certificates</td>
+																<td>N/A </td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<div class="col-md-6 col-xs-12 padd_left_none">
+													<table class="table table-bordered table-striped f-12">
+														<tbody>
+															<tr>
+																<td class="with_td_auto">Available size range</td>
+																<td>N/A</td>
+															</tr>
+															<tr>
+																<td class="with_td_auto">Thickness</td>
+																<td>N/A </td>
+															</tr>
+															<tr>
+																<td class="with_td_auto">Number of Pc per inner</td>
+																<td>N/A </td>
+															</tr>
+															<tr>
+																<td class="with_td_auto">Size inner</td>
+																<td>N/A </td>
+															</tr>
+															<tr>
+																<td class="with_td_auto">Type of inner packing</td>
+																<td>N/A </td>
+															</tr>
+															<tr>
+																<td class="with_td_auto">Type of outer packing</td>
+																<td>N/A </td>
+															</tr>
+														</tbody>
+													 </table>
+												</div>
+												<div class="col-md-12">
+												<hr>
+													<h5>Product Description</h5>
+													<div>
+														{!! $product->desc !!}
+													</div>
+												</div>
+												<div class="col-md-12">
+												<hr>
+													<h6>Product Short Description</h6>
+													<div>
+														{!! $product->shrt_desc !!}
+													</div>
+												</div>
+											</div>
+
+									  </div>
+									  <div role="tabpanel" class="tab-pane fade" id="imgVideo">
+								  		<div class="row">
+								  			<div class="col-md-12">
+								  				<h4>Images</h4>
+								  			</div>
+								  			@foreach($product->p_images as $img)
+									  			<div class="col-md-3 form-group">
+									  				<img src="{{asset('storage/'.$img->doc_path)}}" class="w-100" height="200">
+									  			</div>
+								  			@endforeach
+								  		</div>
+
+									  </div>
+
+
+									</div>
+									
+								</div>
+
+							</div>
 						</div>
 					</div>
 				</div>
