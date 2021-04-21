@@ -28,7 +28,7 @@ class CompanyController extends Controller
     public function companyProfileEdit()
     {   
         
-        $catgs =CatgMast::orderBy('catg_name')->cursor();
+        $catgs =CatgMast::where(['catg_type' => 'SP','level' => '3'])->orderBy('catg_name')->cursor();
         return view('backend.seller.company.profile-edit',compact('catgs'));
     }
     public function companyProfileUpdate(Request $request,$id)
@@ -41,6 +41,7 @@ class CompanyController extends Controller
         $data = [
             'comp_sub_domain' => $request->comp_sub_domain,
             'domain_url'      => $request->comp_sub_domain,
+            'domain_url1'     => $request->comp_top_level_domain,
             'website_url'     => $request->website_url,
             'description'     => $request->description,
             'address'         => $request->address,
