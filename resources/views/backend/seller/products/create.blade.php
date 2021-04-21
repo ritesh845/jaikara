@@ -43,7 +43,7 @@
 						 </select>
 					</div>
 					<div class="col-md-12 form-group error-div">
-						<label>  Product Full Description</label><span class="text-danger">*</span><br>
+						<label>  Product Long Description</label><span class="text-danger">*</span><br>
 						<textarea class="form-control required" name="desc" value="{{old('desc')}}" id="description" style="width:300px; height:150px;" required=""></textarea>
 						@error('desc')
 							<span class="help-block text-danger font-size-12">
@@ -388,13 +388,13 @@
 		</div>	
 	</form>
 </div>
-
+{{-- <script src="http://example.com/ckeditor/plugins/colorbutton"></script> --}}
 <script type="text/javascript">
-ClassicEditor
-.create( document.querySelector( '#description' ) )
-.catch( error => {
-    console.error( error );
-} );
+ ClassicEditor
+    .create( document.querySelector( '#description' ) )
+    .catch( error => {
+        console.error( error );
+    } );
 $(document).ready(function(){
 	$('#title').blur(function(e){
         var text = document.getElementById("title").value;

@@ -39,9 +39,18 @@
 							@endforeach		 
 						 </select>
 					</div>
+					<div class="col-md-12 form-group error-div">
+						<label>  Product Long Description</label><span class="text-danger">*</span><br>
+						<textarea class="form-control required" name="desc" value="{{old('desc')}}" id="description" style="width:300px; height:150px;" required="">{{$product->desc}}</textarea>
+						@error('desc')
+							<span class="help-block text-danger font-size-12">
+								<strong>{{$message}}</strong>
+							</span>
+						@enderror
+					</div>
 					<div class="col-md-6 form-group error-div">
 						<label>  Product Short Description*</label><br>
-						<textarea class="form-control required " name="desc" required="">{{$product->desc}}</textarea>
+						<textarea class="form-control required " name="shrt_desc" required="">{{$product->shrt_desc}}</textarea>
 					</div>
 					<div class="col-md-6 form-group error-div">
 						<label> Default Currency</label><br>
@@ -399,7 +408,16 @@
 		</div>	
 	</form>
 </div>	
+{{-- test --}}
 <script type="text/javascript">
+
+ ClassicEditor
+    .create( document.querySelector( '#description' ) )
+    .catch( error => {
+        console.error( error );
+    } );
+
+
 	$(document).ready(function(){
 		$('#title').blur(function(e){
 	        var text = document.getElementById("title").value;
