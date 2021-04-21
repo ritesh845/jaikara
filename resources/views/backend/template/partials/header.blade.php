@@ -213,10 +213,10 @@
             @endrole
             @role('buyer')
                  <li class="nav-item">
-                    <a href="#" class="nav-link with-sub"><i class="fa fa-building-o fa f-14"></i>Company Profile </a>
+                    <a href="#" class="nav-link with-sub"><i class="fa fa-building-o fa f-14"></i>Company Profile sd</a>
                     <ul class="nav-sub">
                         <li class="nav-sub-item">
-                            <a href="{{route('company_profile')}}" class="nav-sub-link"> Company Profile </a>
+                            <a href="{{route('buyer_company_profile')}}" class="nav-sub-link"> Company Profile </a>
                         </li>
                        {{--  <li class="nav-sub-item">
                             <a href="{{route('trade_production_view')}}" class="nav-sub-link">Trade & Production </a>
