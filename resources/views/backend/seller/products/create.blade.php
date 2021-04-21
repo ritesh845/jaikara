@@ -43,9 +43,18 @@
 						 </select>
 					</div>
 					<div class="col-md-12 form-group error-div">
-						<label>  Product Short Description</label><span class="text-danger">*</span><br>
-						<textarea class="form-control" name="desc" value="{{old('desc')}}"></textarea>
+						<label>  Product Full Description</label><span class="text-danger">*</span><br>
+						<textarea class="form-control required" name="desc" value="{{old('desc')}}" id="description" style="width:300px; height:150px;" required=""></textarea>
 						@error('desc')
+							<span class="help-block text-danger font-size-12">
+								<strong>{{$message}}</strong>
+							</span>
+						@enderror
+					</div>
+					<div class="col-md-12 form-group error-div">
+						<label>  Product Short Description</label><span class="text-danger">*</span><br>
+						<textarea class="form-control required" name="shrt_desc" value="{{old('shrt_desc')}}" ></textarea>
+						@error('shrt_desc')
 							<span class="help-block text-danger font-size-12">
 								<strong>{{$message}}</strong>
 							</span>
@@ -378,8 +387,14 @@
 			</div>
 		</div>	
 	</form>
-</div>	
+</div>
+
 <script type="text/javascript">
+ClassicEditor
+.create( document.querySelector( '#description' ) )
+.catch( error => {
+    console.error( error );
+} );
 $(document).ready(function(){
 	$('#title').blur(function(e){
         var text = document.getElementById("title").value;
@@ -444,6 +459,9 @@ $(document).ready(function(){
 
                 },
                 'desc' :{
+                    required:true
+                },
+                'shrt_desc' :{
                     required:true
                 },
                 'price' :{

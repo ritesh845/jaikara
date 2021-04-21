@@ -26,7 +26,8 @@
     <link rel="stylesheet" href="{{asset('css/font-size.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{asset('backend/css/jquery.dataTables.min.css')}}">
-
+    <script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>   
+    
 </head>
 <body class="az-body az-body-sidebar">
 <div class="az-sidebar">
