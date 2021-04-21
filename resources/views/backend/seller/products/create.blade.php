@@ -388,13 +388,13 @@
 		</div>	
 	</form>
 </div>
+    <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+
 {{-- <script src="http://example.com/ckeditor/plugins/colorbutton"></script> --}}
 <script type="text/javascript">
- ClassicEditor
-    .create( document.querySelector( '#description' ) )
-    .catch( error => {
-        console.error( error );
-    } );
+
+$('#description').ckeditor();
+
 $(document).ready(function(){
 	$('#title').blur(function(e){
         var text = document.getElementById("title").value;
