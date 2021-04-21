@@ -22,7 +22,7 @@ class ProductsController extends Controller
     
     public function index()
     {
-        $products = Products::get();
+        $products = Products::where('user_id',Auth::user()->id)->get();
         return view('backend.seller.products.index',compact('products'));
        
     }
