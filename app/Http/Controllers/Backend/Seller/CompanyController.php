@@ -232,7 +232,6 @@ class CompanyController extends Controller
 //buyer company profile..........................
     public function BuyerCompanyProfile()
     {   
-        
         $catgs =CatgMast::orderBy('catg_name')->cursor();
         // dd($catgs);
         return view('backend.buyer.company.profile',compact('catgs'));
