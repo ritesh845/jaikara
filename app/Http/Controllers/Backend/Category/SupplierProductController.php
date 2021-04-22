@@ -118,6 +118,7 @@ class SupplierProductController extends Controller
             'parent_id'     => 'nullable',          
 
         ]);
+        $data['catg_type'] = 'SP';
         if($request->parent_id !=''){
             $catg =  CatgMast::find($request->parent_id);
             $data['level'] = $catg->level + 1;
