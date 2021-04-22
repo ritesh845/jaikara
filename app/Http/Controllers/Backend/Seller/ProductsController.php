@@ -34,7 +34,7 @@ class ProductsController extends Controller
         $currencies     = Currency::get();
         $deliveryTerms  = DeliveryTerms::get();
         $paymentMethods = PaymentMethod::get();
-        $productGroups  = ProductGroup::get();
+        $productGroups  = ProductGroup::where('user_id',Auth::user()->id)->get();
         $materialMasts  = MaterialMast::get();
         $packingProducttMasts = PackingProducttMast::get();
         return view('backend.seller.products.create',compact('catgMasts','currencies','deliveryTerms','paymentMethods','productGroups','materialMasts','packingProducttMasts'));
@@ -80,7 +80,7 @@ class ProductsController extends Controller
         $currencies     = Currency::get();
         $deliveryTerms  = DeliveryTerms::get();
         $paymentMethods = PaymentMethod::get();
-        $productGroups  = ProductGroup::get();
+        $productGroups  = ProductGroup::where('user_id',Auth::user()->id)->get();
         $materialMasts  = MaterialMast::get();
         $packingProducttMasts= PackingProducttMast::get();
         // dd($product);

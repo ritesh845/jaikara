@@ -22,13 +22,18 @@
         		@foreach($products as $key => $product)
 	        		<tr>
 	        			<td>{{$key + 1}}</td>
-	        			<td></td>
-	        			<td></td>
-	        			<td></td>
-	        			<td></td>
-	        			<td></td>
-	        			<td></td>
-	        			<td></td>
+	        			<td>{{$product->name}}</td>
+	        			<td>{{$product->user !=null ? $product->user->comp_name : ''}}</td>
+	        			<td>{{$product->user !=null ? $product->user->email : ''}}</td>
+	        			<td><img src="{{$product->p_images !=null ? asset('storage/'.$product->p_images[0]->doc_path) : ''}}" width="50" height="50" /> </td>
+	        			<td>{{date('d-m-Y',strtotime($product->created_at))}}</td>
+	        			<td>
+	        				<a href="{{route('product-approval',$product->prdt_id)}}"  class=" text-white bg-primary p-2 ml-2 rounded-circle approval" ><i class="fa fa-thumbs-up" title="Approval" ></i></a>   
+	        			</td>
+	        			<td>
+	        				 <a href="" class="bg-warning text-white p-2 ml-2 rounded-circle" title="View"><i class="fa fa-eye"></i></a>            
+            				<a href="" class="bg-danger text-white p-2 ml-2 rounded-circle" title="Delete" onclick="return confirm('Are you sure you want to delete user?');"><i class="fa fa-trash"></i></a>     
+	        			</td>
 	        		</tr>
         		@endforeach
         	</tbody>

@@ -11,4 +11,8 @@ class ApprovalController extends Controller
     	$products = Products::where('is_approve','0')->cursor();
     	return view('backend.admin.approval.product-index',compact('products'));
     }
+
+    public function productApproval($id){
+    	return $id;
+    }
 }
