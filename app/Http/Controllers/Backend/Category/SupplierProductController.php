@@ -44,13 +44,8 @@ class SupplierProductController extends Controller
     public function store(Request $request)
     {
         $data = $this->validation($request);
-        if($request->parent_id !=''){
-            $catg =  CatgMast::find($request->parent_id);
-            $data['level'] = $catg->level + 1;
-
-        }else{
-            $data['level'] = '1';
-        }
+        
+        // return $data;
 
         if($request->hasFile('catg_img')){
            $data['catg_img']  = file_upload($request->catg_img,'/categories');
@@ -120,12 +115,17 @@ class SupplierProductController extends Controller
             'meta_title'    => 'required|min:3|max:255',
             'meta_desc'     => 'required|min:3|max:255',
             'meta_keywords' => 'required|min:3|max:255',
-            'parent_id'     => 'nullable',
-            'catg_type'     => 'SP'
+            'parent_id'     => 'nullable',          
 
         ]);
-        $data['level'] = '';
-        return $data;
+        if($request->parent_id !=''){
+            $catg =  CatgMast::find($request->parent_id);
+            $data['level'] = $catg->level + 1;
+
+        }else{
+            $data['level'] = '1';
+        }
+        return $data;        
     }
 
     public function approval($id){
