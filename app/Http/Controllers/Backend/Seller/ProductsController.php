@@ -30,7 +30,7 @@ class ProductsController extends Controller
     
     public function create()
     {
-        $catgMasts      = CatgMast::where(['catg_type' => 'SP'])->orderBy('catg_name')->cursor();
+        $catgMasts      = CatgMast::where(['catg_type' => 'SP','level' => '3'])->orderBy('catg_name')->cursor();
         $currencies     = Currency::get();
         $deliveryTerms  = DeliveryTerms::get();
         $paymentMethods = PaymentMethod::get();
@@ -76,7 +76,7 @@ class ProductsController extends Controller
     {
         $product = Products::with('p_images')->where('prdt_id',$id)->first();
 
-        $catgMasts      = CatgMast::where(['catg_type' => 'SP'])->orderBy('catg_name')->cursor();
+        $catgMasts      = CatgMast::where(['catg_type' => 'SP','level' => '3'])->orderBy('catg_name')->cursor();
         $currencies     = Currency::get();
         $deliveryTerms  = DeliveryTerms::get();
         $paymentMethods = PaymentMethod::get();

@@ -36,7 +36,7 @@
 						<option class="root" value="{{$category->catg_id}}" {{old('parent_id') == $category->catg_id ? 'selected' : ''}} >{{$category->catg_name}}</option>
 							
 								@if($category->subcategories !=null)
-									@include('backend.admin.category.supplier_product.subCategoryList',['subcategorie' => $category->subcategories, 'dataSpace' => 2])
+									@include('backend.admin.category.supplier_product.subCategoryList',['subcategorie' => $category->subcategories, 'dataSpace' => 2,'oldCatgId' => null])
 								@endif
 						@endforeach
 
