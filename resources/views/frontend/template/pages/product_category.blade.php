@@ -43,7 +43,7 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col-md-12">
-									<h6 class="font-weight-bold">Price :{{$product->currency->curr_name}} {{$product->price}}</h6>
+									<h6 class="font-weight-bold">Price :{{$product->currency !=null ? $product->currency->curr_name : ''}} {{$product->price}}</h6>
 								</div>
 							</div>
 						</div>
