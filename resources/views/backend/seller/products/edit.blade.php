@@ -418,6 +418,7 @@
 		});
 
 
+
 	$('.select2').select2({
 		placeholder: "Select Catgeory",
 		allowClear: true
