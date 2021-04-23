@@ -15,7 +15,7 @@ class ProductGroupController extends Controller
      */
     public function index()
     {
-        $productGroups= ProductGroup::get();
+        $productGroups= ProductGroup::where('user_id',Auth::user()->id)->get();
         return view('backend.seller.product-group.index',compact('productGroups'));
         
     }
@@ -27,7 +27,7 @@ class ProductGroupController extends Controller
      */
     public function create()
     {
-        $productGroups= ProductGroup::get();
+        $productGroups= ProductGroup::where('user_id',Auth::user()->id)->get();
         return view('backend.seller.product-group.create',compact('productGroups'));
         
     }

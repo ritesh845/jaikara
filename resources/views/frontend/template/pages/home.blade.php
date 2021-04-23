@@ -42,6 +42,7 @@ $productgroups = \App\Models\ProductGroup::where(['user_id' => session('user.id'
 				</div>
 			</div>
 		</div>
+
 		<div class="col-md-8">
 			<div class="row">
 				<div class="col-md-12 ">
@@ -71,5 +72,6 @@ $productgroups = \App\Models\ProductGroup::where(['user_id' => session('user.id'
 			</div>
 		</div>
 	</div>
+
 </div>
-	@include('frontend.template.pages.company_profile')
+@include('frontend.template.pages.company_profile')

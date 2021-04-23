@@ -41,7 +41,8 @@ class VerifyTemplate
         //     abort(404);
         // }
 
-        $this->url = request()->getHttpHost();
+        // = request()->getHttpHost();
+        $this->url =  str_replace("www.","",request()->getHttpHost());
         
 
         if(count(explode('/', request()->getRequestUri())) > 1){
@@ -51,6 +52,7 @@ class VerifyTemplate
         }
         if($domain_name == 'login' || $domain_name == 'register' || $domain_name == 'logout' ){
             $user = User::firstWhere(['domain_url' => $this->url,'status' => 'A']);
+            
         }else{
           if($domain_name !=null){
               $page = Page::firstWhere('page_name',$domain_name);

@@ -18,6 +18,7 @@ class FrontendController extends Controller
 
     public function index()
     {
+
        $page_name = 'home';
         return view('frontend.pages.index',compact('page_name'));
     }
