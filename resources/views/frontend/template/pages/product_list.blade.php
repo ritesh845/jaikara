@@ -19,7 +19,7 @@ $products = \App\Models\Products::where('user_id',session('user.id'))->orderBy('
 								</div>
 								<div class="card-body">
 									<h5>{{$product->name}}</h5>
-									<p>{{$product->currency !=null $product->currency->curr_name}} {{$product->price}}</p>
+									<p>{{$product->currency !=null ? $product->currency->curr_name}} {{$product->price}}</p>
 								</div>
 							</div>
 						</div>
