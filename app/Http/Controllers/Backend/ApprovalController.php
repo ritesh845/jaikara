@@ -13,6 +13,11 @@ class ApprovalController extends Controller
     }
 
     public function productApproval($id){
-    	return $id;
+    	 Products::find($id)->update(['is_approve' => '1']);
+    	 return redirect()->back()->with('success',"Product Approved successfully");
+    }
+    public function productDetails($id){
+    	$product = Products::find($id);
+    	return view('backend.admin.approval.product-show',compact('product'));
     }
 }

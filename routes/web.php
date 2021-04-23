@@ -64,6 +64,7 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::group(['prefix' => 'approval/'],function(){
 		Route::get('product',[App\Http\Controllers\Backend\ApprovalController::class,'productIndex'])->name('approval.product');
 		Route::get('product-approval/{id}',[App\Http\Controllers\Backend\ApprovalController::class,'productApproval'])->name('product-approval');
+		Route::get('product-details/{id}',[App\Http\Controllers\Backend\ApprovalController::class,'productDetails'])->name('product-details');
 
 
 	});

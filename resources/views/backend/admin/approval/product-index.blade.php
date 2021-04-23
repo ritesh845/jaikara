@@ -5,6 +5,11 @@
         <h5 class="card-title">Member package</h5>
     </div><!-- card-header -->
     <div class="card-body table-responsive">
+    	@if($message = Session::get('success'))
+    		<div class="alert alert-success">
+    			{{$message}}
+    		</div>
+    	@endif
         <table class="table table-striped table-bordered" id="table">
         	<thead>
         		<tr>
@@ -31,7 +36,7 @@
 	        				<a href="{{route('product-approval',$product->prdt_id)}}"  class=" text-white bg-primary p-2 ml-2 rounded-circle approval" ><i class="fa fa-thumbs-up" title="Approval" ></i></a>   
 	        			</td>
 	        			<td>
-	        				 <a href="" class="bg-warning text-white p-2 ml-2 rounded-circle" title="View"><i class="fa fa-eye"></i></a>            
+	        				 <a href="{{route('product-details',$product->prdt_id)}}" class="bg-warning text-white p-2 ml-2 rounded-circle" title="View"><i class="fa fa-eye"></i></a>            
             				<a href="" class="bg-danger text-white p-2 ml-2 rounded-circle" title="Delete" onclick="return confirm('Are you sure you want to delete user?');"><i class="fa fa-trash"></i></a>     
 	        			</td>
 	        		</tr>
