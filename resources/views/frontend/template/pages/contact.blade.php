@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid mb-5">
 	<div class="row">
 		<div class="col-md-12 text-center">
 			<h4 class="mb-4">Contact Now</h4>
@@ -34,7 +34,7 @@
 							</div>
 							<div class="col-md-6 form-group">
 								<label>Mobile Number</label>
-								<input type="text" class="form-control" name="mobile" value="{{old('mobile')}}">
+								<input type="text" class="form-control" name="mobile" value="{{old('mobile')}}" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
 								@error('mobile')
                                     <span class="help-block text-danger font-size-12">
                                         <strong>{{ $message }}</strong>
