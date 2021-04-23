@@ -49,7 +49,7 @@
 						</div>
 						<div class="col-md-6 form-group col-xs-12">
 							<label> Mobile</label>
-							<input type="text" class="form-control" name="mobile" value="{{$user->mobile }}" readonly="readonly">
+							<input type="text" class="form-control" name="mobile" value="{{$user->mobile }}" readonly="readonly" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
 							
 						</div>
 						<div class="col-md-6 form-group col-xs-12">
