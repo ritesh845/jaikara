@@ -413,7 +413,10 @@
 <script type="text/javascript">
 
 	$(document).ready(function(){
-		CKEDITOR.replace('editor');
+		CKEDITOR.replace('editor',{
+			extraAllowedContent: 'style;*[id,rel](*){*}'
+		});
+
 
 	$('.select2').select2({
 		placeholder: "Select Catgeory",
