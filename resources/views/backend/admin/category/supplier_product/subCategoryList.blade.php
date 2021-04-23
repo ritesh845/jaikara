@@ -1,5 +1,5 @@
 @foreach($subcategorie as $subcategory)
-	<option value="{{$subcategory->catg_id}}" {{old('parent_id') == $subcategory->catg_id ? 'selected' : ''}} >
+	<option value="{{$subcategory->catg_id}}" {{(old('parent_id') ?? $oldCatgId) == $subcategory->catg_id ? 'selected' : ''}} >
 		{{-- {{!empty($categoryInfo) ? ($categoryInfo->parent_id == $subcategory->catg_id ? 'selected' : '') : ''}} --}}
 			@php 
             	// if(count($subcategory->subcategory) ==0){

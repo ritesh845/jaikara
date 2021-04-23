@@ -32,11 +32,16 @@
     			<div class="col-md-6 form-group">
     				<label>Select Category</label>
     				<select class="form-control" name="parent_id">
-    					<option value="">Root</option>
-    					@foreach($categories as $category)
-    						<option value="{{$category->catg_id}}" {{old('parent_id') == $category->catg_id ? 'selected="selected' : '' }}>{{$category->catg_name}}</option>
-    					@endforeach
-    				</select>
+                        <option value="">{{__('Root')}}</option>
+                        @foreach($categories as $category)
+                        <option class="root" value="{{$category->catg_id}}" {{(old('parent_id') ?? $catg->parent_id) == $category->catg_id ? 'selected' : ''}} >{{$category->catg_name}}</option>
+                            
+                                @if($category->subcategories !=null)
+                                    @include('backend.admin.category.supplier_product.subCategoryList',['subcategorie' => $category->subcategories, 'dataSpace' => 2,'oldCatgId' => $catg->parent_id])
+                                @endif
+                        @endforeach
+
+                    </select>
     				@error('parent_id')
 				        <span class="help-block text-danger font-size-12">
 				            <strong>{{ $message }}</strong>
