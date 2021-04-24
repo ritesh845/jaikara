@@ -84,7 +84,7 @@
 		    		<a href="" class="nav-link text-muted f-14" >All Categories</a>
 		    	</li>
 		    	<li class="nav-item">
-		    		<a href="" class="nav-link text-muted f-14" >Suppliers</a>
+		    		<a href="{{url('supplier')}}" class="nav-link text-muted f-14" >Suppliers</a>
 		    	</li>
 		    	<li class="nav-item">
 		    		<a href="" class="nav-link text-muted f-14" >Products</a>
