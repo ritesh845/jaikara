@@ -1,5 +1,5 @@
 @php
-	$suppliers = \App\Models\User::where('role_id','4')->paginate(10);
+	$suppliers = \App\Models\User::where(['role_id' => '4','status' => 'A'])->paginate(10);
 @endphp
 
 <div class="container-fluid pt-5 pb-5 bg-back-color">
